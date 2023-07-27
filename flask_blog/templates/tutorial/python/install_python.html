@@ -1,0 +1,118 @@
+{% extends "layout.html" %}
+{% block title %}PythonTutorial | CodingShoding - Learn Coding With Us{% endblock %}
+{% block body %}
+
+<!-- Main Content -->
+<article class="my-3">
+    <div class="container-fluid px-0 px-md-4 px-lg-3">
+        <div class="row relative">
+            <div class="col-xsm-12 col-sm-10 col-md-4 col-xl-3 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <ul class="list-style-none p-0">
+                            <li class="p-1 rounded-2 text-white mb-2" style="background: #f0c92d;"><img
+                                    class="w-15 me-2"
+                                    src="{{url_for('static',filename='assets/img/Python-logo.png')}}" /><strong
+                                    class="text-white">Python
+                                    Tutorial</strong>
+                            </li>
+                            <div class="dropdown-menu-hid">
+                                <a href="{{ url_for('tute.starting_python') }}">
+                                    <li class="dropdown-padding mb-1">Starting Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.install_python') }}">
+                                    <li class="dropdown-padding mb-1 active">Install Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.vscode_setup') }}">
+                                    <li class="dropdown-padding mb-1">VS Code Setup</li>
+                                </a>
+                                <a href="{{ url_for('tute.first_program') }}">
+                                    <li class="dropdown-padding mb-1">First Program</li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xsm-12 col-sm-10 col-md-8 col-lg-6 col-xl-7 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <h2 style="color: #236ece;">Install Python<a href="#install_python"></a>
+                        </h2>
+                        <p style="font-size: 15px"><b>Summary:</b> in this tutorial, you’ll learn how to install Python
+                            on your
+                            computer.</p>
+                        <p><strong>Install Python on Windows</strong></p>
+                        <p class="para-size">First, download the latest version of Python from the download page.</p>
+
+                        <p class="para-size">Second, double-click the installer file to launch the setup wizard.</p>
+
+                        <p class="para-size">In the setup window, you need to check the <strong>ADD Python 3.8 to
+                                PATH</strong>
+                            and click the Install Now to begin the installation.</p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Install-Python-Windows-Step-1.png')}}" />
+                        </div>
+                        <p class="para-size">It’ll take few minutes to complete the setup.</p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Install-Python-Windows-Step-2.png')}}" />
+                        </div>
+                        <p class="para-size">Once the setup completes, you’ll see the following window:</p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Install-Python-Windows-Step-3.png')}}" />
+                        </div>
+                        <p><strong>Verify the installation</strong></p>
+
+                        <p class="para-size">To verify the installation, you open the Run window and type cmd and press
+                            Enter:
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Install-Python-Windows-Run.png')}}" />
+                        </div>
+                        <p class="para-size">In the Command Prompt, type <strong style="color: red;">python</strong>
+                            command as
+                            follows:</p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Install-Python-Windows-Verification.png')}}" />
+                        </div>
+                        <p class="para-size">If you see the output like the above screenshot, you’ve successfully
+                            installed
+                            Python on your computer.</p>
+                        <p class="para-size">To exit the program, you type Ctrl-Z and press <strong>Enter</strong>.</p>
+                        <p class="para-size">If you see the following output from the Command Prompt after typing the
+                            python
+                            command:</p>
+                        <div style="background: black;">
+                            <p style="color: #8190ca;padding: 1rem;">'python' is not recognized as an internal or
+                                external
+                                command,
+                                operable program or batch file.</p>
+                        </div>
+                        <p class="para-size">It’s likely that you didn’t check the <strong>ADD Python 3.8 to
+                                PATH</strong>
+                            checkbox when you install Python.</p>
+
+                        </br>
+                        <hr class="my-3" />
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('tute.starting_python') }}" class="text-uppercase m-0"><i
+                                    class="fa-solid fa-chevron-left"></i>
+                                Previous</a>
+                            <a class="text-uppercase" href="{{ url_for('tute.vscode_setup') }}">Next
+                                <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{% endblock %}

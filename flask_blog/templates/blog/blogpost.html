@@ -1,0 +1,568 @@
+{% extends "layout.html" %}
+{% block title %}{{ post.title|title }} &#8226; CodingShoding - Learn coding with us{% endblock %}
+{% block body %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+{% for category, message in messages %}
+{% if category=='success' %}
+<div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-2" role="alert">
+    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
+    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </p>
+</div>
+{% elif category=='info' %}
+<div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-2" role="alert">
+    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% elif category=='warning' %}
+<div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-2" role="alert">
+    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% else %}
+<div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-2" role="alert">
+    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>{% endif %}{% endfor %}{% endif %}{% endwith %}
+<!-- main content-->
+<main class="mb-4">
+    <div class="container px-0 px-md-3">
+        <!-- page header-->
+        <header class="posthead">
+            <div class="d-flex skeleton">
+                <picture>
+                    <img class="image" src="{{ url_for('static', filename=post.filename) }}"
+                        alt="">
+                </picture>
+            </div>
+        </header>
+        <!-- article section -->
+        <article class="row">
+            <!-- main article content -->
+            <section class="col-xsm-12 col-md-12 col-lg-8 col-xl-8 px-2">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h1 class="mb-3 mb-lg-4">{{ post.title }}</h1>
+                        <h5 class="mb-3 mb-lg-4">{{ post.subtitle }}</h5>
+                        <div class="meta-info-user">
+                            <div class="d-flex">
+                                <a href="{{ url_for('app.dashboard', username=post.user.username) }}">
+                                    {% if not post.user.get_profile() %}
+                                    <img class="img-avator me-2 my-auto"
+                                        src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                    {% else %}
+                                    {% if not post.user.get_profile().profile_url %}
+                                    <img class="img-avator me-2 my-auto"
+                                        src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                    {% else %}
+                                    <img class="img-avator me-2"
+                                        src="{{url_for('static', filename='assets/uploads/profile/'+post.user.get_profile().profile_url )}}">
+                                    {% endif %}{% endif %}
+                                </a>
+                                <div class="me-2">
+                                    <a class="fs-3-150 fs-4-350"
+                                        href="{{ url_for('app.dashboard', username=post.user.username) }}">
+                                        @{{ post.user.username }}</a>
+                                    <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                        {{ post.created|date }} &#8226;
+                                        {{ post.created|time }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mt-3 mt-sm-0">
+                                <div class="d-flex justify-content-between py-2">
+                                    <!-- like post -->
+                                    <div class="btn-like d-flex pointer mx-2">
+                                        {% if current_user.is_authenticated %}
+                                        <p id="like-button" title="Like Post"
+                                            onclick="likePost('{{ post.id }}', '{{ csrf_token() }}')">
+                                            {% if current_user in post_likes %}
+                                            <i class="bi bi-heart-fill text-red"></i>
+                                            {% else %}
+                                            <i class="bi bi-heart"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% else %}
+                                        <a data-bs-toggle="modal" href="#login-modal">
+                                            <p class="p-2 m-0" title="Like Post">
+                                                <i class="bi bi-heart fs-1-150"></i>
+                                            </p>
+                                        </a>
+                                        {% endif %}
+                                        <p id="likes" class="text-muted fs-4-150 my-auto">{{ post.likes|length }}
+                                        </p>
+                                    </div>
+                                    <!-- share post -->
+                                    <div class="btn-share d-flex pointer mx-2">
+                                        <a data-bs-toggle="modal" href="#share-post" class="d-flex">
+                                            <p id="share-button" title="Share">
+                                                <i class="bi bi-share"></i>
+                                            </p>
+                                            <p id="shared" class="text-muted fs-4-150 my-auto">
+                                                {{ post.saves|length}}
+                                            </p>
+                                        </a>
+                                        <!-- share post modal -->
+                                        <div class="modal fade" id="share-post" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content rounded-3">
+                                                    <div class="modal-body">
+                                                        <div class="d-flex justify-content-between">
+                                                            <h4 class="mb-2">Share Post</h4>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <i class="bi bi-x text-muted fs-5"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="my-3">
+                                                            <a href="">
+                                                                <button type="button"
+                                                                    class="btn btn-success text-uppercase mb-3 fs-4-350">
+                                                                    <i class="fa-brands fa-whatsapp me-2"></i>Share
+                                                                    On Whatsapp
+                                                                </button>
+                                                            </a>
+                                                            <a href="">
+                                                                <button type="button"
+                                                                    class="btn btn-primary bg-blue text-uppercase fs-4-350 mb-3"><i
+                                                                        class="fa-brands fa-facebook me-2"></i>Share
+                                                                    On
+                                                                    Facebook</button></a>
+                                                            <a href="">
+                                                                <button type="button"
+                                                                    class="btn btn-success text-uppercase fs-4-350 mb-3"><i
+                                                                        class="fa-brands fa-instagram me-2"></i>Share
+                                                                    On
+                                                                    Instagram</button></a>
+                                                            <a href="">
+                                                                <button type="button"
+                                                                    class="btn btn-success text-uppercase fs-4-350 mb-3"><i
+                                                                        class="fa-brands fa-twitter me-2"></i>Share
+                                                                    On
+                                                                    Twitter</button></a>
+                                                            <a href="">
+                                                                <button type="button"
+                                                                    class="btn btn-success text-uppercase fs-4-350"><i
+                                                                        class="fa-brands fa-linkedin me-2"></i>Share
+                                                                    On
+                                                                    LinkedIn</button></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- saved post -->
+                                    <div class="btn-save d-flex pointer mx-2">
+                                        {% if current_user.is_authenticated %}
+                                        <p id="save-button" title="Save to Read Later"
+                                            onclick="savePost('{{ post.id }}', '{{ csrf_token() }}')">
+                                            {% if current_user in post_saves %}
+                                            <i class="bi bi-bookmarks-fill text-primary mx-1"></i>
+                                            {% else %}
+                                            <i class="bi bi-bookmarks mx-1"></i>
+                                            {% endif %}
+                                        </p>
+                                        {% else %}
+                                        <a data-bs-toggle="modal" href="#login-modal">
+                                            <p class="p-2 m-0" title="Save Post">
+                                                <i class="bi bi-bookmarks fs-1-150 mx-1"></i>
+                                            </p>
+                                        </a>
+                                        {% endif %}
+                                        <p id="saves" class="text-muted fs-4-150 my-auto">{{ post.saves|length }}
+                                        </p>
+                                    </div>
+                                    {% if not current_user.is_authenticated %}
+                                    <!-- login account modal -->
+                                    <div class="modal fade" id="login-modal" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content rounded-3">
+                                                <div class="modal-body p-0">
+                                                    <div class="p-3 p-lg-4">
+                                                        <form method="post"
+                                                            action="{{ url_for('auth.login', redirect_url=request.path) }}"
+                                                            aria-label="Login Form" accept-charset="UTF-8">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h2 class="mb-4">Login Your Account</h2>
+                                                                <button type="button" class="btn-close mt-2"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i class="fa-solid fa-xmark text-muted fs-4"></i>
+                                                                </button>
+                                                            </div>
+                                                            {{ login_form.csrf_token() }}
+                                                            <div class="form-outline mb-3">
+                                                                {{ login_form.email.label(class_="form-label") }}
+                                                                {{ login_form.email(
+                                                                class_="form-control form-control-lg",
+                                                                autocomplete="off",
+                                                                placeholder="Enter your email address") }}
+                                                            </div>
+                                                            <div class="form-outline mb-3">
+                                                                <div class="d-flex justify-content-between">
+                                                                    {{ login_form.password.label(class_="form-label") }}
+                                                                    <a href="{{ url_for('auth.forgot_password') }}">
+                                                                        <p class="m-0">Forgot password?</p>
+                                                                    </a>
+                                                                </div>
+                                                                {{ login_form.password(
+                                                                class_="form-control form-control-lg",
+                                                                autocomplete="off",
+                                                                placeholder="Enter your password") }}
+                                                            </div>
+                                                            <div class="d-flex justify-content-start my-3">
+                                                                {{ login_form.check(
+                                                                class_="form-check-input my-auto me-2",
+                                                                checked="true") }}
+                                                                {{ login_form.check.label(
+                                                                class_="form-check-label") }}
+                                                            </div>
+                                                            <div class="d-flex justify-content-center">
+                                                                {{ login_form.submit(class_="btn btn-primary") }}
+                                                            </div>
+                                                            <div class="main-divider main-divider-horizontal my-3"
+                                                                role="separator">
+                                                                <span>or</span>
+                                                            </div>
+                                                            <div class="d-flex mb-3">
+                                                                <a href="" class="w-100" role="button">
+                                                                    <button type="button" class="btn btn-outline-light">
+                                                                        <i class="bi bi-google me-2 fs-3-150"></i>
+                                                                        Continue with Google
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                            <div class="d-flex">
+                                                                <a href="" class="w-100" role="button">
+                                                                    <button type="button" class="btn btn-outline-light">
+                                                                        <i class="bi bi-github me-2 fs-3-150"></i>
+                                                                        Continue with Github
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <hr class="m-0">
+                                                    <div class="card-body text-center p-3">
+                                                        Don't have an account?
+                                                        <a href="{{ url_for('auth.register') }}"
+                                                            class="text-decoration-none"><b>Register</b></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="card-body">
+                        <!-- post content -->
+                        <p>{{ post.content|safe }}</p>
+                    </div>
+                    {% if current_user.is_authenticated and post.user.id == current_user.id %}
+                    <hr class="m-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <a role="button" href="{{ url_for('blog.edit_post', slug=post.slug) }}">
+                                <button class="btn btn-primary ms-1">
+                                    <i class="bi bi-pencil fs-4-150 me-2"></i>Edit
+                                </button>
+                            </a>
+                            <a role="button" data-bs-toggle="modal" href="#delete-post">
+                                <button class="btn btn-danger me-1">
+                                    <i class="bi bi-trash fs-4-150 me-2"></i>Delete
+                                </button>
+                            </a>
+                            <div class="modal fade" id="delete-post" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0 rounded-3">
+                                        <div class="card">
+                                            <div class="modal-header bg-red" style="border-radius: 5px 5px 0 0;">
+                                                <h5 class="modal-title" style="color: #fff;">
+                                                    Do you really want to delete this post?
+                                                </h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <strong>{{ post.title }}</strong>
+                                            </div>
+                                            <div class="p-3">
+                                                <a href="{{ url_for('blog.delete_post', slug=post.slug) }}"
+                                                    role="button">
+                                                    <button type="button"
+                                                        class="btn btn-danger mb-3">Confirm</button></a>
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+            <!-- author profile detail -->
+            <section class="col-xsm-12 col-md-9 col-lg-4 px-2">
+                <div class="mb-3">
+                    <div class="card mb-3">
+                        <div class="text-center">
+                            <!-- cover image -->
+                            <div class="d-flex">
+                                {% if not post.user.get_profile() %}
+                                <img id="cover-img" class="image skeleton"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}{% if not post.user.get_profile().cover_url %}
+                                <img id="cover-img" class="image skeleton"
+                                    src="{{ url_for('static', filename='assets/images/admin-bg.jpg') }}">
+                                {% else %}
+                                <img id="cover-img" class="image skeleton"
+                                    src="{{url_for('static', filename='assets/uploads/cover/'+post.user.get_profile().cover_url )}}">
+                                {% endif %}{% endif %}
+                            </div>
+                            <!-- profile image -->
+                            <div class="d-flex justify-content-center h-5">
+                                <div class="relative" style="top: -65px;">
+                                    {% if not post.user.get_profile() %}
+                                    <img class="img-fluid skeleton"
+                                        src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                    {% else %}{% if not post.user.get_profile().profile_url %}
+                                    <img class="img-fluid skeleton"
+                                        src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                    {% else %}
+                                    <img class="img-fluid skeleton"
+                                        src="{{url_for('static', filename='assets/uploads/profile/'+post.user.get_profile().profile_url )}}">
+                                    {% endif %}{% endif %}
+                                </div>
+                            </div>
+                            <!-- about user detail -->
+                            <div class="text-start p-3">
+                                <div class="my-3">
+                                    {% if not post.user.get_profile() %}
+                                    <h3 class="mb-2">{{ post.user.username|lower }}</h3>
+                                    {% else %}
+                                    {% if not post.user.get_profile().fullname %}
+                                    <h3 class="mb-2">{{ post.user.username|lower }}</h3>
+                                    {% else %}
+                                    <h3 class="mb-2">{{ post.user.get_profile().fullname }}</h3>
+                                    {% endif %}{% endif %}
+                                    <div class="d-flex">
+                                        <a href="{{ url_for('app.dashboard', username=post.user.username) }}"
+                                            class="pointer m-0 me-1">@{{ post.user.username|lower }} &#8226;</a>
+                                        <p class="text-muted m-0">1k Followers</p>
+                                    </div>
+                                </div>
+                                {% if post.user.get_profile() and post.user.get_profile().biodata %}
+                                <hr>
+                                <p class="text-muted">{{ post.user.get_profile().biodata }}</p>
+                                {% endif %}
+                                <button id="follow-btn" type="button"
+                                    class="btn btn-outline-secondary my-2">Following</button>
+                                <span class="fw-bold text-muted">JOINED</span>
+                                <p class="m-0 fs-4-150">{{ post.user.created|date }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% if author_posts %}
+                    <h5 class="ms-1">More from <span class="text-primary">@{{post.user.username}}</span></h5>
+                    <!-- post preview-->
+                    {% for a_post in author_posts %}
+                    <div class="post-box mb-3" title="{{ post.title }}">
+                        <div id="preview" class="post-preview mw-100">
+                            <a href="{{ url_for('blog.blogpost', slug=a_post.slug) }}">
+                                <h3 class="post-title">{{ a_post.title|title }}</h3>
+                                <h3 class="post-subtitle">{{ a_post.subtitle|safe }}...</h3>
+                            </a>
+                            <p class="post-meta m-0">by<a class="mx-1"
+                                    href="{{ url_for('app.dashboard', username=a_post.user.username) }}"
+                                    title="Profile &#8226; {{ a_post.user.username }}">
+                                    {{ a_post.user.username }}</a> &#8226;
+                                {{ a_post.created|timeago }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% if author_posts|length > 4 %}
+                    <div class="text-center">
+                        <a href="#" class="text-primary m-0 fs-4-150">Read more</a>
+                    </div>
+                    {% endif %}
+                    <hr>
+                    {% endif %}
+                </div>
+            </section>
+        </article>
+        <!-- comments section -->
+        <section class="row justify-content-start">
+            <div class="col-xsm-12 col-sm-12 col-md-11 col-lg-8 col-xl-8 px-2">
+                {% if current_user.is_authenticated %}
+                <!-- post comments form -->
+                <form method="post" action="{{ url_for('blog.blogpost', slug=post.slug) }}" accept-charset="UTF-8">
+                    <div class="d-flex justify-content-between mb-1">
+                        <h3 class="m-0">Add Comment</h3>
+                        <span id="comment-length" class="mt-auto me-1"></span>
+                    </div>
+                    <div class="d-flex justify-content-start mb-3">
+                        {% if not current_user.get_profile().profile_url %}
+                        <img class="img-avator me-2"
+                            src="{{ url_for('static', filename='assets/images/default-profile.png' ) }}" />
+                        {% else %}
+                        <img class="img-avator me-2"
+                            src="{{ url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}" />
+                        {% endif %}
+                        <div class="form-outline w-100">
+                            {{ form.csrf_token() }}
+                            {{ form.content(class_="form-control form-control-lg mb-2", style="height: 6rem;",
+                            placeholder="Add your comment...", oninput="postComment(this)") }}
+                            <div class="d-flex">
+                                {{ form.submit(id="submit-comment", class_="btn btn-primary w-auto px-3 py-2 me-2",
+                                disabled="") }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                {% else %}
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold text-primary"><strong>Start Your Conversation!</strong></h3>
+                    <p class="text-light mb-4">Become a member of <span class="fw-bold">Our Blog platform</span> to
+                        start commenting.</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{{ url_for('auth.register') }}"><button type="button" role="button"
+                                class="btn btn-primary">Create Account</button></a>
+                    </div>
+                    <p class="text-center text-muted my-3">
+                        Already a User?
+                        <a href="{{ url_for('auth.login', redirect_url=request.path) }}"
+                            class="text-decoration-none">Login</a>
+                    </p>
+                </div>
+                <hr>
+                {% endif %}
+                <div class="d-flex justify-content-between px-2 mb-3">
+                    <h3 class="text-dark">Comments<a class="link" href="#comments">
+                            <i class="bi bi-link-45deg"></i></a>
+                    </h3>
+                    <p class="text-muted">{{ comments|length }} comments</p>
+                </div>
+                <!-- post comments -->
+                {% for comment in comments %}
+                <div id="comments" class="card mb-3">
+                    <div class="p-2">
+                        <div class="w-100">
+                            <div class="d-flex justify-content-between mb-2">
+                                <div class="d-flex justify-content-start">
+                                    <div class="me-2">
+                                        {% if comment.user.get_profile().profile_url %}
+                                        <a href="{{ url_for('app.dashboard', username=comment.user.username) }}">
+                                            <img class="img-avator"
+                                                src="{{ url_for('static', filename='assets/uploads/profile/'+comment.user.get_profile().profile_url )}}" />
+                                        </a>
+                                        {% else %}
+                                        <a href="{{ url_for('app.dashboard', username=comment.user.username) }}">
+                                            <img class="img-avator"
+                                                src="{{ url_for('static', filename='assets/images/default-profile.png')}}" />
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="">
+                                            {% if comment.user.get_profile().fullname %}
+                                            <h5 class="text-muted m-0 fs-4-150"><a
+                                                    href="{{ url_for('app.dashboard', username=comment.user.username) }}">
+                                                    {{ comment.user.get_profile().fullname }}</a> &#8226;
+                                            </h5>
+                                            {% else %}
+                                            <h5 class="text-muted m-0 fs-4-150"><a
+                                                    href="{{ url_for('app.dashboard', username=comment.user.username) }}">
+                                                    {{ comment.user.username }}</a> &#8226;
+                                            </h5>
+                                            {% endif %}
+                                            <p class="fs-4-150 fs-4-576 m-0 me-1">
+                                                @{{ comment.user.username }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p class="text-muted fs-4-150 fs-4-576 m-0 ms-1">
+                                                {{ comment.created|timeago }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex">
+                                    <p class="m-0 ms-1" data-bs-toggle="dropdown" aria-expanded="false"><i
+                                            class="bi bi-three-dots-vertical"></i></p>
+                                    <ul class="dropdown-menu" style="width: 150px;">
+                                        {% if current_user.is_authenticated %}
+                                        {% if comment.user.id == current_user.id or post.user.id == current_user.id %}
+                                        <li class="m-1">
+                                            <a data-bs-toggle="modal" href="#delete-comment"
+                                                class="dropdown-item"><span>Delete</span></a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="m-1">
+                                            <a class="dropdown-item text-muted" href="#reply">Reply</a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="m-1">
+                                            <a data-bs-toggle="modal" href="#report"
+                                                class="dropdown-item text-muted">Report</a>
+                                        </li>
+                                    </ul>
+
+                                    {% if comment.user == current_user or post.user == current_user %}
+                                    <!-- comment modal -->
+                                    <div class="modal fade" id="delete-comment" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content rounded-3">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <div class="d-block">
+                                                            <h4 class="modal-title text-dark">
+                                                                Delete Comment
+                                                            </h4>
+                                                            <p>Are you sure you want to delete your comment?</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-start">
+                                                        <a class="me-2"
+                                                            href="{{ url_for('blog.delete_comment', id=comment.id) }}">
+                                                            <button type="button" class="btn btn-danger">
+                                                                Confirm
+                                                            </button>
+                                                        </a>
+                                                        <button type="button" class="btn btn-outline-secondary w-auto"
+                                                            data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>{% endif %}
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-start align-items-start ps-5 mb-2">
+                                <p class="mx-1 m-0">{{ comment.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/app/blogpost.js') }}"></script>
+{% endblock %}

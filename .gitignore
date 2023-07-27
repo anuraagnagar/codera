@@ -1,0 +1,27 @@
+
+.vscode
+.idea/
+
+# Byte-compiled / optimized / DLL files
+__pychache__/
+*.py[cod]
+*$py.class
+.pyc
+
+# database migration and local db.
+migrations/
+db.sqlite3
+*.sqlite3
+sqlite3.db
+
+# Python Virtual environment file, packages..
+.env
+.venv
+env/
+venv/
+ENV/
+
+*.jpg
+*.jpeg
+*.png
+*.webp

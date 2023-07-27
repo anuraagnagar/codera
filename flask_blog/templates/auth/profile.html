@@ -1,0 +1,228 @@
+{% extends "layout.html" %}
+{% block title %}Profile &#8226; @{{ current_user.username|lower }} &#8226; CodingShoding - Learn coding with us
+{% endblock %}
+{% block body %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+{% for category, message in messages %}
+{% if category=='success' %}
+<div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
+    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </p>
+</div>
+{% elif category=='info' %}
+<div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% elif category=='warning' %}
+<div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% else %}
+<div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-2" role="alert">
+    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>{% endif %}{% endfor %}{% endif %}{% endwith %}
+
+<!-- Profile Content -->
+<main class="my-2">
+    <div class="container px-0 px-xl-5">
+        <!-- forms section -->
+        <form method="post" action="{{ url_for('auth.edit_profile') }}" enctype="multipart/form-data"
+            accept-charset="UTF-8">
+            {{ form.csrf_token() }}
+            <div class="row">
+                <section class="col-xsm-12 col-sm-10 col-md-9 col-lg-4">
+                    <aside class="m-2 mb-3">
+                        <div class="card">
+                            <div class="text-center">
+                                <div class="d-flex">
+                                    {% if not current_user.get_profile().cover_url %}
+                                    <img id="cover-img"
+                                        src="{{ url_for('static', filename='assets/images/admin-bg.jpg') }}"
+                                        class="image skeleton" alt="">
+                                    {% else %}
+                                    <img id="cover-img"
+                                        src="{{ url_for('static', filename='assets/uploads/cover/' + current_user.get_profile().cover_url) }}"
+                                        class="image skeleton" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="relative" style="top: -50px;">
+                                        {% if not current_user.get_profile().profile_url %}
+                                        <img id="profile-img" title="Profile Picture"
+                                            src="{{ url_for('static', filename='assets/images/default-profile.png') }}"
+                                            class="img-fluid skeleton">
+                                        {% else %}
+                                        <img id="profile-img" title="Profile Picture"
+                                            src="{{ url_for('static', filename='assets/uploads/profile/' + current_user.get_profile().profile_url )}}"
+                                            class="img-fluid skeleton">
+                                        {% endif %}
+                                        <div class="upload-btn-wrapper">
+                                            {{ form.profile_image(id="profile", accept="image/*",
+                                            onchange="changeHandler(this)||ImagePreview(this, '#profile-img')") }}
+                                            <button class="btn" type="button">
+                                                <img
+                                                    src="{{ url_for('static', filename='assets/images/change_profile.png') }}">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="px-2 mb-3">
+                                    {% if not current_user.get_profile().fullname %}
+                                    <h3 class="mb-3">{{ current_user.username|lower }}</h3>
+                                    {% else %}
+                                    <h3 class="mb-2">{{ current_user.get_profile().fullname|title }}</h3>
+                                    <h5 class="mb-2">@{{ current_user.username|lower }}</h5>
+                                    {% endif %}
+                                    <span style="font-size: 15px"><b>{{ current_user.get_profile().role }}</b></span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="m-2">
+                        <div class="card">
+                            <div class="p-3">
+                                <h3 class="mb-3">Social Links</h3>
+                                <div class="form-outline mb-3">
+                                    {{ form.website_url.label(class_="form-label") }}
+                                    {{ form.website_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.get_profile().website_url,
+                                    placeholder="Enter website url") }}
+                                </div>
+                                <div class="form-outline mb-3">
+                                    {{ form.github_url.label(class_="form-label") }}
+                                    {{ form.github_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.get_profile().github_url,
+                                    placeholder="Enter github url") }}
+                                </div>
+                                <div class="form-outline mb-3">
+                                    {{ form.twitter_url.label(class_="form-label") }}
+                                    {{ form.twitter_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.get_profile().twitter_url,
+                                    placeholder="Enter twitter url") }}
+                                </div>
+                                <div class="form-outline mb-3">
+                                    {{ form.facebook_url.label(class_="form-label") }}
+                                    {{ form.facebook_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.get_profile().facebook_url,
+                                    placeholder="Enter facebook url") }}
+                                </div>
+                                <div class="form-outline">
+                                    {{ form.instagram_url.label(class_="form-label") }}
+                                    {{ form.instagram_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.get_profile().instagram_url,
+                                    placeholder="Enter instagram url") }}
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </section>
+                <section class="col-xsm-12 col-sm-10 col-md-9 col-lg-8">
+                    <div class="card m-2">
+                        <div class="card-body">
+                            <h3 class="mb-3">User Details</h3>
+                            <div class="form-outline mb-4">
+                                {{ form.fullname.label(class_="form-label") }}
+                                {{ form.fullname(class_="form-control form-control-lg", oninput="changeHandler()",
+                                placeholder="Enter your name", value=current_user.get_profile().fullname) }}
+                            </div>
+                            <div class="form-outline mb-4">
+                                {{ form.username.label(class_="form-label") }}
+                                {{ form.username(class_="form-control form-control-lg", oninput="changeHandler()",
+                                placeholder="Enter your username", value=current_user.username) }}
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input class="form-control form-control-lg" id="email" type="email"
+                                    value="{{ current_user.email }}" disabled="true" placeholder="Enter your email"
+                                    readonly="true" />
+                                <p class=" fs-4-150 my-2"><b>Note: </b><span class="text-muted">If you want to reset
+                                        your email address. Please click the button below.</span></p>
+                                <!-- change email button  -->
+                                <div class="d-flex justify-content-start">
+                                    <a href="{{ url_for('auth.update_email') }}">
+                                        <button type="button" class="btn btn-primary">Change</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-outline">
+                                {{ form.cover_image.label(class_="form-label") }}
+                                {{ form.cover_image(class_="form-control form-control-lg",
+                                accept="image/*", onchange="changeHandler(this)||ImagePreview(this, '#cover-img')") }}
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="card-body">
+                            <h3 class="mb-3">Personal Information</h3>
+                            <div class="form-outline mb-4">
+                                {{ form.mobile.label(class_="form-label") }}
+                                {{ form.mobile(class_="form-control form-control-lg",
+                                placeholder="Enter your phone number",
+                                oninput="changeHandler()", value=current_user.get_profile().mobile) }}
+                            </div>
+                            <div class="form-outline mb-4">
+                                {{ form.biodata.label(class_="form-label") }}
+                                {{ form.biodata(class_="form-control form-control-lg",
+                                placeholder="About Yourself", style="height: 6rem;",
+                                oninput="changeHandler()", value=current_user.get_profile().biodata) }}
+                            </div>
+                            <div class="form-outline mb-4">
+                                {{ form.gender.label(class_="form-label") }}
+                                {{ form.gender(class_="form-select form-select-lg", oninput="changeHandler()",
+                                value=current_user.get_profile().gender) }}
+                            </div>
+                            <div class="form-outline">
+                                {{ form.address.label(class_="form-label") }}
+                                {{ form.address(class_="form-control form-control-lg",
+                                placeholder="Enter your address",
+                                oninput="changeHandler()", value=current_user.get_profile().address) }}
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="card-body">
+                            <h3 class="mb-3">Work & Experience</h3>
+                            <div class="form-outline mb-4">
+                                {{ form.work.label(class_="form-label") }}
+                                {{ form.work(class_="form-control form-control-lg", placeholder="Your work",
+                                oninput="changeHandler()", value=current_user.get_profile().work) }}
+                            </div>
+                            <div class="form-outline mb-4">
+                                {{ form.education.label(class_="form-label") }}
+                                {{ form.education(class_="form-control form-control-lg", placeholder="Your education",
+                                oninput="changeHandler()", value=current_user.get_profile().education) }}
+                            </div>
+                            <div class="form-outline">
+                                {{ form.role.label(class_="form-label") }}
+                                {{ form.role(class_="form-control form-control-lg", placeholder="Your role",
+                                oninput="changeHandler()", value=current_user.get_profile().role) }}
+                            </div>
+                        </div>
+                        <hr class="m-0">
+                        <div class="card-body">
+                            <!-- submit button  -->
+                            <div class="d-flex justify-content-center">
+                                {{ form.submit(class_="btn btn-primary", disabled="true") }}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
+
+{% block script %}
+<script src="{{url_for('static', filename='js/app/profile.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}About &#8226; CodingShoding - Learn Coding With Us{% endblock %}
+{% block body %}
+
+<!-- main content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <header class="masthead">
+            <div class="d-flex skeleton">
+                <img class="image" src="{{ url_for('static', filename='assets/images/about-bg.jpg') }}" alt="">
+            </div>
+        </header>
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-9 col-xl-8">
+                <h2><span style="font-size:40px;">E</span>mpowering world to providing the top quality content through
+                    our blog platform.</h2>
+                <p>Our platform <b>open</b> for all to use our service.</p>
+
+                <p>CodingShoding one of the best platform for learning about <strong>programming</strong> and new
+                    <strong>technologies</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

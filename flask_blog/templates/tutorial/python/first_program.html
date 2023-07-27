@@ -1,0 +1,164 @@
+{% extends "layout.html" %}
+{% block title %}PythonTutorial | CodingShoding - Learn Coding With Us{% endblock %}
+{% block body %}
+
+<!-- Main Content -->
+
+<article class="my-3">
+    <div class="container-fluid px-0 px-md-4 px-lg-3">
+        <div class="row relative">
+            <div class="col-xsm-12 col-sm-10 col-md-4 col-xl-3 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <ul class="list-style-none p-0">
+                            <li class="p-1 rounded-2 text-white mb-2" style="background: #f0c92d;"><img
+                                    class="w-15 me-2"
+                                    src="{{url_for('static',filename='assets/img/Python-logo.png')}}" /><strong
+                                    class="text-white">Python
+                                    Tutorial</strong>
+                            </li>
+                            <div class="dropdown-menu-hid">
+                                <a href="{{ url_for('tute.starting_python') }}">
+                                    <li class="dropdown-padding mb-1">Starting Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.install_python') }}">
+                                    <li class="dropdown-padding mb-1">Install Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.vscode_setup') }}">
+                                    <li class="dropdown-padding mb-1">VS Code Setup</li>
+                                </a>
+                                <a href="{{ url_for('tute.first_program') }}">
+                                    <li class="dropdown-padding mb-1 active">First Program</li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xsm-12 col-sm-10 col-md-8 col-lg-6 col-xl-7 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <h1 style="color: #236ece;">Python Hello World</h1>
+                        <p class="para-size" style="font-size: 15px"><b>Summary:</b> in this tutorial, you&rsquo;ll
+                            learn how to develop the first program in
+                            Python called &ldquo;Hello, World!&rdquo;.</p>
+                        <h4>Creating a new Python project</h4>
+                        <p class="para-size">First, create a new folder called <strong>helloworld</strong>.</p>
+                        <p class="para-size">Second, launch the VS code and open the <strong>helloworld</strong> folder.
+                        </p>
+                        <p class="para-size">Third, create a new <strong>app.py</strong> file and enter the following
+                            code and save the file:</p>
+                        <p class="para-size"><strong>print(&#39;Hello, World!&#39;)</strong></p>
+                        <p class="para-size"><small>Code language: Python (python)</small></p>
+                        <p class="para-size">The <strong>print()</strong> is a built-in function that displays a message
+                            on the screen. In this
+                            example, it&rsquo;ll show the message <strong>&#39;Hello, Word!&#39;</strong>.</p>
+                        <h4>What is a function</h4>
+                        <p class="para-size">When you sum two numbers, that&rsquo;s a function. And when you
+                            multiply two numbers, that&rsquo;s also a function.</p>
+                        <p class="para-size">Each function takes your inputs, applies some rules, and returns a result.
+                        </p>
+                        <p class="para-size">In the above example, the <strong>print()</strong> is a function. It
+                            accepts a string and shows it on the
+                            screen.</p>
+                        <p class="para-size">Python has many built-in functions like the <strong>print()</strong>
+                            function to use them out of the box
+                            in your program.</p>
+                        <p class="para-size">In addition, Python allows you to define your functions,
+                            which you&rsquo;ll learn how to do it later.</p>
+                        <h4>Executing the Python Hello World program</h4>
+                        <p class="para-size">To execute the <strong>app.py</strong> file, you first launch the Command
+                            Prompt on Windows or Terminal
+                            on macOS or Linux.</p>
+                        <p class="para-size">Then, navigate to the <strong>helloworld</strong> folder.</p>
+                        <p class="para-size">After that, type the following command to execute the
+                            <strong>app.py</strong> file:
+                        </p>
+                        <div style="background: black;">
+                            <p class="para-size" style="color: #8190ca;padding: 1rem;">Python app.py</p>
+                        </div>
+                        <p class="para-size">If you use macOS or Linux, you use python3 command instead:</p>
+                        <div style="background: black;">
+                            <p class="para-size" style="color: #8190ca;padding: 1rem;">Python3 app.py </p>
+                        </div>
+                        <p class="para-size">If everything is fine, you&rsquo;ll see the following message on the
+                            screen:</p>
+                        <p class="para-size"><strong>Hello, World!</strong></p>
+                        <p class="para-size">If you use VS Code, you can also launch the Terminal within the VS code by:
+                        </p>
+                        <ul>
+                            <li>Accessing the menu <strong>Terminal &gt; New Terminal</strong></li>
+                            <li>Or using the keyboard shortcut <strong>Ctrl+Shift+`</strong>.</li>
+                        </ul>
+                        <p class="para-size">Typically, the backtick key (<strong>`</strong>) locates under the
+                            <strong>Esc</strong> key on the keyboard.
+                        </p>
+                        <h4>Python IDLE</h4>
+                        <p class="para-size">Python IDLE is the Python Integration&nbsp;Development&nbsp; Environment
+                            (IDE) that comes with the
+                            Python distribution by default.</p>
+                        <p class="para-size">The Python IDLE is also known as an interactive interpreter. It has many
+                            features such as:</p>
+                        <ul>
+                            <li>Code editing with syntax highlighting</li>
+                            <li>Smart indenting</li>
+                            <li>And auto-completion</li>
+                        </ul>
+                        <p class="para-size">In short, the Python IDLE helps you experiment with Python quickly in a
+                            trial-and-error manner.</p>
+                        <p class="para-size">The following shows you step by step how to launch the Python IDLE and use
+                            it to execute the Python
+                            code:</p>
+                        <p class="para-size">First, launch the Python IDLE program:</p>
+                        <p class="para-size"><img class=""
+                                src="{{url_for('static',filename='assets/img/Launch-IDLE.png')}}" /></p>
+                        <p class="para-size">A new Python Shell window will display as follows:</p>
+                        <p class="para-size"><img class=""
+                                src="{{url_for('static',filename='assets/img/Hello-World-in-IDLE.png')}}" /></p>
+                        <p class="para-size">Now, you can enter the Python code after the cursor
+                            <code>&gt;&gt;&gt;</code> and press
+                            <strong>Enter</strong> to execute it.
+                        </p>
+                        <p class="para-size">For example, you can type the code <strong>print(&#39;Hello,
+                                World!&#39;)</strong> and press
+                            <strong>Enter</strong>, you&rsquo;ll see the message <strong>Hello, World!</strong>
+                            immediately on the
+                            screen:
+                        </p>
+                        <p class="para-size"><img class=""
+                                src="{{url_for('static',filename='assets/img/executing-code.png')}}" /></p>
+                        <h4>Summary</h4>
+                        <ul>
+                            <li>
+                                <p class="para-size">Use the<strong> python app.py</strong> command from the Command
+                                    Prompt on Windows or Terminal on
+                                    macOS or Linux to execute the <strong>app.py</strong> file.</p>
+                            </li>
+                            <li>
+                                <p class="para-size">Use the <strong>print()</strong> function to show a message on the
+                                    screen.</p>
+                            </li>
+                            <li>
+                                <p class="para-size">Use the Python IDLE to type Python code and execute it immediately.
+                                </p>
+                            </li>
+                        </ul>
+
+                        <br>
+                        <hr class="my-3" />
+                        <div class="d-flex justify-content-between">
+                            <a class="text-uppercase " href="{{ url_for('tute.vscode_setup') }}"><i
+                                    class="fa-solid fa-chevron-left"></i>
+                                Previous</a>
+                            <a class="text-uppercase" href="#">Next<i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block title %}Saved Post &#8226; {{ current_user.username }} &#8226; CodingShoding - Learn coding with us{% endblock
+%}
+{% block body %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+{% for category, message in messages %}
+{% if category=='success' %}
+<div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
+    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </p>
+</div>
+{% elif category=='info' %}
+<div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% elif category=='warning' %}
+<div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% else %}
+<div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>{% endif %}{% endfor %}{% endif %}{% endwith %}
+<!-- main content-->
+<main class="my-4">
+    <div class="container-fluid">
+        <div class="row">
+            <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
+                {% if save_posts|length == 0 %}
+                <div class="text-center p-2">
+                    <h3 class="mb-3">No Saved Post</h3>
+                    <img src="{{url_for('static', filename='assets/images/read-later.png')}}">
+                </div>
+                {% else %}
+                <h3 class="mb-4">Saved post ({{ save_posts|length }})</h3>
+                {% for saved in save_posts %}
+                <div class="post-box mb-2 mb-sm-3 mb-md-4" title="{{ saved.post.title }}">
+                    <div class="img-wrap" style="background-size: cover;">
+                        <div class="cover-image">
+                            <a href="{{ url_for('blog.blogpost', slug=saved.post.slug) }}">
+                                <img class="image skeleton"
+                                    src="{{ url_for('static', filename='assets/uploads/thumbnail/'+saved.post.filename) }}"></a>
+                        </div>
+                    </div>
+                    <div id="preview" class="post-preview">
+                        <a href="{{ url_for('blog.blogpost', slug=saved.post.slug) }}">
+                            <h3 class="post-title">{{ saved.post.title|title }}</h3>
+                            <h3 class="post-subtitle">{{ saved.post.subtitle|safe }}...</h3>
+                        </a>
+                        <p class="post-meta">by <a class="mx-1"
+                                href="{{ url_for('app.dashboard', username=saved.post.user.username) }}"
+                                title="Profile &#8226; {{ saved.post.user.username }}">
+                                {{ saved.post.user.username }}</a> &#8226; {{ saved.post.created|timeago }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </section>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

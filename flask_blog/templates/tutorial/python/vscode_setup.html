@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% block title %}PythonTutorial | CodingShoding - Learn Coding With Us{% endblock %}
+{% block body %}
+
+<!-- Main Content -->
+<article class="my-3">
+    <div class="container-fluid px-0 px-md-4 px-lg-3">
+        <div class="row relative">
+            <div class="col-xsm-12 col-sm-10 col-md-4 col-xl-3 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <ul class="list-style-none p-0">
+                            <li class="p-1 rounded-2 text-white mb-2" style="background: #f0c92d;"><img
+                                    class="w-15 me-2"
+                                    src="{{url_for('static',filename='assets/img/Python-logo.png')}}" /><strong
+                                    class="text-white">Python
+                                    Tutorial</strong>
+                            </li>
+                            <div class="dropdown-menu-hid">
+                                <a href="{{ url_for('tute.starting_python') }}">
+                                    <li class="dropdown-padding mb-1">Starting Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.install_python') }}">
+                                    <li class="dropdown-padding mb-1">Install Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.vscode_setup') }}">
+                                    <li class="dropdown-padding mb-1 active">VS Code Setup</li>
+                                </a>
+                                <a href="{{ url_for('tute.first_program') }}">
+                                    <li class="dropdown-padding mb-1">First Program</li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xsm-12 col-sm-10 col-md-8 col-lg-6 col-xl-7 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <h2 style="color: #236ece;">Setup Visual Studio Code for Python</h2>
+                        <div class="d-flex justify-content-center">
+                            <img class="" src="{{url_for('static',filename='assets/img/Vscode.png')}}" />
+                        </div>
+                        <p style="font-size: 15px"><b>Summary:</b> in this tutorial, you’ll learn how to set up Visual
+                            Studio Code for Python.</p>
+
+                        <p><strong>A quick introduction to the Visual Studio Code</strong></p>
+                        <p class="para-size">Visual Studio Code is a lightweight source code editor. The Visual Studio
+                            Code is often called VS Code. The VS Code runs on your desktop. It’s available for Windows,
+                            macOS, and Linux.</p>
+                        <p class="para-size">VS Code comes with many features such as IntelliSense, code editing, and
+                            extensions that allow you to edit Python source code effectively. The best part is that the
+                            VS Code is open-source and free.</p>
+                        <p class="para-size">Besides the desktop version, <a href="https://vscode.dev/"
+                                target="_blank">VS Code also has a browser version</a> that you can use directly in your
+                            web browser without installing it.</p>
+                        <p class="para-size">This tutorial teaches you how to set up Visual Studio Code for Python
+                            environment so that you can edit, run, and debug Python code.</p>
+
+                        <p><strong>Setting up Visual Studio Code</strong></p>
+                        <p class="para-size">To set up the VS Code, you follow these steps:</p>
+                        <p class="para-size">First, navigate to the <a href="https://code.visualstudio.com"
+                                target="_blank">VS Code official</a> website and download the VS code based on your
+                            platform (Windows, macOS, or Linux).</p>
+                        <p class="para-size">Second, launch the setup wizard and follow the steps.</p>
+                        <p class="para-size">Once the installation completes, you can launch the VS code application:
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/Setup-visual-studio-code-for-Python.png')}}" />
+                        </div>
+                        <p><strong>Install Python Extension</strong></p>
+
+                        <p class="para-size">To make the VS Code works with Python, you need to install the Python
+                            extension from the Visual Studio Marketplace.</p>
+                        <p class="para-size">The following picture illustrates the steps:</p>
+                        <div class="d-flex justify-content-center">
+                            <img class=""
+                                src="{{url_for('static',filename='assets/img/VS-Code-Python-Extension.png')}}" />
+                        </div>
+                        <p>
+                        <ul class="para-size">
+                            <li>First, click the <strong>Extensions</strong> tab.</li>
+                            <li>Second, type the <strong style="color: red;">Python</strong> keyword on the search
+                                input.</li>
+                            <li>Third, click the <strong style="color: red;">Python</strong> extension. It’ll show
+                                detailed information on the right pane.</li>
+                            <li>Finally, click the <strong>Install</strong> button to install the Python extension.</li>
+                        </ul>
+                        </p>
+                        <p class="para-size">Now, you’re ready to develop the <a href="">first program in Python</a>.
+                        </p>
+
+                        </br>
+                        <hr class="my-3" />
+                        <div class="d-flex justify-content-between">
+                            <a class="text-uppercase " href="{{ url_for('tute.install_python') }}"><i
+                                    class="fa-solid fa-chevron-left"></i>
+                                Previous</a>
+                            <a class="text-uppercase " href="{{ url_for('tute.first_program') }}">Next
+                                <i class="fa-solid fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+
+{% endblock %}

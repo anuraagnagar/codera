@@ -1,0 +1,233 @@
+{% extends "layout.html" %}
+{% block title %}CodingShoding - Learn coding with us{% endblock %}
+{% block body %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+{% for category, message in messages %}
+{% if category=='success' %}
+<div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
+    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </p>
+</div>
+{% elif category=='info' %}
+<div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% elif category=='warning' %}
+<div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>
+{% else %}
+<div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-3" role="alert">
+    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        <i class="bi bi-x text-muted"></i>
+    </button>
+</div>{% endif %}{% endfor %}{% endif %}{% endwith %}
+<!-- main content-->
+<main class="my-4">
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
+                <h3 class="mb-4 rounded-1" style="border-left: 4px solid var(--cs-primary);"><i
+                        class="bi bi-bell-fill mx-2"></i>Notification</h3>
+                <h4>New</h4>
+                <div class="card mb-3 mb-md-4">
+                    <div class="py-2 px-3">
+                        <div class="d-flex">
+                            <a href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                {% if not current_user.get_profile() %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                {% if not current_user.get_profile().profile_url %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                <img class="img-avator me-2"
+                                    src="{{url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}">
+                                {% endif %}{% endif %}
+                            </a>
+                            <div class="me-2">
+                                <p class="fs-3-150 fs-4-350 m-0">
+                                    <a href="{{ url_for('app.dashboard', username=current_user.username) }}">@{{
+                                        current_user.username }}</a>
+                                    Add a new post
+                                </p>
+                                <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                    {{ current_user.created|timeago }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-3">
+                        <a href="#">
+                            <h5>Unique constraints can be created anonymously on a single column using the unique
+                                keyword on
+                                Column.</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="card mb-3 mb-md-4">
+                    <div class="py-2 px-3">
+                        <div class="d-flex">
+                            <a href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                {% if not current_user.get_profile() %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                {% if not current_user.get_profile().profile_url %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                <img class="img-avator me-2"
+                                    src="{{url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}">
+                                {% endif %}{% endif %}
+                            </a>
+                            <div class="me-2">
+                                <p class="fs-3-150 fs-4-350 m-0">
+                                    <a href="{{ url_for('app.dashboard', username=current_user.username) }}">@{{
+                                        current_user.username }}</a>
+                                    Add a new post
+                                </p>
+                                <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                    {{ current_user.created|timeago }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-3">
+                        <a href="#">
+                            <h5>Unique constraints can be created anonymously on a single column using the unique
+                                keyword on
+                                Column.</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="card mb-3 mb-md-4">
+                    <div class="py-2 px-3">
+                        <div class="d-flex">
+                            <a href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                {% if not current_user.get_profile() %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                {% if not current_user.get_profile().profile_url %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                <img class="img-avator me-2"
+                                    src="{{url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}">
+                                {% endif %}{% endif %}
+                            </a>
+                            <div class="me-2">
+                                <p class="fs-3-150 fs-4-350 m-0">
+                                    <a href="{{ url_for('app.dashboard', username=current_user.username) }}">@{{
+                                        current_user.username }}</a>
+                                    Add a new post
+                                </p>
+                                <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                    {{ current_user.created|timeago }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-3">
+                        <a href="#">
+                            <h5>Unique constraints can be created anonymously on a single column using the unique
+                                keyword on
+                                Column.</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="card mb-3 mb-md-4">
+                    <div class="py-2 px-3">
+                        <div class="d-flex">
+                            <a href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                {% if not current_user.get_profile() %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                {% if not current_user.get_profile().profile_url %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                <img class="img-avator me-2"
+                                    src="{{url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}">
+                                {% endif %}{% endif %}
+                            </a>
+                            <div class="me-2">
+                                <p class="fs-3-150 fs-4-350 m-0">
+                                    <a href="{{ url_for('app.dashboard', username=current_user.username) }}">@{{
+                                        current_user.username }}</a>
+                                    Add a new post
+                                </p>
+                                <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                    {{ current_user.created|timeago }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-3">
+                        <a href="#">
+                            <h5>Unique constraints can be created anonymously on a single column using the unique
+                                keyword on
+                                Column.</h5>
+                        </a>
+                    </div>
+                </div>
+                <div class="card mb-3 mb-md-4">
+                    <div class="py-2 px-3">
+                        <div class="d-flex">
+                            <a href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                {% if not current_user.get_profile() %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                {% if not current_user.get_profile().profile_url %}
+                                <img class="img-avator me-2 my-auto"
+                                    src="{{ url_for('static', filename='assets/images/default-profile.png') }}">
+                                {% else %}
+                                <img class="img-avator me-2"
+                                    src="{{url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}">
+                                {% endif %}{% endif %}
+                            </a>
+                            <div class="me-2">
+                                <p class="fs-3-150 fs-4-350 m-0">
+                                    <a href="{{ url_for('app.dashboard', username=current_user.username) }}">@{{
+                                        current_user.username }}</a>
+                                    Add a new post
+                                </p>
+                                <p class="text-muted m-0 fs-5-150 fs-5-350 fs-5-576">
+                                    {{ current_user.created|timeago }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-3">
+                        <a href="#">
+                            <h5>Unique constraints can be created anonymously on a single column using the unique
+                                keyword on
+                                Column.</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

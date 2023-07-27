@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+{% block title %}PythonTutorial | CodingShoding - Learn Coding With Us{% endblock %}
+{% block body %}
+
+<!-- Main Content -->
+<article class="my-3">
+    <div class="container-fluid px-0 px-md-4 px-lg-3">
+        <div class="row relative">
+            <div class="col-xsm-12 col-sm-10 col-md-4 col-xl-3 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <ul class="list-style-none p-0">
+                            <li class="p-1 rounded-2 text-white mb-2" style="background: #f0c92d;"><img
+                                    class="w-15 me-2"
+                                    src="{{url_for('static',filename='assets/img/Python-logo.png')}}" />
+                                    <strong style="color: #fff;">Python
+                                    Tutorial</strong>
+                            </li>
+                            <div class="dropdown-menu-hid">
+                                <a href="{{ url_for('tute.starting_python') }}">
+                                    <li class="dropdown-padding mb-1 active">Starting Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.install_python') }}">
+                                    <li class="dropdown-padding mb-1">Install Python</li>
+                                </a>
+                                <a href="{{ url_for('tute.vscode_setup') }}">
+                                    <li class="dropdown-padding mb-1">VS Code Setup</li>
+                                </a>
+                                <a href="{{ url_for('tute.first_program') }}">
+                                    <li class="dropdown-padding mb-1">First Program</li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xsm-12 col-sm-10 col-md-8 col-lg-6 col-xl-7 px-2">
+                <div class="card mb-3">
+                    <div class="card-body p-3">
+                        <h2 style="color: #236ece;">Starting Python</h2>
+                        <p>If you want to master <strong>Python</strong> programming quickly, this Python tutorial is
+                            for
+                            you.
+                        </p>
+                        <p>The tutorial will take you through the understanding of the Python programming language, help
+                            you
+                            deeply learn the concepts, and show you how to apply practical programming techniques to
+                            your
+                            specific challenges.</p>
+                        <h2 class="section-heading" style="color: #236ece;">What is Python</h2>
+                        <div class="d-flex justify-content-center">
+                            <img src="{{url_for('static',filename='assets/img/Pythontutorial.webp')}}" />
+                        </div>
+                        <p style="font-size: 15px"><b>Summary:</b> in this tutorial, you’ll understand what Python
+                            programming
+                            language is and why you should start learning Python today.</p>
+                        <p><strong>What is Python programming language?</strong></p>
+                        <p class="para-size">Python is a <b>high-level, general-purpose, interpreted</b> programming
+                            language.
+                        </p>
+                        <p><strong>1) High-level</strong></p>
+                        <p class="para-size">Python is a high-level programming language that makes it easy to learn.
+                            Python
+                            doesn’t require you to understand the details of the computer in order to develop programs
+                            efficiently.</p>
+
+                        <p><strong>2) General-purpose</strong></p>
+                        <p class="para-size">Python is a general-purpose language. It means that you can use Python in
+                            various
+                            domains including:
+                        <ul class="para-size">
+                            <li>Web applications</li>
+                            <li>Big data applications</li>
+                            <li>Testing</li>
+                            <li>Automation</li>
+                            <li>Data science, machine learning, and AI</li>
+                            <li>Desktop software</li>
+                            <li>Mobile apps</li>
+                        </ul>
+                        </p>
+                        <p class="para-size">The targeted language like SQL which can be used for querying data from
+                            relational
+                            databases.</p>
+                        <p><strong>3) Interpreted</strong></p>
+                        <p class="para-size">Python is an interpreted language. To develop a Python program, you write
+                            Python
+                            code into a file called source code.</p>
+
+                        <p class="para-size">To execute the source code, you need to convert it to the machine language
+                            that
+                            the
+                            computer can understand. And the Python <strong>interpreter</strong> turns the source code,
+                            line
+                            by
+                            line, once at a time, into the machine code when the Python program executes.</p>
+
+                        <p class="para-size">Compiled languages like <strong>Java</strong> and <strong>C#</strong> use a
+                            <strong>compiler</strong> that compiles the whole source code before the program executes.
+                        </p>
+                        <p><strong>Why Python?</strong></p>
+                        < class="para-size">Python increases your productivity. Python allows you to solve complex
+                            problems
+                            in
+                            less time and fewer lines of code. It’s quick to make a prototype in Python.
+
+                            <p class="para-size">Python becomes a solution in many areas across industries, from web
+                                applications to
+                                data science and machine learning.</p>
+
+                            <p class="para-size">Python is quite easy to learn in comparison with other programming
+                                languages.
+                                Python syntax is clear and beautiful.</p>
+
+                            <p class="para-size">Python has a large ecosystem that includes lots of libraries and
+                                frameworks.
+                                Python is cross-platform. Python programs can run on Windows, Linux, and macOS.</p>
+
+                            <p class="para-size">Python has a huge community. Whenever you get stuck, you can get help
+                                from
+                                an
+                                active community.
+                                Python developers are in high demand.</p>
+
+                            <p><strong>Python versions</strong></p>
+                            <p class="para-size">Python has two major versions: 2x and 3x.</p>
+
+                            <p class="para-size"><strong>Python 2.x</strong> was released in 2000. The latest version is
+                                2.7
+                                released in 2010. It isn’t recommended for use in new projects.</p>
+
+                            <p class="para-size"><strong>Python 3.x</strong> was released in 2008. Basically, Python 3
+                                isn’t
+                                compatible with Python 2. And you should use the latest versions of Python 3 for your
+                                new
+                                projects.
+                            </p>
+
+                            <p><strong>Summary</strong></p>
+                            <ul class="para-size">
+                                <li>Python is an interpreted, high-level, general-purpose programming language.</li>
+                                <li>Python becomes the solution in many domains from web applications, data analysis,
+                                    data
+                                    science,
+                                    machine learning, and AI.</li>
+                                <li>Use Python 3 for the new development.</li>
+                            </ul>
+
+                            </br>
+                            <hr class="my-3" />
+
+                            <div class="d-flex justify-content-between">
+                                <a class="text-uppercase m-0"><i class="fa-solid fa-chevron-left"></i>
+                                    Previous</a>
+                                <a class="text-uppercase" href="{{ url_for('tute.install_python') }}">Next
+                                    <i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,154 @@
+{% extends "layout.html" %}
+{% block title %}Setting &#8226; {{ current_user.username }} &#8226; CodingShoding - Learn coding with us{% endblock %}
+{% block body %}
+
+<!-- Main Content -->
+<main class="my-3">
+    <div class="container-fluid px-0 px-md-3 px-lg-3 px-xl-5">
+        {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+        {% for category, message in messages %}
+        {% if category=='success' %}
+        <div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-1"
+            role="alert">
+            <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
+            <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
+                <i class="bi bi-x text-muted"></i>
+            </p>
+        </div>
+        {% elif category=='info' %}
+        <div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-1" role="alert">
+            <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="bi bi-x text-muted"></i>
+            </button>
+        </div>
+        {% elif category=='warning' %}
+        <div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-1"
+            role="alert">
+            <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="bi bi-x text-muted"></i>
+            </button>
+        </div>
+        {% else %}
+        <div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-1"
+            role="alert">
+            <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <i class="bi bi-x text-muted"></i>
+            </button>
+        </div>{% endif %}{% endfor %}{% endif %}{% endwith %}
+        <div class="row">
+            <section class="col-xsm-12 col-sm-10 col-md-4 col-xl-3">
+                <div class="card m-2">
+                    <div class="card-body">
+                        <div class="">
+                            <a href="{{ url_for('auth.settings') }}">
+                                <p class="dropdown-padding active m-0 mb-1"><i class="bi bi-person-fill me-2"></i>Account
+                                </p>
+                            </a>
+                            <a href="{{ url_for('auth.change_password') }}">
+                                <p class="dropdown-padding m-0 mb-1"><i class="bi bi-key-fill me-2"></i>Change
+                                    Password</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="col-sm-10 col-md-8 col-lg-6 col-xl-6">
+                <div class="card m-2 mb-3">
+                    <div class="card-body">
+                        <h2 class="mb-4">Reset Email Address</h2>
+                        <div class="form-outline mb-2">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input class="form-control form-control-lg" id="email" type="email"
+                                value="{{ current_user.email }}" disabled="true" placeholder="Enter your email"
+                                readonly="true" />
+                            <p class=" fs-4-150 my-1"><i>Note: </i><span class="text-muted">If you want to reset your
+                                    email address. Please click the button below.</span></p>
+                        </div>
+                        <!-- change email button  -->
+                        <div class="d-flex justify-content-start">
+                            <a href="{{ url_for('auth.update_email') }}">
+                                <button type="button" role="button" class="btn btn-primary py-2 px-3">Change</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card m-2">
+                    <div class="card-body">
+                        <h3 class="text-danger mb-4"><i class="bi bi-exclamation-triangle-fill me-2"></i>Delete Account
+                        </h3>
+                        <p class="fw-bold">Deleting your account will:</p>
+                        <p>Delete your account along with your profile and your authentication associations. This does
+                            not include
+                            applications permissions. You will have to remove them yourself. </p>
+
+                        <p>Delete all the content you have, such as articles, your profile, your comments, or your saved
+                            article list.</p>
+                        <p>After deleting account your username will allow to become available for anyone.</p>
+                    </div>
+                    <hr class="m-0">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <button data-bs-toggle="modal" href="#delete-account" class="btn btn-danger">Delete</button>
+                        </div>
+                        <!-- delete account modal -->
+                        <div class="modal fade" id="delete-account" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content rounded-3">
+                                    <form action="{{ url_for('auth.settings') }}" method="post" accept-charset="UTF-8">
+                                        {{ form.csrf_token() }}
+                                        <div class="d-block modal-header bg-danger" style="border-radius:5px 5px 0 0;">
+                                            <h4 class="modal-title text-white">
+                                                <i class="bi bi-exclamation-triangle me-2"></i>Delete Your Account
+                                            </h4>
+                                            <p class="text-white">Are you sure you want to permanently delete
+                                                your account?</p>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mb-3">
+                                                <div class="d-block">
+                                                    <div class="form-outline mb-3">
+                                                        {{ form.password.label(class_="form-label") }}
+                                                        {{ form.password(class_="form-control form-control-danger
+                                                        form-control-lg",
+                                                        autocomplete="off", placeholder="Enter your password") }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="m-0">
+                                        <div class="modal-body">
+                                            <div>
+                                                {{ form.submit(class_="btn btn-danger mb-3", disabled= "true") }}
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                            <script>
+                                                const validatePassword = () => {
+                                                    if (
+                                                        document.getElementById("password").value.length <= 15 &&
+                                                        document.getElementById("password").value.length >= 8
+                                                    ) {
+                                                        document.getElementById("submit").removeAttribute("disabled");
+                                                    } else {
+                                                        document.getElementById("submit").setAttribute("disabled", "");
+                                                    }
+                                                };
+
+                                                document.getElementById("password").addEventListener("input", validatePassword);
+                                            </script>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

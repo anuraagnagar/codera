@@ -1,0 +1,209 @@
+.table {
+    --cs-table-bg: transparent;
+    --cs-table-accent-bg: transparent;
+    --cs-table-striped-color: #212529;
+    --cs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --cs-table-active-color: #212529;
+    --cs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --cs-table-hover-color: #212529;
+    --cs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    vertical-align: top;
+    border-color: #dee2e6;
+}
+
+.table> :not(caption)>*>* {
+    padding: 0.5rem 0.5rem;
+    background-color: var(--cs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--cs-table-accent-bg);
+}
+
+.table>tbody {
+    vertical-align: inherit;
+}
+
+.table>thead {
+    vertical-align: bottom;
+}
+
+.table> :not(:first-child) {
+    border-top: 2px solid currentColor;
+}
+
+.caption-top {
+    caption-side: top;
+}
+
+.table-sm> :not(caption)>*>* {
+    padding: 0.25rem 0.25rem;
+}
+
+.table-bordered> :not(caption)>* {
+    border-width: 1px 0;
+}
+
+.table-bordered> :not(caption)>*>* {
+    border-width: 0 1px;
+}
+
+.table-borderless> :not(caption)>*>* {
+    border-bottom-width: 0;
+}
+
+.table-borderless> :not(:first-child) {
+    border-top-width: 0;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --cs-table-accent-bg: var(--cs-table-striped-bg);
+    color: var(--cs-table-striped-color);
+}
+
+.table-active {
+    --cs-table-accent-bg: var(--cs-table-active-bg);
+    color: var(--cs-table-active-color);
+}
+
+.table-hover>tbody>tr:hover>* {
+    --cs-table-accent-bg: var(--cs-table-hover-bg);
+    color: var(--cs-table-hover-color);
+}
+
+.table-primary {
+    --cs-table-bg: #cce7ec;
+    --cs-table-striped-bg: #c2dbe0;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #b8d0d4;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #bdd6da;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #b8d0d4;
+}
+
+.table-secondary {
+    --cs-table-bg: #e2e3e5;
+    --cs-table-striped-bg: #d7d8da;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #cbccce;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #d1d2d4;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #cbccce;
+}
+
+.table-success {
+    --cs-table-bg: #d1e7dd;
+    --cs-table-striped-bg: #c7dbd2;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #bcd0c7;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #c1d6cc;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #bcd0c7;
+}
+
+.table-info {
+    --cs-table-bg: #cff4fc;
+    --cs-table-striped-bg: #c5e8ef;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #badce3;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #bfe2e9;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #badce3;
+}
+
+.table-warning {
+    --cs-table-bg: #fff3cd;
+    --cs-table-striped-bg: #f2e7c3;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #e6dbb9;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #ece1be;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #e6dbb9;
+}
+
+.table-danger {
+    --cs-table-bg: #f8d7da;
+    --cs-table-striped-bg: #eccccf;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #dfc2c4;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #e5c7ca;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #dfc2c4;
+}
+
+.table-light {
+    --cs-table-bg: #f8f9fa;
+    --cs-table-striped-bg: #ecedee;
+    --cs-table-striped-color: #000;
+    --cs-table-active-bg: #dfe0e1;
+    --cs-table-active-color: #000;
+    --cs-table-hover-bg: #e5e6e7;
+    --cs-table-hover-color: #000;
+    color: #000;
+    border-color: #dfe0e1;
+}
+
+.table-dark {
+    --cs-table-bg: #212529;
+    --cs-table-striped-bg: #2c3034;
+    --cs-table-striped-color: #fff;
+    --cs-table-active-bg: #373b3e;
+    --cs-table-active-color: #fff;
+    --cs-table-hover-bg: #323539;
+    --cs-table-hover-color: #fff;
+    color: #fff;
+    border-color: #373b3e;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 575.98px) {
+    .table-responsive-sm {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .table-responsive-md {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .table-responsive-lg {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .table-responsive-xl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (max-width: 1399.98px) {
+    .table-responsive-xxl {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
