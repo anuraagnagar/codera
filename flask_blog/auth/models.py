@@ -254,15 +254,15 @@ class Profile(BaseModel, SocialMixin):
     def __repr__(self):
         return "Profile >> {}".format(self.user.username)
 
-# @event.listens_for(Users, "after_insert")
-# def create_profile_for_user(mapper, connection, target):
-#     """
-#     Automatically create and save a profile for a newly inserted user.
-#     """
-#     assert target.id is not None
-#     profile = Profile(user_id=target.id)
-#     db.session.add(profile)
-#     db.session.commit()
+@event.listens_for(Users, "after_insert")
+def create_profile_for_user(mapper, connection, target):
+    """
+    Automatically create and save a profile for a newly inserted user.
+    """
+    assert target.id is not None
+    profile = Profile(user_id=target.id)
+    db.session.add(profile)
+    db.session.commit()
 
 
 class Followers(BaseModel):
