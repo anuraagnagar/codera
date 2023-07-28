@@ -28,7 +28,7 @@ COOKIE_DURATION = timedelta(days=days)
 
 TINY_KEY = os.getenv("TINYMCE_API_KEY")
 
-AUTH_REDIRECT_URL = "view.index"
+AUTH_REDIRECT_URL = "app.index"
 
 
 # Database SQLAlchemy Configuration.
