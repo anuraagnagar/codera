@@ -166,9 +166,7 @@ class LoginView(BaseView):
         'get_login_redirect()' method.
         """
         login(user, remember=True, duration=config.COOKIE_DURATION)
-        return self.get_login_redirect(
-            message=message
-        )
+        return self.get_login_redirect(message=message)
 
     def process_login(self, user=None):
         try:
@@ -198,8 +196,8 @@ class LoginView(BaseView):
                 return self.process_login(user)
             
             return self.confirm_login(
-                    user, message="You are successfully logged in."
-                )
+                        user, message="You are successfully logged in."
+                    )
 
         return redirect(url_for('auth.login'))
 
@@ -348,7 +346,15 @@ class ResetPasswordView(BaseView):
     Supports GET and POST methods.
     """
 
-    def _confirm_reset(self, user=None, token=None, new_password=None):
+    def authenticate_token(self, token, salt=None):
+        """
+        Authenticate the reset password token.
+        Verify the token using the User.verify_token() method.
+        Returns the User object if token valid, otherwise None.
+        """
+        return self.model.verify_token(token, salt=salt)
+
+    def confirm_reset(self, user=None, token=None, new_password=None):
         try:
             user.set_password(new_password)
             user.token = True
@@ -361,14 +367,6 @@ class ResetPasswordView(BaseView):
             flash("Something went wrong with the backend server.", category='error')
             return redirect(url_for('auth.reset_password', token=token))
 
-    def authenticate_token(self, token, salt=None):
-        """
-        Authenticate the reset password token.
-        Verify the token using the User.verify_token() method.
-        Returns the User object if token valid, otherwise None.
-        """
-        return self.model.verify_token(token, salt=salt)
-
     def dispatch_request(self, token=None):
         """
         A method for handlind GET and POST request for password reset.
@@ -378,8 +376,8 @@ class ResetPasswordView(BaseView):
         Otherwise return abort(404) method.
         """
         reset_token = self.authenticate_token(
-                token, salt='reset_password_token'
-            )
+                        token, salt='reset_password_token'
+                    )
 
         if reset_token and not reset_token.is_expired():
             form = ResetPasswordForm()
@@ -399,7 +397,7 @@ class ResetPasswordView(BaseView):
                 elif not re.match(r"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", password):
                     flash("Password should have at least one number, one uppercase, one lowercase, and one special character.", category='info')
                 else:
-                    return self._confirm_reset(
+                    return self.confirm_reset(
                             user=reset_token, token=token, new_password=password
                         )
                 
@@ -425,7 +423,7 @@ class ChangePasswordView(BaseView):
         """
         return self.model.query.get_or_404(current_user.id)
 
-    def _handle_change(self, form=None):
+    def handle_change(self, form=None):
         old_password = form.data.get('old_password', None)
         new_password1 = form.data.get('new_password', None)
         new_password2 = form.data.get('new_password_confirm', None)
@@ -464,14 +462,15 @@ class ChangePasswordView(BaseView):
         form = ChangePasswordForm()
 
         if form.validate_on_submit():
-            return self._handle_change(form=form)
+            return self.handle_change(form=form)
 
         return render(self.template, params=params, form=form)
 
 
 class ResetEmailView(BaseView):
     """
-    A View class for resetting the user's email.
+    A View class for sending reset request 
+    of the user's email.
     Supports GET and POST methods.
     """
 
@@ -504,6 +503,10 @@ class ResetEmailView(BaseView):
 
 
 class ConfirmEmailView(BaseView):
+    """
+    A View class for confirm reset the user's new email.
+    Supports GET and POST methods.
+    """
 
     def authenticate_token(self, token, salt=None):
         """
@@ -512,8 +515,23 @@ class ConfirmEmailView(BaseView):
         Returns the User object if token valid, otherwise None.
         """
         return self.model.verify_token(token, salt=salt)
+    
+    def confirm_change(self, user, new_email=None):
+        try:
+            user.set_email(new_email)
+            user.token = True
+            db.session.commit()
+            flash("Email Address was update successfully.", category='success')
+            return redirect(url_for('app.index'))
+        except Exception as e:
+            flash("Something went wrong with the backend server.", category='error')
+            return redirect(url_for('app.index'))
 
     def dispatch_request(self, email, token=None):
+        """
+        Handle the request for confirming user's reset 
+        new email address.
+        """
         reset_token = self.authenticate_token(
                         token, salt='reset_email_token'
                     )
@@ -524,15 +542,7 @@ class ConfirmEmailView(BaseView):
                 confirm = request.form.get('confirm', None)
                 protect = request.form.get('csrf_token', None)
 
-                try:
-                    reset_token.set_email(email)
-                    reset_token.token = True
-                    db.session.commit()
-                    flash("Email Address was update successfully.", category='success')
-                    return redirect(url_for('app.index'))
-                except Exception as e:
-                    flash("Something went wrong with the backend server.", category='error')
-                    return redirect(url_for('app.index'))
+                return self.confirm_change(reset_token, email)
                 
             return render(self.template, params=params, email=email, token=token)
 
@@ -590,7 +600,7 @@ class AccountView(BaseView):
         """
         return self.model.query.get_or_404(current_user.id)
 
-    def _confirm_request(self, form=None):
+    def confirm_request(self, form=None):
         """
         Confirms a request by validating the provided password
         and after perform the logout() delete user by 
@@ -619,7 +629,7 @@ class AccountView(BaseView):
         form = DeleteAccountForm()
 
         if form.validate_on_submit():
-            return self._confirm_request(form=form)
+            return self.confirm_request(form=form)
         
         return render(self.template, params=params, form=form)
             
