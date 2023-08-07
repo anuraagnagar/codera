@@ -1,4 +1,4 @@
-# Your Blog Application Name
+# Flask blog
 
 Welcome to Flask blog This is a fully functional blog application built using Flask and HTML, CSS, & JavaScript. It allows users to create, manage, and share blog posts, along with a wide range of features including user authentication, commenting, notifications, and more.
 
@@ -8,13 +8,16 @@ Welcome to Flask blog This is a fully functional blog application built using Fl
     - Allow users to Register & log in their accounts.
     - Users also register with social accounts (Google & Github).
     - Users can recover their passwords using email address.
-    - Users also change their current email to new email address
+    - Users also change their current email to new email address.
 - User Management:
     - User can edit their profile detail and also added profile image. 
     - User can change their password after log in.
+    - User can delete their account and data.
 - Blog Post Management:
     - Create & edit blog posts with a rich text editor.
     - Only author can delete their blog post.
+- Likes & Saves Post:
+    - Readers can like and save the post after login.
 - Commenting System:
     - Engage with readers through comments to the blog posts.
     - Also replies to the comments.
@@ -86,11 +89,19 @@ To run this project locally, you will need to add .env file on base directory an
 
 `FLASK_ENV=development`
 
-`SECRET_KEY=your_super_secret_key_here`
+`SECRET_KEY=your_secret_key_here`
 
-`CSRF_SECRET_KEY=your_csrf_secret_key_here`
+`DB_ENGINE=your_database_engine`
 
-`DATABASE_URI=your_database_url_here`
+`DB_USERNAME=your_database_username`
+
+`DB_PASSWORD=your_database_password`
+
+`DB_HOST=your_database_host`
+
+`DB_PORT=your_database_post`
+
+`DB_NAME=your_database_name`
 
 `MAIL_SERVER=your_mail_server`
 
