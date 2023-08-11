@@ -17,7 +17,7 @@ The following 'Flask' extensions used in our application.
 # admin (Admin): An admin panel for management.
 admin = Admin()
 
-# babel (Babel): An extension for internationalization transalations.
+# babel (Babel): An extension for internationalization(i18n) transalations.
 babel = Babel()
 
 # bycrpt (Bcrypt): Bcrypt for hashing user passwords. 
@@ -26,7 +26,7 @@ bycrpt = Bcrypt()
 # csrf (CSRFProtect): CSRF protection for form data.
 csrf = CSRFProtect()
 
-# login_manager (LoginManager): for User login management.
+# login_manager (LoginManager): for User login and session management.
 login_manager = LoginManager()
 
 # database (SQLAlchemy): An ORM for working with the database.
