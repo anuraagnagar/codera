@@ -24,16 +24,23 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm sticky-top">
-        <div class="container-fluid">
-
-            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+    <nav class="navbar navbar-expand-lg sticky-top py-2">
+        <div class="container-fluid justify-content-start">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
                 aria-controls="offcanvas" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list"></i>
             </button>
 
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas"
-                aria-labelledby="offcanvasExampleLabel">
+            <div class="navbar-header">
+                <a class="navbar-brand header-logo" href="{{ url_for('app.index') }}" aria-label="logo">
+                    <div class="logo text-center">
+                        <i class="fa-brands fa-blogger-b my-2"></i>
+                        <span class="ms-1 navbar-brand-logo">Blog</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvas">
                 <div class="offcanvas-header">
                     <a class="offcanvas-title collapse-logo" href="{{ url_for('app.index') }}" aria-label="logo">
                         <div class="logo text-center">
@@ -46,201 +53,179 @@
                     </button>
                 </div>
                 <div class="offcanvas-body">
-                    <p>
-                        Some text as placeholder. In real life you can have the elements you have chosen.
-                        Like, text, images, lists, etc.
-                    </p>
-                </div>
-            </div> -->
-
-            <a class="text-white collapse-logo" href="{{ url_for('app.index') }}" aria-label="logo">
-                <div class="logo text-center">
-                    <i class="fa-brands fa-blogger-b my-2"></i>
-                    <span class="ms-1 navbar-brand-logo">Blog</span>
-                </div>
-            </a>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav py-lg-0">
-                    <!-- home -->
-                    <li class="nav-item text-center" title="Home">
-                        <a class="nav-link px-lg-3 py-3" href="{{ url_for('app.index') }}">Home</a>
-                    </li>
-                    <!-- tutorials -->
-                    <li class="nav-item text-center dropdown" title="Tutorials">
-                        <a class="nav-link px-lg-3 py-3" id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Tutorial <i class="bi bi-chevron-down fs-4-150"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li class="text-start m-1" title="Python Tutorial">
-                                <a class="dropdown-item" href="{{ url_for('tute.starting_python') }}">
-                                    <i class="fa-brands fa-python me-2"></i>Python
-                                    Tutorial</a>
-                            </li>
-                            <li class="text-start m-1" title="JavaScript Tutorial">
-                                <a class="dropdown-item" href="{{ url_for('tute.javascript') }}">
-                                    <i class="fa-brands fa-js me-2"></i>JavaScript
-                                    Tutorial</a>
-                            </li>
-                            <li class="text-start m-1" title="Java Tutorial">
-                                <a class="dropdown-item" href="{{ url_for('tute.java') }}">
-                                    <i class="fa-brands fa-java me-2"></i>Java Tutorial</a>
-                            </li>
-                            <li class="text-start m-1" title="React Tutorial">
-                                <a class="dropdown-item" href="{{ url_for('tute.java') }}">
-                                    <i class="fa-brands fa-react me-2"></i>React Tutorial</a>
-                            </li>
-                            <li class="text-start m-1" title="Go Tutorial">
-                                <a class="dropdown-item" href="{{ url_for('tute.java') }}">
-                                    <i class="fa-brands fa-golang me-2"></i>Go Tutorial</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- contacts -->
-                    <li class="nav-item text-center" title="Contact">
-                        <a class="nav-link px-lg-3 py-3" href="{{ url_for('app.contact') }}">Contact</a>
-                    </li>
-                    <!-- about -->
-                    <li class="nav-item text-center" title="About">
-                        <a class="nav-link px-lg-3 py-3" href="{{ url_for('app.about') }}">About</a>
-                    </li>
-                </ul>
-                <!-- logo -->
-                <div class="navbar-header">
-                    <a class="navbar-brand header-logo" href="{{ url_for('app.index') }}" aria-label="logo">
-                        <div class="logo text-center">
-                            <i class="fa-brands fa-blogger-b my-2"></i>
-                            <span class="ms-1 navbar-brand-logo">Blog</span>
-                        </div>
-                    </a>
-                </div>
-                <!-- User links -->
-                <ul class="navbar-nav justify-content-center ms-auto py-lg-0" style="flex-direction: row">
-                    <!-- search form -->
-                    <li class="d-flex align-items-center">
-                        <form method="get" action="{{ url_for('app.search_post') }}" class="search-form" role="query"
-                            accept-charset="UTF-8">
-                            <div class="nav-search">
-                                <input id="search-input" class="search-input" type="text" name="query"
-                                    placeholder="Search post..." autocomplete="off" aria-label="Search term"
-                                    required="">
-                                <button type="submit" role="button" aria-label="Search" class="btn-search">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-search" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                        <button name="icon" class="search-icon px-2 py-2" type="button"><i
-                                class="fa-sharp fa-solid fa-magnifying-glass fs-2-150"></i>
-                        </button>
-                    </li>
-
-                    {% if current_user.is_authenticated %}
-                    <!-- notification -->
-                    <li class="nav-item ms-1">
-                        <a class="text-muted icon relative m-0 mx-3" href="{{ url_for('app.notification') }}">
-                            <i class="bi bi-bell"></i>
-                            <p class="badge badge-number bg-danger">
-                                <span>{{ current_user.notifications|length }}</span>
-                            </p>
-                        </a>
-                    </li>
-                    {% else %}
-                    <!-- theme -->
-                    <li class="nav-item" title="Theme" id="theme" onclick="return themeToggle()">
-                        <p class="icon m-0 mx-3">
-                            <i class="bi bi-brightness-high"></i>
-                        </p>
-                    </li>
-                    {% endif %}
-                    {% if current_user.is_authenticated %}
-                    <!-- profile -->
-                    <li class="nav-item dropdown" title="Account Menu">
-                        <a role="button" style="font-size: 15px;" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% if not current_user.get_profile().profile_url %}
-                            <img src="{{ url_for('static', filename='assets/images/default-profile.png' )}}"
-                                alt="Profile" class="img-avator me-2">
-                            {% else %}
-                            <img src="{{ url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url) }}"
-                                alt="Profile" class="img-avator me-2">
-                            {% endif %}
-                        </a>
-
-                        <div class="p-1" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <ul class="dropdown-menu end-0">
-                                <li title="Profile" class="m-1"><a class="dropdown-item d-flex"
-                                        href="{{ url_for('auth.edit_profile') }}">
-                                        {% if not current_user.get_profile().profile_url %}
-                                        <img src="{{ url_for('static', filename='assets/images/default-profile.png' )}}"
-                                            class="img-avator me-2">
-                                        {% else %}
-                                        <img src="{{ url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}"
-                                            class="img-avator me-2">
-                                        {% endif %}
-                                        <div class="">
-                                            <p class="fw-bold d-block m-0">
-                                                {% if not current_user.get_profile().fullname %}
-                                                {{ current_user.username }}
-                                                {% else %}
-                                                {{ current_user.get_profile().fullname }}
-                                                {% endif %}
-                                            </p>
-                                            <p class="text-muted m-0 lh-1">@{{ current_user.username }}</p>
-                                        </div>
-                                    </a>
+                    <!-- page links -->
+                    <ul class="navbar-nav py-lg-0">
+                        <!-- home -->
+                        <li class="nav-item text-center" title="Home">
+                            <a class="nav-link px-lg-3 py-2" href="{{ url_for('app.index') }}">Home</a>
+                        </li>
+                        <!-- tutorials -->
+                        <li class="nav-item text-center dropdown" title="Tutorials">
+                            <a class="nav-link px-lg-3 py-2" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Tutorial <i class="bi bi-chevron-down fs-4-150"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li class="text-start m-1" title="Python Tutorial">
+                                    <a class="dropdown-item" href="{{ url_for('tute.starting_python') }}">
+                                        <i class="fa-brands fa-python me-2"></i>Python
+                                        Tutorial</a>
                                 </li>
-                                <hr class="my-2">
-                                {% if current_user.is_authenticated and current_user.is_admin() %}
-                                <li title="Admin site" class="m-1"><a class="dropdown-item"
-                                        href="{{ url_for('admin.index') }}">
-                                        <i class="bi bi-back me-2 fs-3-150"></i>Admin site</a>
+                                <li class="text-start m-1" title="JavaScript Tutorial">
+                                    <a class="dropdown-item" href="{{ url_for('tute.javascript') }}">
+                                        <i class="fa-brands fa-js me-2"></i>JavaScript
+                                        Tutorial</a>
                                 </li>
-                                {% endif %}
-                                <li title="Dashboard" class="mx-1"><a class="dropdown-item"
-                                        href="{{ url_for('app.dashboard', username=current_user.username) }}">
-                                        <i class="bi bi-bar-chart me-2"></i>Dashboard</a>
+                                <li class="text-start m-1" title="Java Tutorial">
+                                    <a class="dropdown-item" href="{{ url_for('tute.java') }}">
+                                        <i class="fa-brands fa-java me-2"></i>Java Tutorial</a>
                                 </li>
-                                <li title="Create post" class="mx-1"><a class="dropdown-item"
-                                        href="{{ url_for('blog.create_post') }}">
-                                        <i class="bi bi-plus-square-dotted me-2"></i>Create Post</a>
+                                <li class="text-start m-1" title="React Tutorial">
+                                    <a class="dropdown-item" href="{{ url_for('tute.java') }}">
+                                        <i class="fa-brands fa-react me-2"></i>React Tutorial</a>
                                 </li>
-                                <li title="Theme" id="theme-mode" class="mx-1" onclick="return themeToggle()">
-                                    <p class="dropdown-item pointer">
-                                        <span class="me-2 fs-5">&#9728;</span>Light Mode
-                                    </p>
-                                </li>
-                                <li title="Saved post" class="mx-1"><a class="dropdown-item"
-                                        href="{{ url_for('blog.save_post') }}">
-                                        <i class="bi bi-bookmarks me-2"></i>Saved</a>
-                                </li>
-                                <li title="Settings" class="mx-1"><a class="dropdown-item"
-                                        href="{{ url_for('auth.settings') }}">
-                                        <i class="bi bi-gear me-2"></i>Settings</a>
-                                </li>
-                                <hr class="my-2">
-                                <li title="Logout account" class="m-1 mb-2"><a class="dropdown-item"
-                                        href="{{ url_for('auth.logout') }}">
-                                        <i class="bi bi-arrow-left-square me-2"></i>Logout</a>
+                                <li class="text-start m-1" title="Go Tutorial">
+                                    <a class="dropdown-item" href="{{ url_for('tute.java') }}">
+                                        <i class="fa-brands fa-golang me-2"></i>Go Tutorial</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        {% if not request.path == url_for('auth.login') %}
-                        <a href="{{ url_for('auth.login', redirect_url=request.path) }}">
-                            <button class="btn btn-primary px-3 py-2">Login</button>
-                        </a>
+                        </li>
+                        <!-- contacts -->
+                        <li class="nav-item text-center" title="Contact">
+                            <a class="nav-link px-lg-3 py-2" href="{{ url_for('app.contact') }}">Contact</a>
+                        </li>
+                        <!-- about -->
+                        <li class="nav-item text-center" title="About">
+                            <a class="nav-link px-lg-3 py-2" href="{{ url_for('app.about') }}">About</a>
+                        </li>
+                    </ul>
+                    <!-- User links -->
+                    <ul class="navbar-nav justify-content-center ms-auto py-lg-0" style="flex-direction: row">
+                        <!-- search form -->
+                        <li class="d-flex align-items-center">
+                            <form method="get" action="{{ url_for('app.search_post') }}" class="search-form"
+                                role="query" accept-charset="UTF-8">
+                                <div class="nav-search">
+                                    <input id="search-input" class="search-input" type="text" name="query"
+                                        placeholder="Search post..." autocomplete="off" aria-label="Search term"
+                                        required="">
+                                    <button type="submit" role="button" aria-label="Search" class="btn-search">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                            <button name="icon" class="search-icon px-2 py-2" type="button"><i
+                                    class="fa-sharp fa-solid fa-magnifying-glass fs-2-150"></i>
+                            </button>
+                        </li>
+
+                        {% if current_user.is_authenticated %}
+                        <!-- notification -->
+                        <li class="nav-item ms-1">
+                            <a class="text-muted icon relative m-0 mx-3" href="{{ url_for('app.notification') }}">
+                                <i class="bi bi-bell"></i>
+                                <p class="badge badge-number bg-danger">
+                                    <span>{{ current_user.notifications|length }}</span>
+                                </p>
+                            </a>
+                        </li>
                         {% else %}
-                        <button class="btn btn-primary px-3 py-2">Login</button>
+                        <!-- theme -->
+                        <li class="nav-item" title="Theme" id="theme" onclick="return themeToggle()">
+                            <p class="icon m-0 mx-3">
+                                <i class="bi bi-brightness-high"></i>
+                            </p>
+                        </li>
                         {% endif %}
-                    </li>
-                    {% endif %}
-                </ul>
+                        {% if current_user.is_authenticated %}
+                        <!-- profile -->
+                        <li class="nav-item dropdown" title="Account Menu">
+                            <a role="button" style="font-size: 15px;" data-bs-toggle="dropdown" aria-expanded="false">
+                                {% if not current_user.get_profile().profile_url %}
+                                <img src="{{ url_for('static', filename='assets/images/default-profile.png' )}}"
+                                    alt="Profile" class="img-avator me-2">
+                                {% else %}
+                                <img src="{{ url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url) }}"
+                                    alt="Profile" class="img-avator me-2">
+                                {% endif %}
+                            </a>
+
+                            <div class="p-1" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <ul class="dropdown-menu end-0">
+                                    <li title="Profile" class="m-1"><a class="dropdown-item d-flex"
+                                            href="{{ url_for('auth.edit_profile') }}">
+                                            {% if not current_user.get_profile().profile_url %}
+                                            <img src="{{ url_for('static', filename='assets/images/default-profile.png' )}}"
+                                                class="img-avator me-2">
+                                            {% else %}
+                                            <img src="{{ url_for('static', filename='assets/uploads/profile/'+current_user.get_profile().profile_url )}}"
+                                                class="img-avator me-2">
+                                            {% endif %}
+                                            <div class="">
+                                                <p class="fw-bold d-block m-0">
+                                                    {% if not current_user.get_profile().fullname %}
+                                                    {{ current_user.username }}
+                                                    {% else %}
+                                                    {{ current_user.get_profile().fullname }}
+                                                    {% endif %}
+                                                </p>
+                                                <p class="text-muted m-0 lh-1">@{{ current_user.username }}</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <hr class="my-2">
+                                    {% if current_user.is_authenticated and current_user.is_admin() %}
+                                    <li title="Admin site" class="m-1"><a class="dropdown-item"
+                                            href="{{ url_for('admin.index') }}">
+                                            <i class="bi bi-back me-2 fs-3-150"></i>Admin site</a>
+                                    </li>
+                                    {% endif %}
+                                    <li title="Dashboard" class="mx-1"><a class="dropdown-item"
+                                            href="{{ url_for('app.dashboard', username=current_user.username) }}">
+                                            <i class="bi bi-bar-chart me-2"></i>Dashboard</a>
+                                    </li>
+                                    <li title="Create post" class="mx-1"><a class="dropdown-item"
+                                            href="{{ url_for('blog.create_post') }}">
+                                            <i class="bi bi-plus-square-dotted me-2"></i>Create Post</a>
+                                    </li>
+                                    <li title="Theme" id="theme-mode" class="mx-1" onclick="return themeToggle()">
+                                        <p class="dropdown-item pointer">
+                                            <span class="me-2 fs-5">&#9728;</span>Light Mode
+                                        </p>
+                                    </li>
+                                    <li title="Saved post" class="mx-1"><a class="dropdown-item"
+                                            href="{{ url_for('blog.save_post') }}">
+                                            <i class="bi bi-bookmarks me-2"></i>Saved</a>
+                                    </li>
+                                    <li title="Settings" class="mx-1"><a class="dropdown-item"
+                                            href="{{ url_for('auth.settings') }}">
+                                            <i class="bi bi-gear me-2"></i>Settings</a>
+                                    </li>
+                                    <hr class="my-2">
+                                    <li title="Logout account" class="m-1 mb-2"><a class="dropdown-item"
+                                            href="{{ url_for('auth.logout') }}">
+                                            <i class="bi bi-arrow-left-square me-2"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            {% if not request.path == url_for('auth.login') %}
+                            <a href="{{ url_for('auth.login', redirect_url=request.path) }}">
+                                <button class="btn btn-primary px-3 py-2">Login</button>
+                            </a>
+                            {% else %}
+                            <button class="btn btn-primary px-3 py-2">Login</button>
+                            {% endif %}
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
