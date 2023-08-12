@@ -394,7 +394,7 @@
 }
 
 .dropdown-menu[data-bs-popper] {
-  top: 99%;
+  top: 100%;
 }
 
 .dropdown-menu-start {
@@ -1573,7 +1573,7 @@ nav.navbar {
   background-color: var(--cs-color-bg-200);
   background-clip: padding-box;
   outline: 0;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1629,8 +1629,8 @@ nav.navbar {
 .offcanvas-start {
   top: 0;
   left: 0;
-  width: 375px;
-  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  width: 325px;
+  border-right: 1px solid var(--cs-color-200);
   transform: translateX(-100%);
 }
 
@@ -3881,7 +3881,7 @@ header.posthead .post-heading .meta a {
   height: 2.50rem;
   width: 2.50rem;
   border: 2px solid transparent;
-  margin: 3px;
+  margin: 0px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
@@ -3938,7 +3938,7 @@ header.posthead .post-heading .meta a {
   cursor: pointer;
   color: var(--cs-color-600);
   font-size: 21px;
-  padding: 4px 9.50px;
+  padding: 3.5px 8.75px;
   border: 1px solid transparent;
   border-radius: 50%;
   transition: all 0.250s ease-in-out;
@@ -3979,6 +3979,7 @@ header.posthead .post-heading .meta a {
   border-top: 1px solid var(--cs-color-200);
   border-bottom: none;
   transform: translateY(50%);
+  transition: all 0.25s ease-in-out;
 }
 
 .tox.tox-tinymce {
