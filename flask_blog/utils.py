@@ -11,40 +11,39 @@ def generate_unique_id():
     """
     return str(uuid.uuid4())
 
-def get_clean_username(username=None):
+def get_clean_username(username):
     """
     A method for cleaning a User's username like,
     removing spaces and returning in 
     a lowerCase characters.
     """
-    return (
-            unicodedata.normalize("NFKC", username)
-            if isinstance(username, str)
-            else username
-        )
-    # return str(username).strip().lower()
+    return str(username).replace(" ", "").lower()
 
-def get_clean_email(email=None):
+def get_clean_email(email):
     """
     A method for cleaning a User's email like,
     removing spaces and returning in 
     a lowerCase characters.
     """
-    return str(email).strip().lower()
+    clean_email = str(email).replace(" ", "")
+    return clean_email.lower()
 
-def get_clean_password(password=None):
+def get_clean_password(password):
     """
     A method for cleaning a User's password like,
     removing extraspaces spaces.
     """
-    return str(password).strip()
+    clean_password = str(password).replace(" ", "")
+    return clean_password.lower()
 
 def generate_unique_filename(filename):
     """
     Generate a unique and secure filename using
     secure_filename() method and UUID.
     """
-    return secure_filename(str(uuid.uuid4()) + filename)
+    return secure_filename(
+        generate_unique_id() + filename
+    )
 
 def generate_security_code():
     """
