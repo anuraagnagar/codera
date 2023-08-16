@@ -1,8 +1,8 @@
 from flask import Flask as FlaskApp
-from flask import flash, request, redirect, url_for, abort
+from flask import abort, flash, redirect, request, url_for
 
 
-def blog_app(config):
+def blog_app(config=None):
     """
     Creates and configures a Flask application for our blog.
 
@@ -27,8 +27,8 @@ def blog_app(config):
     
     @app.get('/new_one')
     def new_route():
-        return abort(404)
-        # return render_template("app/new.html")
+        # return abort(404)
+        return render_template("app/new.html")
 
     return app
 
