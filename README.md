@@ -4,36 +4,36 @@ Welcome to Flask blog This is a fully functional blog application built using Fl
 
 ## Features & Functionality
 
-- User Authentication: 
-    - Allow users to Register & log in their accounts.
-    - Users also register with social accounts (Google & Github).
-    - Users can recover their passwords using email address.
-    - Users also change their current email to new email address.
+- User Authentication:
+  - Allow users to Register & log in their accounts.
+  - Users also register with social accounts (Google & Github).
+  - Users can recover their passwords using email address.
+  - Users also change their current email to new email address.
 - User Management:
-    - User can edit their profile detail and also added profile image. 
-    - User can change their password after log in.
-    - User can delete their account and data.
+  - User can edit their profile detail and also added profile image.
+  - User can change their password after log in.
+  - User can delete their account and data.
 - Blog Post Management:
-    - Create & edit blog posts with a rich text editor.
-    - Only author can delete their blog post.
+  - Create & edit blog posts with a rich text editor.
+  - Only author can delete their blog post.
 - Likes & Saves Post:
-    - Readers can like and save the post after login.
+  - Readers can like and save the post after login.
 - Commenting System:
-    - Engage with readers through comments to the blog posts.
-    - Also replies to the comments.
+  - Engage with readers through comments to the blog posts.
+  - Also replies to the comments.
 - Notifications:
-    - Get notified about new comments, likes to your blog post.
-    - Get notified about someone follows you.
+  - Get notified about new comments, likes to your blog post.
+  - Get notified about someone follows you.
 - Dark and Light Modes:
-    - Enjoy a comfortable reading experience with both light and dark themes.
+  - Enjoy a comfortable reading experience with both light and dark themes.
 - User Interaction:
-    - Follow other users and stay updated with their posts.
+  - Follow other users and stay updated with their posts.
 - Advanced Search:
-    - Easily find posts by keywords or categories.
+  - Easily find posts by keywords or categories.
 - Internationalization (i18n):
-    - Supports multiple languages for a global audience.
+  - Supports multiple languages for a global audience.
 - Responsive Design:
-    - Enjoy a seamless experience on different devices and screen sizes.
+  - Enjoy a seamless experience on different devices and screen sizes.
 
 ## Installation & Set up
 
@@ -124,6 +124,7 @@ flask db migrate -m "initial_migration"
 ```
 
 Upgrade the database for latest migration.
+
 ```bash
 flask db upgrade
 ```
@@ -133,6 +134,7 @@ flask db upgrade
 ```bash
 flask run
 ```
+
 Access the application at http://localhost:5000 in your web browser.
 
 ## Screenshots
@@ -142,3 +144,4 @@ Insert some screenshots of your application to showcase its UI and features.
 ## Contributing
 
 Contributions are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.
+For more information checkout ![CONTRIBUTING.md](https://github.com/anuraagnagar/flask-blog/blob/master/CONTRIBUTING.md)
