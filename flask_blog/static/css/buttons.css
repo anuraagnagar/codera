@@ -18,7 +18,7 @@
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
     border-radius: 5px;
-    transition: all .25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .btn {
