@@ -24,7 +24,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    transition: all 0.25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -110,8 +110,8 @@
     border-width: 0;
     border-inline-end-width: 1px;
     border-radius: 5px;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -webkit-transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .form-control::file-selector-button {
@@ -127,8 +127,8 @@
     border-width: 0;
     border-inline-end-width: 1px;
     border-radius: 5px;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -webkit-transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -164,8 +164,8 @@
     border-width: 0;
     border-inline-end-width: 1px;
     border-radius: 5px;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -webkit-transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -249,7 +249,7 @@ textarea.form-control-lg {
     border-radius: 0.25rem;
     background-color: transparent;
     background-clip: padding-box;
-    transition: all 0.25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .form-select {
@@ -268,7 +268,7 @@ textarea.form-control-lg {
     background-size: 16px 12px;
     border: 1px solid var(--cs-color-200);
     border-radius: 5px;
-    transition: all 0.25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -399,7 +399,7 @@ textarea.form-control-lg {
     margin-left: -2.5em;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
     background-position: left center;
-    transition: all 0.25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -454,8 +454,8 @@ textarea.form-control-lg {
     margin-top: -0.25rem;
     background-color: #0085A1;
     border: 0;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -webkit-transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
     -webkit-appearance: none;
     appearance: none;
 }
@@ -485,8 +485,8 @@ textarea.form-control-lg {
     height: 1rem;
     background-color: #0085A1;
     border: 0;
-    -moz-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -moz-transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
     -moz-appearance: none;
     appearance: none;
 }
