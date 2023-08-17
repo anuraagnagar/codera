@@ -96,6 +96,10 @@ html.dark {
     --cs-color-success: #115e3a;
     --cs-color-bg-success: #91d9b8;
 
+    --cs-transition-100: 0.100s;
+    --cs-transition-200: 0.200s;
+    --cs-transition-300: 0.300s;
+
     --cs-font-lato: 'Lato', sans-serif !important;
     --cs-font-inter: 'Inter', sans-serif;
     --cs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -132,7 +136,7 @@ body {
     line-height: var(--cs-body-line-height);
     color: var(--cs-body-color);
     background-color: var(--cs-body-bg);
-    transition: all .25s ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -339,9 +343,7 @@ kbd,
 samp {
     font-family: var(--cs-font-monospace);
     font-size: 1em;
-    direction: ltr
-        /* rtl:ignore */
-    ;
+    direction: ltr;
     unicode-bidi: bidi-override;
 }
 
