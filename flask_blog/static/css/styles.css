@@ -170,6 +170,11 @@
   margin-left: auto;
 }
 
+.container-fluid {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
 @media (min-width:220px) {
 
   .container-sm,
@@ -270,7 +275,7 @@
 }
 
 .fade {
-  transition: opacity 0.15s linear;
+  transition: opacity var(--cs-transition-200) linear;
 }
 
 .link {
@@ -279,8 +284,8 @@
   font-size: 0.8em;
   font-weight: 700;
   text-decoration: none;
-  -webkit-transition: opacity 200ms ease-in-out;
-  transition: opacity 200ms ease-in-out;
+  -webkit-transition: opacity var(--cs-transition-200) ease-in-out;
+  transition: opacity var(--cs-transition-200) ease-in-out;
 }
 
 .link:hover {
@@ -322,7 +327,7 @@
 .collapsing {
   height: 0;
   overflow: hidden;
-  transition: height 0.35s ease;
+  transition: height var(--cs-transition-300) ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -334,7 +339,7 @@
 .collapsing.collapse-horizontal {
   width: 0;
   height: auto;
-  transition: width 0.35s ease;
+  transition: width var(--cs-transition-300) ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -481,7 +486,7 @@ div .dropdown-menu-hide>li:hover {
 .dropdown-padding {
   border-radius: 5px;
   padding: 10px 10px 10px 30px !important;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .dropdown-padding.active,
@@ -958,7 +963,7 @@ nav.navbar {
   border: 0;
   border-bottom: 1px solid var(--cs-color-100);
   padding: 0;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .navbar {
@@ -1035,7 +1040,7 @@ nav.navbar {
   background-color: transparent;
   border: 1px solid var(--cs-color-200);
   border-radius: 4px;
-  transition: 0.25 ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1573,7 +1578,7 @@ nav.navbar {
   background-color: var(--cs-color-bg-200);
   background-clip: padding-box;
   outline: 0;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-100) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1609,9 +1614,10 @@ nav.navbar {
 
 .offcanvas-header .btn-close {
   color: var(--cs-color-700);
+  height: 100%;
   padding: 0.5rem 0.5rem;
   margin-top: -0.5rem;
-  margin-right: -0.5rem;
+  margin-right: 0.5rem;
   margin-bottom: -0.5rem;
 }
 
@@ -1629,7 +1635,7 @@ nav.navbar {
 .offcanvas-start {
   top: 0;
   left: 0;
-  width: 325px;
+  width: 350px;
   border-right: 1px solid var(--cs-color-200);
   transform: translateX(-100%);
 }
@@ -1666,8 +1672,6 @@ nav.navbar {
   visibility: visible;
 }
 
-/* Navbar search items */
-
 .nav-search {
   position: relative;
   display: flex;
@@ -1677,7 +1681,7 @@ nav.navbar {
   background-color: var(--cs-input-color-bg);
   border: 1px solid var(--cs-color-200);
   border-radius: 5px;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .nav-search:focus-within {
@@ -1687,7 +1691,7 @@ nav.navbar {
   outline: none;
   border: 1px solid var(--cs-input-border);
   box-shadow: 0 0 0 .25rem var(--cs-input-border-shadow);
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .search-form {
@@ -1695,12 +1699,12 @@ nav.navbar {
 }
 
 .search-icon {
-  display: none;
+  cursor: pointer;
+  display: flex;
   border: 0;
   outline: 0;
   color: var(--cs-color-700);
   background-color: transparent;
-
 }
 
 .nav-search>.search-input {
@@ -1752,7 +1756,7 @@ nav.navbar {
   background-clip: border-box;
   border: 1px solid var(--cs-color-100);
   border-radius: 6px;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .card-image {
@@ -1794,7 +1798,7 @@ nav.navbar {
   color: #212529;
   background-color: #fff;
   border: 1px solid #dee2e6;
-  transition: all 0.15s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2944,7 +2948,7 @@ footer {
   padding-bottom: 1rem;
   background-color: var(--cs-color-bg-200);
   border-top: 1px solid var(--cs-color-100);
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .footer-link {
@@ -2952,7 +2956,7 @@ footer {
   justify-content: space-between;
   color: var(--cs-color-500);
   border-bottom: 2px solid transparent;
-  transition: all 0.15s ease-in-out
+  transition: all var(--cs-transition-200) ease-in-out
 }
 
 @media (max-width: 576px) {
@@ -2960,8 +2964,6 @@ footer {
     display: block;
   }
 }
-
-
 
 header.masthead {
   height: 32rem;
@@ -2973,7 +2975,7 @@ header.masthead {
   background-attachment: scroll;
   object-fit: cover;
   object-position: top;
-  transition: all 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 header.masthead>.skeleton {
@@ -3102,7 +3104,7 @@ header.posthead {
   background-attachment: scroll;
   object-fit: cover;
   object-position: top;
-  transition: all 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 header.posthead>div {
@@ -3305,7 +3307,7 @@ header.posthead .post-heading .meta a {
   height: 180px;
   border-radius: 5px 5px 0 0;
   -webkit-transition: .0.25s ease-in-out;
-  transition: .25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 
@@ -3333,7 +3335,7 @@ header.posthead .post-heading .meta a {
   border-radius: 5px;
   height: 100%;
   width: 100%;
-  transition: all .25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .cover-image {
@@ -3616,8 +3618,7 @@ header.posthead .post-heading .meta a {
   align-items: center;
   justify-content: center;
   font-size: 1.75rem;
-  font-weight: 701;
-  height: 50px;
+  font-weight: 700;
 }
 
 .header-logo {
@@ -3787,7 +3788,7 @@ header.posthead .post-heading .meta a {
   border-radius: 100%;
   object-fit: cover;
   object-position: center;
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .show-password {
@@ -3798,7 +3799,7 @@ header.posthead .post-heading .meta a {
 
 .facebook {
   color: var(--cs-color-700);
-  transition: 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
   border: 0;
 }
 
@@ -3809,7 +3810,7 @@ header.posthead .post-heading .meta a {
 
 .instagram {
   color: var(--cs-color-700);
-  transition: 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
   border: 0;
 }
 
@@ -3820,7 +3821,7 @@ header.posthead .post-heading .meta a {
 
 .linked-in {
   color: var(--cs-color-700);
-  transition: 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
   border: 0;
 }
 
@@ -3831,7 +3832,7 @@ header.posthead .post-heading .meta a {
 
 .github {
   color: var(--cs-color-700);
-  transition: 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
   border: 0;
 }
 
@@ -3842,7 +3843,7 @@ header.posthead .post-heading .meta a {
 
 .youtube {
   color: var(--cs-color-700);
-  transition: 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
   border: 0;
 }
 
@@ -3857,7 +3858,7 @@ header.posthead .post-heading .meta a {
   border-radius: 50%;
   border: 1px solid transparent;
   padding: 6px 8px;
-  transition: all .25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .bi-three-dots-vertical:hover {
@@ -3934,14 +3935,14 @@ header.posthead .post-heading .meta a {
 }
 
 .icon {
-  text-align: center;
   cursor: pointer;
   color: var(--cs-color-600);
-  font-size: 21px;
-  padding: 3.5px 8.75px;
+  font-size: 20px;
+  text-align: center;
+  padding: 3.50px 8.50px;
   border: 1px solid transparent;
   border-radius: 50%;
-  transition: all 0.250s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .icon:hover {
@@ -3979,7 +3980,7 @@ header.posthead .post-heading .meta a {
   border-top: 1px solid var(--cs-color-200);
   border-bottom: none;
   transform: translateY(50%);
-  transition: all 0.25s ease-in-out;
+  transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .tox.tox-tinymce {
