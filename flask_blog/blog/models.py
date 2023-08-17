@@ -120,6 +120,10 @@ class Comment(BaseModel):
     # Defining 'relationship' with other model class.
     replies = db.Relationship('Reply', backref='comment', cascade="save-update, merge, delete", lazy=True)
 
+    __table_args__ = (
+        UniqueConstraint('user_id', 'post_id'),
+    )
+
     def __repr__(self):
         return "Comment >> {}".format(self.user.username)
 
@@ -139,6 +143,10 @@ class Reply(BaseModel):
 
     comment_id = db.Column(
         db.String(38), db.ForeignKey('comment.id', ondelete="CASCADE"), nullable=False
+    )
+
+    __table_args__ = (
+        UniqueConstraint('user_id', 'comment_id'),
     )
 
     def __repr__(self):

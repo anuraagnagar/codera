@@ -271,8 +271,13 @@ class Followers(BaseModel):
     """
     __tablename__ = 'followers'
 
-    follower_id = db.Column(db.String(38), db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
-    following_id = db.Column(db.String(38), db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
+    follower_id = db.Column(
+        db.String(38), db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False
+    )
+    
+    following_id = db.Column(
+        db.String(38), db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False
+    )
 
     __table_args__ = (
         UniqueConstraint('follower_id', 'following_id'),
