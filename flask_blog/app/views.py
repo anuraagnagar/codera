@@ -9,7 +9,7 @@ from flask_login import (
         login_required as LoginRequired
     )
 
-from flask_blog.blog import Blogpost
+from flask_blog.blog import Blogpost, Likepost
 from flask_blog.app import ContactForm
 from .services import send_contact_mail
 
