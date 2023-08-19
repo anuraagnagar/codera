@@ -19,7 +19,7 @@ html.dark {
     --cs-color-bg-500: #363636;
     --cs-color-bg-600: #444444;
 
-    --cs-color-bg-nav: #1d1d1d;
+    --cs-color-bg-nav: #0f0f0fb2;
     --cs-color-bg-footer: #202020;
 
     --cs-input-color-bg: var(--cs-color-bg-100);
@@ -77,7 +77,7 @@ html.dark {
     --cs-color-bg-500: #c4c4c4;
     --cs-color-bg-600: #dddddd;
 
-    --cs-color-bg-nav: #ffffff;
+    --cs-color-bg-nav: #fdfdfdb2;
     --cs-color-bg-footer: #f8f8f8;
 
     --cs-button-primary: #167565;
@@ -134,9 +134,12 @@ body {
     font-size: var(--cs-body-font-size);
     font-weight: var(--cs-body-font-weight);
     line-height: var(--cs-body-line-height);
+}
+
+#main {
     color: var(--cs-body-color);
     background-color: var(--cs-body-bg);
-    transition: all var(--cs-transition-200) ease-in-out;
+    transition: all var(--cs-transition-200) ease-in-out; 
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
