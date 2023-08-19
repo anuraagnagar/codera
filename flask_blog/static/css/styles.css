@@ -955,18 +955,19 @@ div .dropdown-menu-hide>li:hover {
 
 
 nav.navbar {
-  background-color: var(--cs-color-bg-200);
+  background-color: var(--cs-color-bg-nav);
   border-bottom-color: currentcolor;
   border-bottom-style: none;
   border-bottom-width: 0px;
-  margin-bottom: 0;
   border: 0;
   border-bottom: 1px solid var(--cs-color-100);
+  margin-bottom: 0;
   padding: 0;
   transition: all var(--cs-transition-200) ease-in-out;
 }
 
 .navbar {
+  backdrop-filter: blur(15px);
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -1594,6 +1595,7 @@ nav.navbar {
   z-index: 1040;
   width: 100vw;
   height: 100vh;
+  backdrop-filter: none;
   background-color: #000;
 }
 
