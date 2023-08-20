@@ -134,6 +134,7 @@ body {
     font-size: var(--cs-body-font-size);
     font-weight: var(--cs-body-font-weight);
     line-height: var(--cs-body-line-height);
+    background-color: var(--cs-body-bg);
 }
 
 #main {
