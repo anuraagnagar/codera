@@ -1,8 +1,9 @@
 {% extends "layout.html" %}
-{% block title %}Saved Post &#8226; {{ current_user.username }} &#8226; CodingShoding - Learn coding with us{% endblock
-%}
+{% block title %}
+Saved Post &#8226; {{ current_user.username }} &#8226; CodingShoding - Learn coding with us
+{% endblock %}
 {% block body %}
-
+<!-- page content-->
 {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
 {% for category, message in messages %}
 {% if category=='success' %}
@@ -33,8 +34,8 @@
         <i class="bi bi-x text-muted"></i>
     </button>
 </div>{% endif %}{% endfor %}{% endif %}{% endwith %}
-<!-- main content-->
-<main class="my-4">
+
+<div class="my-4">
     <div class="container-fluid">
         <div class="row">
             <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
@@ -66,11 +67,10 @@
                         </p>
                     </div>
                 </div>
-                {% endfor %}
-                {% endif %}
+                {% endfor %}{% endif %}
             </section>
         </div>
     </div>
-</main>
+</div>
 
 {% endblock %}
