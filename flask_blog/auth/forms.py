@@ -123,9 +123,6 @@ class EditProfileForm(FlaskForm):
     A FlaskForm class for represent User profile.
     """
 
-    # __images = UploadSet('images', IMAGES)
-    __images = ""
-
     fullname = StringField("Fullname")
     username = StringField("Username", validators=[DataRequired(), Length(6, 30)])
     mobile = StringField("Phone Number")
@@ -140,13 +137,13 @@ class EditProfileForm(FlaskForm):
     role = StringField("Role", validators=[Length(max=100)])
     profile_image = FileField("Profile Image",
                 validators=[
-                    FileAllowed(__images, 'Images Only'),
+                    FileAllowed(["jpg", "jpeg", "png"], 'Images Only'),
                     FileSize(max_size=3000000)
                 ]
             )
     cover_image = FileField("Upload Cover Image",
                 validators=[
-                    FileAllowed(__images, 'Images Only'),
+                    FileAllowed(["jpg", "jpeg", "png"], 'Images Only'),
                     FileSize(max_size=3000000)
                 ]
             )
