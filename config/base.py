@@ -6,8 +6,6 @@ load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-days = int(os.getenv("COOKIE_DURATION"))
-
 # Site Configuration
 
 SITE_TITLE = "CodeCircle"
@@ -22,9 +20,9 @@ WTF_CSRF_ENABLED = True
 
 WTF_CSRF_SECRET_KEY = os.getenv("CSRF_SECRET_KEY")
 
-WTF_CSRF_TIME_LIMIT = int(os.getenv("WTF_CSRF_TIME"))
+WTF_CSRF_TIME_LIMIT = 900
 
-COOKIE_DURATION = timedelta(days=days)
+COOKIE_DURATION = timedelta(days=30)
 
 TINY_KEY = os.getenv("TINYMCE_API_KEY")
 
