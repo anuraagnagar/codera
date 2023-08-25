@@ -81,33 +81,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-To run this project locally, you will need to add .env file on base directory and set following environment variables.
+To run this project locally, you will need to set `.env.example` file to `.env` on base directory and set values to environment variables.
 
-`FLASK_DEBUG=True`
-
-`FLASK_APP=app.py`
-
-`FLASK_ENV=development`
-
-`SECRET_KEY=your_secret_key_here`
-
-`DB_ENGINE=your_database_engine`
-
-`DB_USERNAME=your_database_username`
-
-`DB_PASSWORD=your_database_password`
-
-`DB_HOST=your_database_host`
-
-`DB_PORT=your_database_post`
-
-`DB_NAME=your_database_name`
-
-`MAIL_SERVER=your_mail_server`
-
-`MAIL_USERNAME=your_email@example.com`
-
-`MAIL_PASSWORD=your_mail_password`
 
 ### 6. Migrate/Create a database.
 
