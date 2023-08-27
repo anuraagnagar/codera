@@ -259,7 +259,7 @@ def create_profile_for_user(mapper, connection, target):
     """
     Automatically create and save a profile for a newly inserted user.
     """
-    assert target.id is not None
+    assert target.id is None, "Provide User ID"
     profile = Profile(user_id=target.id)
     db.session.add(profile)
     db.session.commit()
