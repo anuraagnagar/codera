@@ -33,8 +33,8 @@
     </button>
 </div>{% endif %}{% endfor %}{% endif %}{% endwith %}
 
-<!-- main content-->
-<main class="mb-5">
+<!-- page content-->
+<div class="mb-5">
     <div class="container-fluid">
         <header class="masthead">
             <div class="d-flex skeleton">
@@ -97,7 +97,7 @@
                     </div>
                     <!-- post preview-->
                     {% for post in posts %}
-                    <article class="post-box mb-2 mb-sm-3 mb-md-4 mx-2" title="{{ post.title }}">
+                    <article class="post-box mb-2 mb-sm-3 mb-md-4" title="{{ post.title }}">
                         <div class="img-wrap" style="background-size: cover;">
                             <div class="cover-image">
                                 <a href="{{ url_for('blog.blogpost', slug=post.slug) }}">
@@ -122,6 +122,6 @@
             </div>
         </section>
     </div>
-</main>
+</div>
 
 {% endblock %}

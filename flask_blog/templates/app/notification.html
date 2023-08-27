@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}CodingShoding - Learn coding with us{% endblock %}
 {% block body %}
-
+<!-- page content-->
 {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
 {% for category, message in messages %}
 {% if category=='success' %}
@@ -32,11 +32,11 @@
         <i class="bi bi-x text-muted"></i>
     </button>
 </div>{% endif %}{% endfor %}{% endif %}{% endwith %}
-<!-- main content-->
-<main class="my-4">
+
+<div class="my-4">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
+            <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
                 <h3 class="mb-4 rounded-1" style="border-left: 4px solid var(--cs-primary);"><i
                         class="bi bi-bell-fill mx-2"></i>Notification</h3>
                 <h4>New</h4>
@@ -225,9 +225,9 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-</main>
+</div>
 
 {% endblock %}
