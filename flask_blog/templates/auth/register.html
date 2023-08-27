@@ -2,8 +2,8 @@
 {% block title %}Register &#8226; CodingShoding - Learn coding with us{% endblock %}
 {% block body %}
 
-<!-- main content-->
-<main class="my-4 my-lg-5">
+<!-- page content-->
+<div class="my-4 my-lg-5">
   <div class="container px-0 px-md-4 px-lg-5">
     <div class="row">
       <section class="col-xsm-12 col-sm-9 col-md-7 col-lg-6 col-xl-5 px-2">
@@ -88,8 +88,8 @@
           <hr class="m-0">
           <div class="card-body py-3">
             <p class="text-muted m-0" style="font-size: 13px;">By signing up, you agree to our <a href="#">Terms of
-                Service</a> and <a href="#">Privacy Policy</a>. Need help? <a
-                href="{{ url_for('app.contact') }}">Get in touch</a>.</p>
+                Service</a> and <a href="#">Privacy Policy</a>. Need help? <a href="{{ url_for('app.contact') }}">Get in
+                touch</a>.</p>
           </div>
         </div>
         <p class="text-center mt-4 mb-3">
@@ -99,8 +99,10 @@
       </section>
     </div>
   </div>
-</main>
+</div>
 
-{% endblock %} {% block script %}
+{% endblock %}
+
+{% block script %}
 <script src="{{ url_for('static', filename='js/auth/register.js') }}"></script>
 {% endblock %}
