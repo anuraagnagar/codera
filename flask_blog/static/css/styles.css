@@ -387,6 +387,7 @@
   font-size: 1rem;
   color: var(--cs-color-700);
   background-color: var(--cs-color-bg-200);
+  backdrop-filter: blur(15px);
   text-align: left;
   list-style: none;
   background-clip: padding-box;
@@ -702,28 +703,29 @@ div .dropdown-menu-hide>li:hover {
 .dropdown-item {
   display: block;
   width: 100%;
-  padding: 0.25rem 0.50rem;
+  padding: 0.30rem 0.50rem;
   margin: 0.10rem 0rem;
   clear: both;
   font-weight: 400;
-  color: var(--cs-color-700);
   text-align: inherit;
   white-space: nowrap;
+  color: var(--cs-color-700);
   background-color: transparent;
   border: 0;
+  transition: all var(--cs-transition-100) ease-in-out;
 }
 
 .dropdown-item:hover,
 .dropdown-item:focus {
   color: var(--cs-color-800);
-  background-color: var(--cs-primary-light);
+  background-color: var(--cs-color-bg-300);
   border-radius: 4px;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
   color: var(--cs-color-900);
-  background-color: #00a88c4b;
+  background-color: var(--cs-color-bg-400);
   text-decoration: none;
 }
 
@@ -3949,7 +3951,7 @@ header.posthead .post-heading .meta a {
 
 .icon:hover {
   border: 1px solid var(--cs-color-200);
-  background-color: var(--cs-color-bg-100);
+  background-color: transparent;
 }
 
 .main-divider {
