@@ -12,14 +12,14 @@ html.dark {
     --cs-color-100: #262626;
     --cs-color-000: #141414;
 
-    --cs-color-bg-100: #0a0a0a;
-    --cs-color-bg-200: #0f0f0f;
-    --cs-color-bg-300: #272727;
+    --cs-color-bg-100: #050505;
+    --cs-color-bg-200: #0b0b0b;
+    --cs-color-bg-300: #202020;
     --cs-color-bg-400: #2e2e2e;
     --cs-color-bg-500: #363636;
     --cs-color-bg-600: #444444;
 
-    --cs-color-bg-nav: #0f0f0fb2;
+    --cs-color-bg-nav: #0d0d0db2;
     --cs-color-bg-footer: #202020;
 
     --cs-input-color-bg: var(--cs-color-bg-100);
