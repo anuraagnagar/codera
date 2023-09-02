@@ -1,3 +1,5 @@
+"use strict";
+
 const passwordOne = document.getElementById("password-1");
 const passwordTwo = document.getElementById("password-2");
 const alertCheck = document.getElementById("alert-check");
