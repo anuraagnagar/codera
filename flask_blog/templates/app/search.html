@@ -4,7 +4,7 @@ Search Post &#8226; CodingShoding - Learn coding with us
 {% endblock %}
 {% block body %}
 
-<!-- main content-->
+<!-- page content-->
 <div class="container-fluid mb-5">
     <div class="row">
         <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
@@ -40,8 +40,7 @@ Search Post &#8226; CodingShoding - Learn coding with us
                             {{ post.user.username }}</a> &#8226; {{ post.created|timeago }}</p>
                 </div>
             </article>
-            {% endfor %}
-            {% endif %}
+            {% endfor %}{% endif %}
         </section>
     </div>
 </div>
