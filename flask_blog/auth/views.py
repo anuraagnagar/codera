@@ -237,8 +237,8 @@ class LogoutView(BaseView):
 
 class VerifyAccountView(BaseView):
     """
-    A View class for handling User account verification via
-    One Time Password(OTP) method.
+    A View class for handling User account verification 
+    via One Time Password(OTP) method.
     Supports GET and POST methods.
     """
 
@@ -308,7 +308,7 @@ class ForgetPasswordView(BaseView):
     def get_auth_user(self, email):
         """
         Get the authenticated User based on the provided email.
-        Return the User if found, otherwise None.
+        Return the User instance if exists, otherwise None.
         """
         return self.model.get_user_by_email(email=email)
 
@@ -318,13 +318,10 @@ class ForgetPasswordView(BaseView):
 
         user = self.get_auth_user(email)
 
-        if not user:
-            flash("Email Address is not register with us.", category='error')
-        elif not re.match(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b', email):
-            flash("Invalid email address.", category='error')
-        else:
+        if user:
             return send_reset_password(user=user)
         
+        flash("Email Address is not register with us.", category='error')
         return redirect(url_for('auth.forgot_password'))
 
     def dispatch_request(self):
@@ -419,7 +416,7 @@ class ChangePasswordView(BaseView):
     def get_auth_user(self):
         """
         Get the authenticated User based on the current User's ID.
-        Return the User if found, or raise a 404 Not Found exception.
+        Return the User if exists, or raise a 404 Not Found exception.
         """
         return self.model.query.get_or_404(current_user.id)
 
@@ -437,7 +434,7 @@ class ChangePasswordView(BaseView):
         elif not (new_password1 == new_password2):
             flash("New password fields didn't match.", category='error')
         elif not len(new_password1) >= 8 and not len(new_password1) <= 15:
-            flash("Password must be between 8 to 15 character.", category='error')
+            flash("Password must be between 8 to 15 character.", category='info')
         elif not re.match(r"(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", new_password1):
             flash("Password should have at least one number, one uppercase, one lowercase, and one special character.", category='info')
         else:
@@ -445,7 +442,7 @@ class ChangePasswordView(BaseView):
                 user.set_password(new_password1)
                 db.session.commit()
                 flash("Your password has been changed successfully.", category='success')
-                return redirect(url_for('app.index'))
+                return redirect(url_for('auth.change_password'))
             except Exception as e:
                 flash("Something went wrong with the backend server.", category='error')
                 return redirect(url_for('auth.change_password'))
