@@ -639,54 +639,91 @@ class UserDetailView(BaseView):
 
     decorators = [LoginRequired]
 
+    def get_auth_user(self):
+        """
+        Get the authenticated User based on the current User's ID.
+        Return the User if exists, or raise a 404 Not Found exception.
+        """
+        return self.model.query.get_or_404(current_user.id)
+
+    def validate_form_data(self, data):
+        """
+        Validate the form data for user and profile updates.
+        """
+        user = self.get_auth_user()
+
+        if data.get('username') in [_user.username for _user in self.model.query.all() if _user != current_user]:
+            flash('Username already exists, choose another.', category='error')
+        elif not re.match(r"^[a-zA-Z ]*$", data.get('fullname')):
+            flash("Fullname can only contain alphabets.", category='error')
+        elif not re.match(r"^[a-z0-9_]*$", data.get('username')):
+            flash("Username can only contain alphabets, numbers and underscores.", category='error')
+        elif len(data.get('username')) < 5 or len(data.get('username')) > 25:
+            flash('Username must between 5 to 25 character.', category='error')
+        elif not re.match(r"^[0-9]*$", data.get('mobile')) and not len(data.get('mobile')) == 10:
+            flash("Your phone number is invalid .", category='error')
+        else:
+            return True
+        
+        return False
+        
+    def update_profile(self, data):
+        """
+        Method for update the user and their profile data.
+        """
+
+        user = self.get_auth_user()
+        profile = user.get_profile()
+
+        try: 
+            username = data.get('username').lower()
+            user.set_username(username) 
+            profile.fullname = data.get('fullname')
+            profile.mobile = data.get('mobile')
+            profile.gender = data.get('gender')
+            profile.biodata = data.get('biodata')
+            profile.address = data.get('address')
+            profile.work = data.get('work')
+            profile.education = data.get('education')
+            profile.role = data.get('role')
+            profile.website_url = data.get('website')
+            profile.github_url = data.get('github')
+            profile.twitter_url = data.get('twitter')
+            profile.instagram_url = data.get('instagram')
+            profile.facebook_url = data.get('facebook')
+            profile.set_profile_image(data.get('profile_url'))
+            profile.set_cover_image(data.get('cover_url'))
+            db.session.commit()
+            flash("Your profile update successfully.", category='success')
+            return redirect(url_for('auth.edit_profile'))
+        except Exception as e:
+            flash("Something went wrong with the backend server.", category='error')
+            return redirect(url_for('auth.edit_profile'))
+
+    def handle_request(self, form=None):
+        """
+        Handle the POST request for updating user and profile data.
+        """
+
+        user = self.get_auth_user()
+        profile = user.get_profile()
+        data = form.data
+
+        if self.validate_form_data(data=data):
+            return self.update_profile(data)
+
+        return redirect(url_for('auth.edit_profile'))
+
     def dispatch_request(self):
+        """
+        A Method for handling the GET and POST requests
+        for the view.
+        """
 
         form = EditProfileForm()
                 
         if form.validate_on_submit():
-            user = self.model.query.get_or_404(current_user.id)
-
-            profile = user.get_profile()
-
-            data = getattr(form, 'data')
-
-            if data.get('username') in [user.username for user in self.model.query.all() if user != current_user]:
-                flash('Username already exists, choose another.', category='error')
-            elif not re.match(r"^[a-zA-Z ]*$", data.get('fullname')):
-                flash("Fullname is contains only alphabet.", category='error')
-            elif not re.match(r"^[a-z0-9_]*$", data.get('username')):
-                flash("Username only contain alphabets, numbers and underscore.", category='error')
-            elif len(data.get('username')) < 5 or len(data.get('username')) > 25:
-                flash('Username must between 5 to 25 character.', category='error')
-            elif not re.match(r"^[0-9]*$", data.get('mobile')) and not len(data.get('mobile')) == 10:
-                flash("Your phone number is invalid .", category='error')
-            else:
-                try: 
-                    username = data.get('username').lower()
-                    user.set_username(username) 
-                    profile.fullname = data.get('fullname')
-                    profile.mobile = data.get('mobile')
-                    profile.gender = data.get('gender')
-                    profile.biodata = data.get('biodata')
-                    profile.address = data.get('address')
-                    profile.work = data.get('work')
-                    profile.education = data.get('education')
-                    profile.role = data.get('role')
-                    profile.website_url = data.get('website')
-                    profile.github_url = data.get('github')
-                    profile.twitter_url = data.get('twitter')
-                    profile.instagram_url = data.get('instagram')
-                    profile.facebook_url = data.get('facebook')
-                    profile.set_profile_image(data.get('profile_url'))
-                    profile.set_cover_image(data.get('cover_url'))
-                    db.session.commit()
-                    flash("Your profile update successfully.", category='success')
-                    return redirect(url_for('app.edit_profile'))
-                except Exception as e:
-                    flash("Something went wrong with the backend server.", category='error')
-                    return redirect(url_for('app.edit_profile'))
-
-            return redirect(url_for('app.edit_profile'))
+            return self.handle_request(form=form)
 
         return render(self.template, params=params, form=form)
 
