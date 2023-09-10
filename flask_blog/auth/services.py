@@ -43,7 +43,7 @@ def send_reset_password(user=None):
         template = f"""
         Hello, {user.username}
 
-        We have received a request to Reset Your '{config.SITE_TITLE}' Password.
+        We have received a request to reset your '{config.SITE_TITLE}' password.
         If you didn't make this request, please ignore.
 
         To reset your password, Please click the link below.
