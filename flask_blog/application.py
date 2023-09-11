@@ -67,6 +67,12 @@ def configure_extensions(app=None):
     mail.init_app(app)
     
     config_user_manager(login_manager)
+
+    from flask_blog import Users, Blogpost
+    from flask_admin.contrib.sqla import ModelView
+
+    admin.add_view(ModelView(Users, database.session))
+    admin.add_view(ModelView(Blogpost, database.session))
     
 
 def config_user_manager(manager=None):
@@ -88,7 +94,7 @@ def config_user_manager(manager=None):
         Handling unauthorized routes and redirect 
         to the login page.
         """
-        flash("Please log in to access this page.", category='warning')
+        flash("Please login your account.", category='warning')
         return redirect(url_for('auth.login', redirect_url=request.path))
 
 
