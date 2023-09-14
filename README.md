@@ -2,6 +2,10 @@
 
 Welcome to Flask blog This is a fully functional blog application built using Flask and HTML, CSS, & JavaScript. It allows users to create, manage, and share blog posts, along with a wide range of features including user authentication, commenting, notifications, and more.
 
+## Screenshots
+
+Insert some screenshots of your application to showcase its UI and features.
+
 ## Features & Functionality
 
 - User Authentication:
@@ -110,11 +114,7 @@ flask db upgrade
 flask run
 ```
 
-Access the application at http://localhost:5000 in your web browser.
-
-## Screenshots
-
-Insert some screenshots of your application to showcase its UI and features.
+Access the application at `http://localhost:5000` in your web browser.
 
 ## Contributing
 
