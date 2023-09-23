@@ -44,36 +44,42 @@ postSubTitle.addEventListener("input", () => {
 });
 
 /**
- * Set the source of the target image element 
+ * Set the source of the target image element
  * to the loaded image data.
  **/
 const setCoverImage = (e, image) => {
   document.getElementById("loader").style.display = "none";
   document.getElementById("show-image").removeAttribute("hidden");
   image.src = e.target.result;
-}
+};
 
 /**
- * Display a preview of the selected cover image 
+ * Display a preview of the selected cover image
  * with loading animation.
  **/
 const coverImagePreview = (input, element) => {
-
-  let loadingTime = 2500;
+  let loadingTime = 2000;
   let selectedFile = input.files[0];
   let fileReader = new FileReader();
   let image = document.querySelector(element);
 
-  image.title = selectedFile.name;
+  try {
+    // Set the image title to the selected file name.
+    image.title = selectedFile.name;
 
-  // the FileReader finishes loading the image after setTimeout .
-  fileReader.onload = (input) => {
-    document.getElementById("show-image").setAttribute("hidden", "");
-    document.getElementById("loader").style.display = "flex";
-    // Set a timeout to replace the image source with the loaded image after the loadingTime.
-    setTimeout(() => setCoverImage(input, image), loadingTime);
-  };
+    // the FileReader finishes loading the image after setTimeout .
+    fileReader.onload = (input) => {
+      document.getElementById("show-image").setAttribute("hidden", "");
+      document.getElementById("loader").style.display = "flex";
 
-  // Read the selected image file as a data URL.
-  fileReader.readAsDataURL(selectedFile);
+      // Set a timeout to replace the image source with the loaded image after the loadingTime.
+      setTimeout(() => setCoverImage(input, image), loadingTime);
+    };
+
+    // Read the selected image file as a data URL.
+    fileReader.readAsDataURL(selectedFile);
+    
+  } catch (err) {
+    console.log(err);
+  }
 };
