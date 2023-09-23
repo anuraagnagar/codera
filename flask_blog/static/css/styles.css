@@ -3298,8 +3298,10 @@ header.posthead .post-heading .meta a {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   border-radius: 5px;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
 }
 
 .img-wrap {
@@ -3308,10 +3310,11 @@ header.posthead .post-heading .meta a {
 }
 
 #cover-img {
-  height: 180px;
+  height: 100%;
+  background-color: var(--cs-color-bg-300);
   border-radius: 5px 5px 0 0;
-  -webkit-transition: .0.25s ease-in-out;
   transition: all var(--cs-transition-200) ease-in-out;
+  -webkit-transition: .0.25s ease-in-out;
 }
 
 
@@ -3788,7 +3791,7 @@ header.posthead .post-heading .meta a {
   border: 5px solid var(--cs-color-bg-200);
   width: 145px;
   height: 145px;
-  background-color: var(--cs-color-bg-100);
+  background-color: var(--cs-color-bg-300);
   border-radius: 100%;
   object-fit: cover;
   object-position: center;
@@ -3923,10 +3926,18 @@ header.posthead .post-heading .meta a {
   }
 }
 
+.main-spinner {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .spinner-border {
-  width: 40px;
-  height: 40px;
-  border: 5px solid var(--cs-color-600);
+  width: 35px;
+  height: 35px;
+  border: 4px solid var(--cs-color-400);
   border-right-color: transparent;
   border-radius: 50%;
   animation: 0.75s linear infinite spinner;

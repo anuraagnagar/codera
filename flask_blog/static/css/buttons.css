@@ -921,11 +921,15 @@ fieldset:disabled .btn {
     justify-content: center;
     font-size: 1.50rem;
     background-color: transparent;
-    padding: 7px 13px;
+    padding: 0.25rem 0.78rem;
     margin: 0;
     margin-right: 3px;
     border-radius: 50%;
     transition: all 0.250s ease-in-out;
+}
+
+.btn-like>a:hover {
+    color: var(--cs-color-700);
 }
 
 .btn-like #like-button:active {
@@ -938,7 +942,7 @@ fieldset:disabled .btn {
     justify-content: center;
     font-size: 1.50rem;
     background-color: transparent;
-    padding: 5px 13px;
+    padding: 0.25rem 0.78rem;
     margin: 0;
     margin-right: 3px;
     border-radius: 50%;
@@ -950,7 +954,7 @@ fieldset:disabled .btn {
 }
 
 .btn-share #share-button:active {
-    background-color: #478cc84a;
+    background-color: var(--cs-color-bg-300);
 }
 
 .btn-save #save-button {
@@ -959,13 +963,16 @@ fieldset:disabled .btn {
     justify-content: center;
     font-size: 1.50rem;
     background-color: transparent;
-    padding: 7px 9px;
+    padding: 0.38rem 0.52rem;
     margin: 0;
     margin-right: 3px;
     border-radius: 50%;
     transition: all 0.250s ease-in-out;
 }
 
+.btn-save>a:hover {
+    color: var(--cs-color-700);
+}
 
 .btn-save #save-button:active {
     background-color: #16756540;

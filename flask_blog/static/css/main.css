@@ -140,7 +140,7 @@ body {
 #main {
     color: var(--cs-body-color);
     background-color: var(--cs-body-bg);
-    transition: all var(--cs-transition-200) ease-in-out; 
+    transition: all var(--cs-transition-200) ease-in-out;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

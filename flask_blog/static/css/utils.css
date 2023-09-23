@@ -2722,7 +2722,8 @@
 }
 
 .text-red {
-    color: #ff4646;
+    --cs-text-opacity: 1;
+    color: var(--cs-danger);
 }
 
 .text-danger {
