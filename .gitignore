@@ -1,18 +1,20 @@
 
-.vscode
-.idea/
-
 # Byte-compiled / optimized / DLL files
-__pychache__/
+__pycache__/
 *.py[cod]
 *$py.class
 .pyc
 
 # database migration and local db.
 migrations/
-db.sqlite3
 *.sqlite3
-sqlite3.db
+*.db
+
+### JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
 
 # Python Virtual environment file, packages..
 .env
