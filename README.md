@@ -1,6 +1,6 @@
-# Flask blog
+# Codera
 
-Welcome to Flask blog This is a fully functional blog application built using Flask and HTML, CSS, & JavaScript. It allows users to create, manage, and share blog posts, along with a wide range of features including user authentication, commenting, notifications, and more.
+Welcome to Codera This is a fully functional blog application built using Flask\Python and HTML, CSS, & JavaScript.
 
 ## Screenshots
 
@@ -39,47 +39,43 @@ Insert some screenshots of your application to showcase its UI and features.
 - Responsive Design:
   - Enjoy a seamless experience on different devices and screen sizes.
 
-## Installation & Set up
-
 ### Prerequisites
 
 - Python 3.x
 - Virtual environment tool (e.g., `venv` or `virtualenv`)
 - Git (optional, but recommended for cloning the repository)
 
+## Installation & Set up
+
 ### 1. Clone the git repository.
 
 ```bash
-git clone https://github.com/yourusername/flask-blog.git
+git clone https://github.com/anuraagnagar/codera.git
 ```
 
 ### 2. Go to the project directory.
 
 ```bash
-cd flask-blog
+cd codera
 ```
 
-### 3. Create virtual environment.
-
-```bash
-python3 -m venv venv
-```
-
-### 4. Activate the environment.
+### 3. Create and Activate virtual environment.
 
 On Windows
 
 ```bash
+python -m venv venv
 venv\Scripts\activate
 ```
 
 On MacOS/Linux
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 5. Install the requirement package.
+### 4. Install the requirement package.
 
 ```bash
 pip install -r requirements.txt
@@ -88,7 +84,7 @@ pip install -r requirements.txt
 To run this project locally, you will need to set `.env.example` file to `.env` on base directory and set values to environment variables.
 
 
-### 6. Migrate/Create a database.
+### 5. Migrate/Create a database.
 
 Initialize the database migration directory.
 
@@ -108,7 +104,7 @@ Upgrade the database for latest migration.
 flask db upgrade
 ```
 
-### 7. Last to run the application.
+### 6. Run the application.
 
 ```bash
 flask run
@@ -119,4 +115,8 @@ Access the application at `http://localhost:5000` in your web browser.
 ## Contributing
 
 Contributions are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.
-For more information checkout ![CONTRIBUTING.md](https://github.com/anuraagnagar/flask-blog/blob/master/CONTRIBUTING.md)
+For more information checkout ![CONTRIBUTING.md](https://github.com/anuraagnagar/codera/blob/master/CONTRIBUTING.md)
+
+## License
+
+By contributing to this project, you agree that your contributions will be licensed under the ![BSD-3-Clause](https://github.com/anuraagnagar/codera/blob/master/LICENSE)
