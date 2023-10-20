@@ -1,10 +1,10 @@
-## Contributing to Flask Blog Project
+## Contributing to Codera
 
-Thank you for your interest in contributing to our Flask Blog! We're welcome contributions from the community to help improve the project and make it more useful for everyone. This document outlines the guidelines for contributing to the project. Please read it carefully before making any contributions.
+Thank you for your interest in contributing to our Codera! We're welcome contributions from the community to help improve the project and make it more useful for everyone. This document outlines the guidelines for contributing to the project. Please read it carefully before making any contributions.
 
 ## Code of Conduct
 
-We follow the Contributor Covenant Code of Conduct in all interactions related to the Flask Blog Application project. All contributors are expected to adhere to this code of conduct.
+We follow the Contributor Covenant Code of Conduct in all interactions related to our application. All contributors are expected to adhere to this code of conduct.
 
 ## How to Contribute
 
@@ -16,7 +16,7 @@ There are several ways to contribute to the project:
 
 ## Reporting Bugs
 
-If you discover any bugs or issues while using the Flask Blog Project, please check the existing issues to see if it has already been reported. If not, you can create a new issue with a detailed description of the problem, steps to reproduce it, and any relevant information about your environment.
+If you discover any bugs or issues while using the Codera Project, please check the existing issues to see if it has already been reported. If not, you can create a new issue with a detailed description of the problem, steps to reproduce it, and any relevant information about your environment.
 
 ## Suggesting Enhancements
 
@@ -55,4 +55,4 @@ We encourage a friendly and inclusive community. If you have any questions, conc
 
 ## License
 
-By contributing to the Flask Blog project, you agree that your contributions will be licensed under the MIT License.
+By contributing to the Flask Blog project, you agree that your contributions will be licensed under the ![BSD-3-Clause](https://github.com/anuraagnagar/codera/blob/master/LICENSE).
