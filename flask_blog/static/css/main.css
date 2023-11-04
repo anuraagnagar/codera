@@ -21,6 +21,7 @@ html.dark {
 
     --cs-color-bg-nav: #0d0d0db2;
     --cs-color-bg-footer: #202020;
+    --cs-color-bg-footer-card: #111;
 
     --cs-input-color-bg: var(--cs-color-bg-100);
     --cs-input-color-bg-disable: #222;
@@ -57,7 +58,7 @@ html.dark {
     --cs-warning: #ffc107;
     --cs-danger: #dc3545;
     --cs-light: #f8f9fa;
-    --cs-dark: #17191b;
+    --cs-dark: var(--cs-color-bg-600);
 
     --cs-color-000: #efefef;
     --cs-color-100: #d6d6d7;
@@ -79,6 +80,7 @@ html.dark {
 
     --cs-color-bg-nav: #fdfdfdb2;
     --cs-color-bg-footer: #f8f8f8;
+    --cs-color-bg-footer-card: #f9f9f9;
 
     --cs-button-primary: #167565;
     --cs-button-primary-hover: #0f5246;
@@ -511,10 +513,6 @@ button:not(:disabled),
 
 textarea {
     resize: vertical;
-}
-
-.para-size {
-    font-size: 17px;
 }
 
 fieldset {

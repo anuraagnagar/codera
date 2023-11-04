@@ -33,10 +33,6 @@
     }
 }
 
-.form-control:input {
-    border: none;
-}
-
 .from-control:active {
     border: var(--cs-success);
     outline: var(--cs-success);
@@ -237,7 +233,6 @@ textarea.form-control-lg {
     height: 1.5em;
 }
 
-
 .form-outline {
     display: flex;
     flex-direction: column;
@@ -342,8 +337,6 @@ textarea.form-control-lg {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
 }
 
 .form-check-input[type=radio] {

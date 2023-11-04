@@ -85,7 +85,7 @@ fieldset:disabled .btn {
     border-color: var(--cs-button-primary);
 }
 
-.btn-primary:hover:enabled {
+.btn-primary:hover:not(:disabled) {
     color: var(--cs-white);
     background-color: var(--cs-button-primary-hover);
     border-color: var(--cs-button-primary-hover);
@@ -485,13 +485,13 @@ fieldset:disabled .btn {
 
 .btn-outline-secondary {
     color: var(--cs-color-700);
-    border-color: var(--cs-color-300);
+    border-color: var(--cs-color-200);
 }
 
 .btn-outline-secondary:hover:enabled {
     color: var(--cs-color-700);
     background-color: var(--cs-color-bg-300);
-    border-color: var(--cs-color-300);
+    border-color: var(--cs-color-200);
 }
 
 .btn-check:focus+.btn-outline-secondary,
