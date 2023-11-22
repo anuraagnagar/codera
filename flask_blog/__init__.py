@@ -1,4 +1,4 @@
-from flask_blog.application import blog_app as CodeCircle
+from flask_blog.application import blog_app as Codera
 
 from flask_blog.auth import Users
 from flask_blog.auth import Profile
@@ -28,7 +28,7 @@ from flask_blog.blog import PostCommentForm
 
 __all__ = [
     # main application
-    "CodeCircle",
+    "Codera",
 
     # database models
     "Users",
