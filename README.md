@@ -2,42 +2,13 @@
 
 Welcome to Codera This is a fully functional blog application built using Flask\Python and HTML, CSS, & JavaScript.
 
-## Screenshots
+## Live Demo
 
-Insert some screenshots of your application to showcase its UI and features.
+You can checkout a live preview of this Application by clicking [HERE]().
 
-## Features & Functionality
+## Application Features
 
-- User Authentication:
-  - Allow users to Register & log in their accounts.
-  - Users also register with social accounts (Google & Github).
-  - Users can recover their passwords using email address.
-  - Users also change their current email to new email address.
-- User Management:
-  - User can edit their profile detail and also added profile image.
-  - User can change their password after log in.
-  - User can delete their account and data.
-- Blog Post Management:
-  - Create & edit blog posts with a rich text editor.
-  - Only author can delete their blog post.
-- Likes & Saves Post:
-  - Readers can like and save the post after login.
-- Commenting System:
-  - Engage with readers through comments to the blog posts.
-  - Also replies to the comments.
-- Notifications:
-  - Get notified about new comments, likes to your blog post.
-  - Get notified about someone follows you.
-- Dark and Light Modes:
-  - Enjoy a comfortable reading experience with both light and dark themes.
-- User Interaction:
-  - Follow other users and stay updated with their posts.
-- Advanced Search:
-  - Easily find posts by keywords or categories.
-- Internationalization (i18n):
-  - Supports multiple languages for a global audience.
-- Responsive Design:
-  - Enjoy a seamless experience on different devices and screen sizes.
+For a detailed list of features, please refer to [FEATURES.md](https://github.com/anuraagnagar/codera/blob/master/FEATURES.md).
 
 ### Prerequisites
 
@@ -83,7 +54,6 @@ pip install -r requirements.txt
 
 To run this project locally, you will need to set `.env.example` file to `.env` on base directory and set values to environment variables.
 
-
 ### 5. Migrate/Create a database.
 
 Initialize the database migration directory.
@@ -115,8 +85,12 @@ Access the application at `http://localhost:5000` in your web browser.
 ## Contributing
 
 Contributions are welcome! If you find a bug or want to add a new feature, please open an issue or submit a pull request.
-For more information checkout ![CONTRIBUTING.md](https://github.com/anuraagnagar/codera/blob/master/CONTRIBUTING.md)
+For more information checkout [CONTRIBUTING.md](https://github.com/anuraagnagar/codera/blob/master/CONTRIBUTING.md)
 
 ## License
 
-By contributing to this project, you agree that your contributions will be licensed under the ![BSD-3-Clause](https://github.com/anuraagnagar/codera/blob/master/LICENSE)
+By contributing to this project, you agree that your contributions will be licensed under the [BSD-3-Clause](https://github.com/anuraagnagar/codera/blob/master/LICENSE)
+
+## Author
+
+[Anurag Nagar](mailto:nagaranurag1999@gmail.com)
