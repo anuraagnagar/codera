@@ -6,11 +6,20 @@ Welcome to Codera This is a fully functional blog application built using Flask\
 
 You can checkout a live preview of this Application by clicking [HERE]().
 
-## Application Features
+## Table of Contents
+
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation--set-up)
+4. [Contributing](#contributing)
+5. [License](#license)
+6. [Author](#author)
+
+## Features
 
 For a detailed list of features, please refer to [FEATURES.md](https://github.com/anuraagnagar/codera/blob/master/FEATURES.md).
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.x
 - Virtual environment tool (e.g., `venv` or `virtualenv`)
