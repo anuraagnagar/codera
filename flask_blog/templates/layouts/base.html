@@ -24,9 +24,12 @@
 
 <body>
     <main id="main">
-        {% include 'layouts/navbar.html' %}
+        {% include "layouts/navbar.html" %}
+        {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
+        {% include "layouts/alerts.html" %}
+        {% endif %}{% endwith %}
         {% block body %} {% endblock %}
-        {% include 'layouts/footer.html' %}
+        {% include "layouts/footer.html" %}
         <!-- main JS-->
         <script defer src="{{ url_for('static', filename='js/scripts.js') }}"></script>
         {% block script %} {% endblock %}
