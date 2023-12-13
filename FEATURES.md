@@ -8,7 +8,7 @@ This document outlines the features and functionality of the [Codera]() blog app
 2. [Features](#features)
    - [Admin Panel](#admin-panel)
    - [Users Authentication](#users-authentication)
-   - [Users Management](#user-management)
+   - [Users Management](#users-management)
    - [Blog Post Management](#blog-post-management)
    - [Like, Share and Save Posts](#like-share-and-save-posts)
    - [Comments System with Reply](#comments-system-with-reply)
@@ -29,69 +29,69 @@ Briefly describe the purpose and goals of the blog application.
 
 ### Admin Panel
 
-- [ ] Dashboard with admin only access.
-- [ ] User account & Profile management.
-- [ ] Blog post management.
-- [ ] Comment moderation.
+- [x] Dashboard with admin only access.
+- [x] User account & Profile management.
+- [x] Blog post management.
+- [x] Comment moderation.
 
 ### Users Authentication
 
-- [ ] User registration with email verification.
-- [ ] Users also register with social accounts (Google & Github).
-- [ ] User login and logout functionality.
-- [ ] Password reset functionality.
+- [x] User registration with email verification.
+- [x] Users also register with social accounts (Google & Github).
+- [x] User login and logout functionality.
+- [x] Password reset functionality.
 
 ### Users Management
 
-- [ ] Users can edit their profile details and upload a profile & also cover image.
-- [ ] Allow users to change their password after logging in.
-- [ ] Users can update their current email to a new email address.
-- [ ] Users can delete their account along with associated data.
+- [x] Users can edit their profile details and upload a profile & also cover image.
+- [x] Allow users to change their password after logging in.
+- [x] Users can update their current email to a new email address.
+- [x] Users can delete their account along with associated data.
 
 ### Blog Post Management
 
-- [ ] Create, edit, and delete blog posts.
-- [ ] Choose the category for your post.
-- [ ] Rich text editor for writing posts.
-- [ ] Featured image support for posts.
-- [ ] Drafts and scheduled publishing posts.
+- [x] Create, edit, and delete blog posts.
+- [x] Choose the category for your post.
+- [x] Rich text editor for writing posts.
+- [x] Featured image support for posts.
+- [x] Drafts and scheduled publishing posts.
 
 ### Like, Share and Save Posts
 
-- [ ] Authenticated users have the authorize to like posts.
-- [ ] Authenticated users can save the posts for reading later.
-- [ ] Users can share posts on platforms such as WhatsApp, Instagram, LinkedIn, and more.
+- [x] Authenticated users have the authorize to like posts.
+- [x] Authenticated users can save the posts for reading later.
+- [x] Users can share posts on platforms such as WhatsApp, Instagram, LinkedIn, and more.
 
 ### Comments System with Reply
 
-- [ ] Allow users to post comments on the blog.
-- [ ] Allow users to Reply of comments.
-- [ ] Comment owners have the ability to delete their own comments.
-- [ ] Posts owner has the authority to delete all comments related to blog.
+- [x] Allow users to post comments on the blog.
+- [x] Allow users to Reply of comments.
+- [x] Comment owners have the ability to delete their own comments.
+- [x] Posts owner has the authority to delete all comments related to blog.
 
 ### Categories Blog Post
 
-- [ ] Categorize blog posts with various type categories.
-- [ ] Browse blog posts by category.
+- [x] Categorize blog posts with various type categories.
+- [x] Browse blog posts by category.
 
 ### Notifications System
 
-- [ ] Get notified about new comments, likes to your blog post.
-- [ ] Get notified when someone starts following you.
-- [ ] Get notified when someone you follow posts a new blog..
+- [x] Get notified about new comments, likes to your blog post.
+- [x] Get notified when someone starts following you.
+- [x] Get notified when someone you follow posts a new blog..
 
 ### Search Post
 
-- [ ] Full-text search functionality.
-- [ ] Search by categories and keywords.
+- [x] Full-text search functionality.
+- [x] Search by categories and keywords.
 
 ### Dark and Light Modes
 
-- [ ] Enjoy a comfortable reading experience with both light and dark themes.
+- [x] Enjoy a comfortable reading experience with both light and dark themes.
 
 ### Responsive Design
 
-- [ ] Enjoy a seamless experience on different devices and screen sizes.
+- [x] Enjoy a seamless experience on different devices and screen sizes.
 
 ## Installation
 
