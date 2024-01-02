@@ -1,0 +1,22 @@
+<!-- delete post modal -->
+<div id="delete-post" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-3">
+            <div class="card">
+                <div class="modal-header bg-red" style="border-radius: 5px 5px 0 0;">
+                    <h5 class="modal-title" style="color: #fff;">
+                        Do you really want to delete this post?
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <strong>{{ post.title }}</strong>
+                </div>
+                <div class="p-3">
+                    <a href="{{ url_for('blog.delete_post', slug=post.slug) }}" role="button">
+                        <button type="button" class="btn btn-danger mb-3">Confirm</button></a>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

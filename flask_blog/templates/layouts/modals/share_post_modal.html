@@ -1,0 +1,74 @@
+<!-- share post modal -->
+<div id="share-post" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3">
+            <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                    <h4 class="m-0">Share Post</h4>
+                    <button type="button" class="btn-close my-auto" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-x-lg text-muted align-top" viewBox="0 0 16 16">
+                            <path
+                                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <hr class="m-0">
+            <div class="modal-body">
+                <div class="my-1">
+                    <!-- whatsapp link -->
+                    <a href="">
+                        <button type="button" class="btn btn-outline-secondary mb-3">
+                            <svg class="me-2 my-auto" height="19" width="19">
+                                <image href="{{ url_for('static', filename='svg/social/whatsapp-icon.svg') }}"
+                                    width="19" height="19" />
+                            </svg>
+                            Share On WhatsApp
+                        </button>
+                    </a>
+                    <!-- facebook link -->
+                    <a href="">
+                        <button type="button" class="btn btn-outline-secondary mb-3">
+                            <svg class="me-2 my-auto" height="19" width="19">
+                                <image href="{{ url_for('static', filename='svg/social/facebook-icon.svg') }}"
+                                    width="19" height="19" />
+                            </svg>
+                            Share On Facebook
+                        </button>
+                    </a>
+                    <!-- instagram link -->
+                    <a href="">
+                        <button type="button" class="btn btn-outline-secondary mb-3">
+                            <svg class="me-2 my-auto" height="19" width="19">
+                                <image href="{{ url_for('static', filename='svg/social/instagram-icon.svg') }}"
+                                    width="19" height="19" />
+                            </svg>
+                            Share On Instagram
+                        </button>
+                    </a>
+                    <!-- linkedin link -->
+                    <a href="">
+                        <button type="button" class="btn btn-outline-secondary mb-3">
+                            <svg class="me-2 my-auto" height="19" width="19">
+                                <image href="{{ url_for('static', filename='svg/social/linkedin-icon.svg') }}"
+                                    width="19" height="19" />
+                            </svg>
+                            Share On LinkedIn
+                        </button>
+                    </a>
+                    <!-- twitter link -->
+                    <a href="">
+                        <button type="button" class="btn btn-outline-secondary">
+                            <svg class="me-2 my-auto" height="19" width="19">
+                                <image href="{{ url_for('static', filename='svg/social/x-icon.svg') }}" width="19"
+                                    height="19" />
+                            </svg>
+                            Share On Twitter
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

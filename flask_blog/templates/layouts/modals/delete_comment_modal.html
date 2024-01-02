@@ -1,0 +1,24 @@
+<!-- delete comment modal -->
+<div id="delete-comment" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="d-block">
+                        <h4 class="modal-title">
+                            Delete Comment
+                        </h4>
+                        <p>Are you sure you want to delete your comment?</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <a class="me-2" href="{{ url_for('blog.delete_comment', id=comment.id) }}">
+                        <button type="button" class="btn btn-danger">Confirm</button>
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary w-auto"
+                        data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

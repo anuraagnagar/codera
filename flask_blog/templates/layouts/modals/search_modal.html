@@ -1,0 +1,37 @@
+<!-- blogpost search modal -->
+<div id="searchModal" class="modal fade" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top modal-lg">
+        <div class="modal-content mt-2 mt-lg-5">
+            <div class="modal-body p-0 p-md-2">
+                <div class="modal-body">
+                    <!-- blogpost search form -->
+                    <form method="get" action="{{ url_for('app.search_post') }}" class="search-form" role="query"
+                        accept-charset="UTF-8">
+                        <div class="nav-search p-md-1">
+                            <input id="search-input" class="search-input" type="text" name="query" autofocus
+                                placeholder="Search post..." autocomplete="off" aria-label="Search term" required>
+                            <button type="submit" role="button" aria-label="Search" class="btn-search">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="mt-3" onclick="return searchInputFocus()">
+                        <p class="text-muted text-center m-0"><i class="bi bi-search me-2"></i> Search for blogpost</p>
+                    </div>
+                    <script>
+                        function searchInputFocus() {
+                            document.getElementById("search-input").focus();
+                        }
+                        document.getElementById("searchModal").addEventListener("shown.bs.modal", function (e) {
+                            searchInputFocus()
+                        })
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

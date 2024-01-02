@@ -1,0 +1,82 @@
+<!-- login account modal -->
+<div id="login-modal" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <!-- login account form -->
+                <form method="post" action="{{ url_for('auth.login', redirect_url=request.path) }}"
+                    aria-label="Login Form" accept-charset="UTF-8">
+                    <div class="p-4">
+                        {{ login_form.csrf_token() }}
+                        <!-- form heading -->
+                        <div class="d-flex justify-content-between mb-4">
+                            <h2 class="m-0">Login Your Account</h2>
+                            <button type="button" class="btn-close my-auto" data-bs-dismiss="modal" aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                                    class="bi bi-x-lg text-muted align-top" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- email-address input field -->
+                        <div class="form-outline mb-3">
+                            {{ login_form.email.label(class_="form-label") }}
+                            {{ login_form.email(class_="form-control", autocomplete="off",
+                            placeholder="Enter your email address") }}
+                        </div>
+                        <!-- password input field -->
+                        <div class="form-outline mb-3">
+                            <div class="d-flex justify-content-between">
+                                {{ login_form.password.label(class_="form-label") }}
+                                <a role="link" href="{{ url_for('auth.forgot_password') }}">
+                                    <p class="m-0">Forgot password?</p>
+                                </a>
+                            </div>
+                            {{ login_form.password(class_="form-control", autocomplete="off",
+                            placeholder="Enter your password") }}
+                        </div>
+                        <!-- check input -->
+                        <div class="d-flex justify-content-start my-3">
+                            {{ login_form.check(class_="form-check-input my-auto me-2", checked="true") }}
+                            {{ login_form.check.label(class_="form-check-label") }}
+                        </div>
+                        <!-- form submit button -->
+                        <div class="d-flex justify-content-center">
+                            {{ login_form.submit(class_="btn btn-primary") }}
+                        </div>
+                        <div class="main-divider main-divider-horizontal my-4" role="separator">
+                            <span>or</span>
+                        </div>
+                        <!-- google login link -->
+                        <div class="d-flex mb-4">
+                            <a href="{{ url_for('auth.google_login') }}" class="w-100" role="button">
+                                <button type="button" class="btn btn-outline-light">
+                                    <svg class="me-2" height="17" width="17">
+                                        <image href="{{ url_for('static', filename='svg/social/google-icon.svg') }}"
+                                            width="17" height="17" />
+                                    </svg>
+                                    Continue with Google
+                                </button>
+                            </a>
+                        </div>
+                        <!-- github login link -->
+                        <div class="d-flex">
+                            <a href="{{ url_for('auth.github_login') }}" class="w-100" role="button">
+                                <button type="button" class="btn btn-outline-light">
+                                    <i class="bi bi-github me-2 fs-4-150"></i>
+                                    Continue with Github
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                <hr class="m-0">
+                <div class="card-body text-center p-3">
+                    Don't have an account?
+                    <a href="{{ url_for('auth.register') }}" class="text-decoration-none"><b>Register</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
