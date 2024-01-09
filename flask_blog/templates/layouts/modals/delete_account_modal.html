@@ -1,0 +1,50 @@
+<!-- delete account modal -->
+<div id="delete-account" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-3">
+            <!-- delete account form section -->
+            <form id="delete-account-form" method="post" role="form" action="{{ url_for('auth.settings') }}"
+                accept-charset="UTF-8">
+                {{ form.csrf_token() }}
+                <div class="d-block modal-header bg-danger" style="border-radius:5px 5px 0 0;">
+                    <h4 class="modal-title text-white">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Delete Your Account
+                    </h4>
+                    <p class="text-white">Are you sure you want to permanently delete
+                        your account?</p>
+                </div>
+                <!-- password input field -->
+                <div class="modal-body">
+                    <div class="form-outline mb-3">
+                        {{ form.password.label(class_="form-label") }}
+                        {{ form.password(class_="form-control form-control-danger",
+                        autocomplete="off", placeholder="Confirm your password") }}
+                    </div>
+                </div>
+                <hr class="m-0">
+                <!-- submit button -->
+                <div class="modal-body">
+                    <div>
+                        {{ form.submit(class_="btn btn-danger mb-3", disabled= "true",
+                        role="button") }}
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    <script>
+                        const validatePassword = () => {
+                            if (
+                                document.getElementById("password").value.length <= 15 &&
+                                document.getElementById("password").value.length >= 8
+                            ) {
+                                document.getElementById("submit").removeAttribute("disabled");
+                            } else {
+                                document.getElementById("submit").setAttribute("disabled", "");
+                            }
+                        };
+
+                        document.getElementById("password").addEventListener("input", validatePassword);
+                    </script>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
