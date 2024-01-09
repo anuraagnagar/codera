@@ -1,86 +1,81 @@
-{% extends "layout.html" %}
-{% block title %}Register &#8226; CodingShoding - Learn coding with us{% endblock %}
+{% extends "layouts/base.html" %}
+{% block title %}Register &#8226; {{ params['site_name'] }}{% endblock %}
 {% block body %}
 
 <!-- page content-->
-<div class="my-4 my-lg-5">
-  <div class="container px-0 px-md-4 px-lg-5">
+<div class="my-4 my-md-5">
+  <div class="container px-1 px-md-5">
     <div class="row">
-      <section class="col-xsm-12 col-sm-9 col-md-7 col-lg-6 col-xl-5 px-2">
-        {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}{% for category, message in messages %}
-        {% if category=='success' %}
-        <div class="alert alert-success alter-dismissible" role="alert">
-          <p class="m-0"><i class="bi bi-check2-circle-fill me-2"></i>{{ message }}</p>
-        </div>
-        {% elif category=='info' %}
-        <div class="alert alert-info alter-dismissible" role="alert">
-          <p class="m-0"><i class="bi bi-info-circle-fill me-2"></i>{{ message }}</p>
-        </div>
-        {% elif category=='warning' %}
-        <div class="alert alert-warning alter-dismissible" role="alert">
-          <p class="m-0"><i class="bi bi-exclamation-triangle-fill me-2"></i>{{ message }}</p>
-        </div>
-        {% else %}
-        <div class="alert alert-danger alter-dismissible" role="alert">
-          <p class="m-0"><i class="bi bi-x-circle-fill me-2"></i>{{ message }}</p>
-        </div>
-        {% endif %}{% endfor %}{% endif %}{% endwith %}
+      <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-6 col-xl-5 px-2">
         <div class="card">
           <div class="card-body">
-            <form method="post" action="{{ url_for('auth.register') }}" accept-charset="UTF-8">
-              {{ form.csrf_token() }}
+            <!-- register form section -->
+            <form id="register-form" method="post" role="form" action="{{ url_for('auth.register') }}"
+              accept-charset="UTF-8">
               <h2 class="text-center mb-4"><span class="">Create</span> Account</h2>
+              {{ form.csrf_token() }}
+              <!-- username input field -->
               <div class="form-outline mb-4">
                 <div class="d-flex justify-content-between">
                   {{ form.username.label(class_="form-label") }}
                 </div>
-                {{ form.username(class_="form-control form-control-lg", autocomplete="off",
+                {{ form.username(class_="form-control", autocomplete="off",
                 autofocus="true", placeholder="Enter your username") }}
                 <p id="username-error" class="text-danger my-1" hidden=""></p>
               </div>
+              <!-- email input field -->
               <div class="form-outline mb-4">
                 <div class="d-flex justify-content-between">
                   {{ form.email.label(class_="form-label") }}
                 </div>
-                {{ form.email(class_="form-control form-control-lg", autocomplete="off",
+                {{ form.email(class_="form-control", autocomplete="off",
                 placeholder="Enter your email address") }}
                 <p id="email-error" class="text-danger my-1" hidden=""></p>
               </div>
-              <div class="form-outline mb-4">
+              <!-- password input field -->
+              <div class="form-outline mb-3">
                 <div class="d-flex justify-content-between">
-                  {{ form.password.label(class_="form-label") }}
-                  <span id="show" class="text-center pointer my-auto" hidden>
-                    <i class="bi bi-eye me-1 fs-4-150"></i>show</span>
+                  <span>
+                    {{ form.password.label(class_="form-label me-1") }}
+                    <i class="bi bi-info-circle text-muted fs-4-150"></i>
+                  </span>
+                  <span id="show" class="text-center pointer" hidden>
+                    <i class="bi bi-eye me-1 fs-4-150"></i>show
+                  </span>
                 </div>
-                {{ form.password(class_="form-control form-control-lg", autocomplete="off",
+                {{ form.password(class_="form-control", autocomplete="off",
                 placeholder="At least 8 character") }}
                 <p id="password-error" class="text-danger my-1" hidden></p>
               </div>
+              <!-- check input field -->
               <div class="d-flex justify-content-start mb-3">
                 {{ form.check(class_="form-check-input my-auto me-2") }}
                 {{ form.check.label(class_="form-check-label") }}
               </div>
+              <!-- submit button -->
               <div class="d-flex justify-content-center">
-                {{ form.submit(class_="btn btn-primary", disabled="true") }}
+                {{ form.submit(class_="btn btn-primary", disabled="true", role="button") }}
               </div>
-              <div class="main-divider main-divider-horizontal my-3" role="separator">
+              <div class="main-divider main-divider-horizontal my-4" role="separator">
                 <span>or</span>
               </div>
+              <!-- google login button -->
               <div class="d-flex mb-4">
-                <a href="#" class="w-100" role="button">
+                <a href="{{ url_for('auth.google_login') }}" class="w-100" role="button">
                   <button type="button" class="btn btn-outline-light">
-                    <svg class="me-2 my-auto" height="19" width="19">
-                      <image href="{{ url_for('static', filename='svg/google-icon.svg') }}" width="19" height="19" />
+                    <svg class="me-2" height="18" width="18">
+                      <image href="{{ url_for('static', filename='svg/social/google-icon.svg') }}" width="18"
+                        height="18" />
                     </svg>
                     Register with Google
                   </button>
                 </a>
               </div>
-              <div class="d-flex">
-                <a href="#" class="w-100" role="button">
+              <!-- github login button -->
+              <div class="d-flex mb-2">
+                <a href="{{ url_for('auth.github_login') }}" class="w-100" role="button">
                   <button type="button" class="btn btn-outline-light">
-                    <i class="bi bi-github me-2 fs-3-150"></i>
+                    <i class="bi bi-github me-2 fs-4-150"></i>
                     Register with Github
                   </button>
                 </a>
@@ -94,6 +89,7 @@
                 touch</a>.</p>
           </div>
         </div>
+        <!-- login page link -->
         <p class="text-center mt-4 mb-3">
           Already have an account?
           <a href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold">Login</a>
