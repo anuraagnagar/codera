@@ -1,53 +1,54 @@
-from werkzeug.utils import secure_filename
-import unicodedata
 import random
+import unicodedata
 import uuid
+
+from werkzeug.utils import secure_filename
 
 
 def generate_unique_id():
     """
-    A Method for generating a Unique ID
-    using uuid.uuid4() method.
+    Generating a Unique ID string using
+    uuid.uuid4() method.
     """
     return str(uuid.uuid4())
 
-def get_clean_username(username):
+
+def get_clean_string(s):
     """
-    A method for cleaning a User's username like,
-    removing spaces and returning in 
+    A method for cleaning a text string like,
+    removing spaces and returning in
     a lowerCase characters.
     """
-    return str(username).replace(" ", "").lower()
+    return str(s).replace(" ", "").lower()
 
-def get_clean_email(email):
-    """
-    A method for cleaning a User's email like,
-    removing spaces and returning in 
-    a lowerCase characters.
-    """
-    clean_email = str(email).replace(" ", "")
-    return clean_email.lower()
 
-def get_clean_password(password):
+def get_username_from_email(email):
     """
-    A method for cleaning a User's password like,
-    removing extraspaces spaces.
+    Extracts a username from an email address.
     """
-    clean_password = str(password).replace(" ", "")
-    return clean_password.lower()
+    return email.split("@")[0]
+
+
+def get_filename_from_path(file_path):
+    """
+    Extracts and returns the filename from the
+    given file path.
+    """
+    path = str(file_path).split("\\")
+    return path[-1]
+
 
 def generate_unique_filename(filename):
     """
     Generate a unique and secure filename using
     secure_filename() method and UUID.
     """
-    return secure_filename(
-        generate_unique_id() + filename
-    )
+    return secure_filename(generate_unique_id() + filename)
+
 
 def generate_security_code():
     """
-    A Method for generating a random '6 DIGIT'
-    number for One Time Password(OTP). 
+    A Method for generating a random (6 DIGIT)
+    number for One Time Password(OTP).
     """
     return str(random.randint(100000, 999999))
