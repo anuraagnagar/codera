@@ -1,0 +1,9 @@
+Your One Time Password(OTP) is {{ security_code }},
+
+To confirm your Codera Account, please click the link below:
+{{ confirm_url }}
+
+This link is valid for a single use and will expire after 30 minutes.
+
+Best regards,
+The Codera Team

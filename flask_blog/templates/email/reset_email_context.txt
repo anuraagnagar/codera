@@ -1,0 +1,11 @@
+Hello, {{ username }}
+
+We have received a request for changing your email address.
+
+To change your email address, please click the link below:
+{{ reset_url }}
+
+This link is valid for a single use and will expire after 30 minutes.
+
+Best regards,
+The Codera Team
