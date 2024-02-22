@@ -4,14 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description"
-        content="Codera is a blog platform that provide top-quality content to developers worldwide." />
+    <meta name="description" content="Explore insightful articles shared by our developer community, 
+        also provide tutorials, and tips crafted for developers of all levels. 
+        Stay updated on the latest technologies and enhance your coding skills. 
+        Join our community of passionate developers on Codera today." />
     <meta name="author" content="Anurag Nagar" />
+
     <title>{% block title %} {% endblock %}</title>
     <!-- favicon -->
-    <link rel="icon" type="image/*" href="{{ url_for('static', filename='assets/icon.png') }}" />
+    <link rel="icon" type="image/*" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
     <!-- bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- core theme CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
     <!-- theme mode JS -->
@@ -25,6 +28,7 @@
 <body>
     <main id="main">
         {% include "layouts/navbar.html" %}
+        {% include "layouts/modals/search_modal.html" %}
         {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
         {% include "layouts/alerts.html" %}
         {% endif %}{% endwith %}
