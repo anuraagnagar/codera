@@ -1,128 +1,127 @@
-{% extends "layout.html" %}
-{% block title %}Profile &#8226; @{{ current_user.username|lower }} &#8226; CodingShoding - Learn coding with us
+{% extends "layouts/base.html" %}
+{% block title %}
+Profile &#8226; @{{ current_user.username|lower }} &#8226; {{ params['site_name'] }}
 {% endblock %}
 {% block body %}
 
-{% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
-{% for category, message in messages %}
-{% if category=='success' %}
-<div class="d-flex justify-content-between alert alert-success alter-dismissible fade show mx-2 my-3" role="alert">
-    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
-    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
-        <i class="bi bi-x text-muted"></i>
-    </p>
-</div>
-{% elif category=='info' %}
-<div class="d-flex justify-content-between alert alert-info alter-dismissible fade show mx-2 my-3" role="alert">
-    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <i class="bi bi-x text-muted"></i>
-    </button>
-</div>
-{% elif category=='warning' %}
-<div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show mx-2 my-3" role="alert">
-    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <i class="bi bi-x text-muted"></i>
-    </button>
-</div>
-{% else %}
-<div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show mx-2 my-2" role="alert">
-    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <i class="bi bi-x text-muted"></i>
-    </button>
-</div>{% endif %}{% endfor %}{% endif %}{% endwith %}
-
-<!-- Profile Content -->
+<!-- main content -->
 <main class="my-2">
     <div class="container px-0 px-xl-5">
-        <!-- forms section -->
-        <form method="post" action="{{ url_for('auth.edit_profile') }}" enctype="multipart/form-data"
-            accept-charset="UTF-8">
+        <!-- user profile form section -->
+        <form id="profile-form" method="post" role="form" enctype="multipart/form-data"
+            action="{{ url_for('auth.edit_profile') }}" accept-charset="UTF-8">
             {{ form.csrf_token() }}
             <div class="row">
                 <section class="col-xsm-12 col-sm-10 col-md-9 col-lg-4">
+                    <!-- user profile card section -->
                     <aside class="m-2 mb-3">
                         <div class="card">
                             <div class="text-center">
-                                <div class="d-flex">
-                                    {% if not current_user.get_profile().cover_url %}
-                                    <img id="cover-img"
-                                        src="{{ url_for('static', filename='assets/images/admin-bg.jpg') }}"
-                                        class="image skeleton" alt="">
+                                <!-- preview cover image -->
+                                <div class="d-flex position-relative">
+                                    {% if not current_user.profile.cover_url %}
+                                    <img id="cover-img" class="card-image image" title="Cover Picture"
+                                        src="{{ url_for('static', filename='assets/images/dashboard-bg.jpg') }}"
+                                        alt="Cover Image" loading="lazy">
                                     {% else %}
-                                    <img id="cover-img"
-                                        src="{{ url_for('static', filename='assets/uploads/cover/' + current_user.get_profile().cover_url) }}"
-                                        class="image skeleton" alt="">
+                                    <img id="cover-img" class="card-image image" title="Cover Picture"
+                                        src="{{ current_user.profile.cover_url }}" alt="Cover Image" loading="lazy">
                                     {% endif %}
+                                    <!-- image loader -->
+                                    <div id="cover-img-loader" class="main-spinner position-absolute">
+                                        <span class="spinner-border"></span>
+                                    </div>
                                 </div>
+                                <!-- preview profile image -->
                                 <div class="d-flex justify-content-center">
-                                    <div class="relative" style="top: -50px;">
-                                        {% if not current_user.get_profile().profile_url %}
-                                        <img id="profile-img" title="Profile Picture"
+                                    <div class="d-flex position-relative" style="top: -50px;">
+                                        <!-- profile-image -->
+                                        {% if not current_user.profile.profile_url %}
+                                        <img id="profile-img" class="img-fluid" title="Profile Picture"
                                             src="{{ url_for('static', filename='assets/images/default-profile.png') }}"
-                                            class="img-fluid skeleton">
+                                            loading="lazy">
                                         {% else %}
-                                        <img id="profile-img" title="Profile Picture"
-                                            src="{{ url_for('static', filename='assets/uploads/profile/' + current_user.get_profile().profile_url )}}"
-                                            class="img-fluid skeleton">
+                                        <img id="profile-img" class="img-fluid" title="Profile Picture"
+                                            src="{{ url_for('static', filename='assets/uploads/profile/' + current_user.profile.profile_url )}}"
+                                            loading="lazy">
                                         {% endif %}
+                                        <!-- image loader -->
+                                        <div id="profile-img-loader" class="main-spinner position-absolute">
+                                            <span class="spinner-border"></span>
+                                        </div>
+                                        <!-- profile upload button -->
                                         <div class="upload-btn-wrapper">
                                             {{ form.profile_image(id="profile", accept="image/*",
                                             onchange="changeHandler(this)||ImagePreview(this, '#profile-img')") }}
                                             <button class="btn" type="button">
-                                                <img
-                                                    src="{{ url_for('static', filename='assets/images/change_profile.png') }}">
+                                                <img loading="lazy" alt="."
+                                                    src="{{ url_for('static', filename='assets/images/camera-icon.png') }}">
                                             </button>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- show user details -->
                                 <div class="px-2 mb-3">
-                                    {% if not current_user.get_profile().fullname %}
+                                    {% if not current_user.profile.fullname %}
                                     <h3 class="mb-3">{{ current_user.username|lower }}</h3>
                                     {% else %}
-                                    <h3 class="mb-2">{{ current_user.get_profile().fullname|title }}</h3>
+                                    <h3 class="mb-2">{{ current_user.profile.fullname|title }}</h3>
                                     <h5 class="mb-2">@{{ current_user.username|lower }}</h5>
                                     {% endif %}
-                                    <span style="font-size: 15px"><b>{{ current_user.get_profile().role }}</b></span>
+                                    <span style="font-size: 15px"><b>{{ current_user.profile.role }}</b></span>
                                 </div>
                             </div>
                         </div>
                     </aside>
+                    <!-- social link inputs section -->
                     <aside class="m-2">
                         <div class="card">
                             <div class="p-3">
                                 <h3 class="mb-3">Social Links</h3>
+                                <!-- website URL field -->
                                 <div class="form-outline mb-3">
                                     {{ form.website_url.label(class_="form-label") }}
                                     {{ form.website_url(class_="form-control", oninput="changeHandler()",
-                                    value=current_user.get_profile().website_url,
-                                    placeholder="Enter website url") }}
+                                    value=current_user.profile.website_url, placeholder="Enter website url") }}
+                                    {% if form.website_url.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.website_url.errors[0] }}</p>
+                                    {% endif %}
                                 </div>
+                                <!-- github URL field -->
                                 <div class="form-outline mb-3">
                                     {{ form.github_url.label(class_="form-label") }}
                                     {{ form.github_url(class_="form-control", oninput="changeHandler()",
-                                    value=current_user.get_profile().github_url,
-                                    placeholder="Enter github url") }}
+                                    value=current_user.profile.github_url, placeholder="Enter github url") }}
+                                    {% if form.github_url.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.github_url.errors[0] }}</p>
+                                    {% endif %}
                                 </div>
+                                <!-- twitter URL field -->
                                 <div class="form-outline mb-3">
                                     {{ form.twitter_url.label(class_="form-label") }}
                                     {{ form.twitter_url(class_="form-control", oninput="changeHandler()",
-                                    value=current_user.get_profile().twitter_url,
-                                    placeholder="Enter twitter url") }}
+                                    value=current_user.profile.twitter_url, placeholder="Enter twitter url") }}
+                                    {% if form.twitter_url.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.twitter_url.errors[0] }}</p>
+                                    {% endif %}
                                 </div>
+                                <!-- linkedin URL field -->
                                 <div class="form-outline mb-3">
+                                    {{ form.linkedin_url.label(class_="form-label") }}
+                                    {{ form.linkedin_url(class_="form-control", oninput="changeHandler()",
+                                    value=current_user.profile.linkedin_url, placeholder="Enter instagram url") }}
+                                    {% if form.linkedin_url.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.linkedin_url.errors[0] }}</p>
+                                    {% endif %}
+                                </div>
+                                <!-- facebook URL field -->
+                                <div class="form-outline">
                                     {{ form.facebook_url.label(class_="form-label") }}
                                     {{ form.facebook_url(class_="form-control", oninput="changeHandler()",
-                                    value=current_user.get_profile().facebook_url,
-                                    placeholder="Enter facebook url") }}
-                                </div>
-                                <div class="form-outline">
-                                    {{ form.instagram_url.label(class_="form-label") }}
-                                    {{ form.instagram_url(class_="form-control", oninput="changeHandler()",
-                                    value=current_user.get_profile().instagram_url,
-                                    placeholder="Enter instagram url") }}
+                                    value=current_user.profile.facebook_url, placeholder="Enter facebook url") }}
+                                    {% if form.facebook_url.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.facebook_url.errors[0] }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -132,85 +131,139 @@
                     <div class="card m-2">
                         <div class="card-body">
                             <h3 class="mb-3">User Details</h3>
-                            <div class="form-outline mb-4">
-                                {{ form.fullname.label(class_="form-label") }}
-                                {{ form.fullname(class_="form-control form-control-lg", oninput="changeHandler()",
-                                placeholder="Enter your name", value=current_user.get_profile().fullname) }}
-                            </div>
-                            <div class="form-outline mb-4">
-                                {{ form.username.label(class_="form-label") }}
-                                {{ form.username(class_="form-control form-control-lg", oninput="changeHandler()",
+                            <!-- username input field -->
+                            <div class="mb-4">
+                                {{ form.username.label(class_="form-label me-1") }}
+                                <i class="bi bi-info-circle text-muted pointer fs-4-150"></i>
+                                {{ form.username(class_="form-control", oninput="changeHandler()",
                                 placeholder="Enter your username", value=current_user.username) }}
+                                {% if form.username.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.username.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- fullname input fields -->
+                            <div class="row gap-2 mb-4">
+                                <!-- first name field -->
+                                <div class="col">
+                                    {{ form.first_name.label(class_="form-label") }}
+                                    {{ form.first_name(class_="form-control", oninput="changeHandler()",
+                                    placeholder="Enter first name", value=current_user.profile.first_name) }}
+                                    {% if form.first_name.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.first_name.errors[0] }}</p>
+                                    {% endif %}
+                                </div>
+                                <!-- last name field -->
+                                <div class="col">
+                                    {{ form.last_name.label(class_="form-label") }}
+                                    {{ form.last_name(class_="form-control", oninput="changeHandler()",
+                                    placeholder="Enter last name", value=current_user.profile.last_name) }}
+                                    {% if form.last_name.errors %}
+                                    <p class="text-danger fs-4-150 m-0 mt-1">{{ form.last_name.errors[0] }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- email address field -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Email Address</label>
-                                <input class="form-control form-control-lg" id="email" type="email"
-                                    value="{{ current_user.email }}" disabled="true" placeholder="Enter your email"
-                                    readonly="true" />
-                                <p class=" fs-4-150 my-2"><b>Note: </b><span class="text-muted">If you want to reset
-                                        your email address. Please click the button below.</span></p>
+                                <input id="email" class="form-control" type="email" value="{{ current_user.email }}"
+                                    disabled="true" placeholder="Enter your email" readonly="true" />
+                                <p class=" fs-4-150 my-2"><i class="fw-bold">Note:</i><span class="text-muted ms-1">If
+                                        you want to reset your email address. Please click the button below.</span>
+                                </p>
                                 <!-- change email button  -->
                                 <div class="d-flex justify-content-start">
-                                    <a href="{{ url_for('auth.update_email') }}">
+                                    <a role="link" href="{{ url_for('auth.update_email') }}">
                                         <button type="button" class="btn btn-primary">Change</button>
                                     </a>
                                 </div>
                             </div>
+                            <!-- cover input field -->
                             <div class="form-outline">
                                 {{ form.cover_image.label(class_="form-label") }}
-                                {{ form.cover_image(class_="form-control form-control-lg",
-                                accept="image/*", onchange="changeHandler(this)||ImagePreview(this, '#cover-img')") }}
+                                {{ form.cover_image(class_="form-control", accept="image/*",
+                                onchange="changeHandler(this)||ImagePreview(this, '#cover-img')") }}
+                                {% if form.cover_image.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.cover_image.errors[0] }}</p>
+                                {% endif %}
                             </div>
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
                             <h3 class="mb-3">Personal Information</h3>
+                            <!-- mobile field -->
                             <div class="form-outline mb-4">
                                 {{ form.mobile.label(class_="form-label") }}
-                                {{ form.mobile(class_="form-control form-control-lg",
+                                {{ form.mobile(class_="form-control",
                                 placeholder="Enter your phone number",
-                                oninput="changeHandler()", value=current_user.get_profile().mobile) }}
+                                oninput="changeHandler()", value=current_user.profile.mobile) }}
+                                {% if form.mobile.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.mobile.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- biodata field -->
                             <div class="form-outline mb-4">
                                 {{ form.biodata.label(class_="form-label") }}
-                                {{ form.biodata(class_="form-control form-control-lg",
+                                {{ form.biodata(class_="form-control",
                                 placeholder="About Yourself", style="height: 6rem;",
-                                oninput="changeHandler()", value=current_user.get_profile().biodata) }}
+                                oninput="changeHandler()", value=current_user.profile.biodata) }}
+                                {% if form.biodata.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.biodata.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- gender field -->
                             <div class="form-outline mb-4">
                                 {{ form.gender.label(class_="form-label") }}
-                                {{ form.gender(class_="form-select form-select-lg", oninput="changeHandler()",
-                                value=current_user.get_profile().gender) }}
+                                {{ form.gender(class_="form-select", oninput="changeHandler()",
+                                value=current_user.profile.gender) }}
+                                {% if form.gender.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.gender.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- address field -->
                             <div class="form-outline">
                                 {{ form.address.label(class_="form-label") }}
-                                {{ form.address(class_="form-control form-control-lg",
+                                {{ form.address(class_="form-control",
                                 placeholder="Enter your address",
-                                oninput="changeHandler()", value=current_user.get_profile().address) }}
+                                oninput="changeHandler()", value=current_user.profile.address) }}
+                                {% if form.address.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.address.errors[0] }}</p>
+                                {% endif %}
                             </div>
                         </div>
                         <hr class="m-0">
                         <div class="card-body">
                             <h3 class="mb-3">Work & Experience</h3>
+                            <!-- work input field -->
                             <div class="form-outline mb-4">
                                 {{ form.work.label(class_="form-label") }}
-                                {{ form.work(class_="form-control form-control-lg", placeholder="Your work",
-                                oninput="changeHandler()", value=current_user.get_profile().work) }}
+                                {{ form.work(class_="form-control", placeholder="Your work",
+                                oninput="changeHandler()", value=current_user.profile.work) }}
+                                {% if form.work.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.work.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- education input field -->
                             <div class="form-outline mb-4">
                                 {{ form.education.label(class_="form-label") }}
-                                {{ form.education(class_="form-control form-control-lg", placeholder="Your education",
-                                oninput="changeHandler()", value=current_user.get_profile().education) }}
+                                {{ form.education(class_="form-control", placeholder="Your education",
+                                oninput="changeHandler()", value=current_user.profile.education) }}
+                                {% if form.education.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.education.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- role input field -->
                             <div class="form-outline">
                                 {{ form.role.label(class_="form-label") }}
-                                {{ form.role(class_="form-control form-control-lg", placeholder="Your role",
-                                oninput="changeHandler()", value=current_user.get_profile().role) }}
+                                {{ form.role(class_="form-control", placeholder="Your role",
+                                oninput="changeHandler()", value=current_user.profile.role) }}
+                                {% if form.role.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.role.errors[0] }}</p>
+                                {% endif %}
                             </div>
                         </div>
                         <hr class="m-0">
-                        <div class="card-body">
-                            <!-- submit button  -->
+                        <!-- submit button field -->
+                        <div id="submit-btn-body" class="card-body">
                             <div class="d-flex justify-content-center">
                                 {{ form.submit(class_="btn btn-primary", disabled="true") }}
                             </div>
@@ -224,5 +277,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="{{url_for('static', filename='js/app/profile.js')}}"></script>
+<script src="{{ url_for('static', filename='js/app/profile.js') }}"></script>
 {% endblock %}

@@ -1,83 +1,70 @@
-{% extends "layout.html" %}
-{% block title %}Contact &#8226; CodingShoding - Learn coding with us{% endblock %}
+{% extends "layouts/base.html" %}
+{% block title %}Contact Us &#8226; {{ params['site_name'] }}{% endblock %}
 {% block body %}
+
 <!-- page content -->
 <div class="my-4">
-    <div class="container px-0 px-md-3">
+    <div class="container px-1 px-md-3">
         <div class="row">
             <section class="col-md-10 col-lg-8 col-xl-7 px-2">
-                <!-- message flash -->
-                {% with messages = get_flashed_messages(with_categories=True) %}{% if messages %}
-                {% for category, message in messages %}
-                {% if category=='success' %}
-                <div class="d-flex justify-content-between alert alert-success alter-dismissible fade show"
-                    role="alert">
-                    <p class="m-0"><i class="bi bi-check2-circle me-2"></i>{{ message }}</p>
-                    <p type="button" class="m-0" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="bi bi-x text-muted"></i>
-                    </p>
-                </div>
-                {% elif category=='info' %}
-                <div class="d-flex justify-content-between alert alert-info alter-dismissible fade show"
-                    role="alert">
-                    <p class="m-0"><i class="bi bi-info-circle me-2"></i>{{ message }}</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="bi bi-x text-muted"></i>
-                    </button>
-                </div>
-                {% elif category=='warning' %}
-                <div class="d-flex justify-content-between alert alert-warning alter-dismissible fade show"
-                    role="alert">
-                    <p class="m-0"><i class="bi bi-exclamation-triangle me-2"></i>{{ message }}</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="bi bi-x text-muted"></i>
-                    </button>
-                </div>
-                {% else %}
-                <div class="d-flex justify-content-between alert alert-danger alter-dismissible fade show"
-                    role="alert">
-                    <p class="m-0"><i class="bi bi-x-circle me-2"></i>{{ message }}</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="bi bi-x text-muted"></i>
-                    </button>
-                </div>{% endif %}{% endfor %}{% endif %}{% endwith %}
                 <div class="card">
                     <div class="d-flex justify-content-center">
                         <img class="card-image" src="{{ url_for('static', filename='assets/images/contact.jpg') }}"
-                            alt="Image">
+                            alt="Image" loading="lazy">
                     </div>
+                    <!-- contact form section -->
                     <form id="contact-form" method="post" action="{{ url_for('app.contact') }}" accept-charset="UTF-8">
-                        {{ form.csrf_token() }}
                         <div class="card-body">
                             <h2 class="card-title">You Need Help?</h2>
                             <p class="mb-4">If you have an issue related to our Blog? Fill out the
                                 form below to send me a message.
                             </p>
+                            {{ form.csrf_token() }}
+                            <!-- name input field -->
                             <div class="form-outline mb-3">
                                 {{ form.name.label(class_="form-label") }}
-                                {{ form.name(class_="form-control form-control-lg", placeholder="Enter your name") }}
+                                {{ form.name(class_="form-control", placeholder="Enter your name") }}
+                                {% if form.name.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.name.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- email input field -->
                             <div class="form-outline mb-3">
                                 {{ form.email.label(class_="form-label") }}
-                                {{ form.email(class_="form-control form-control-lg",
-                                placeholder="Enter your email address") }}
+                                {{ form.email(class_="form-control", placeholder="Enter your email address") }}
+                                {% if form.email.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.email.errors[0] }}</p>
+                                {% else %}
+                                <p class="text-muted fs-4-150 m-0 mt-1">
+                                    We'll never share your email with anyone else.
+                                </p>
+                                {% endif %}
                             </div>
+                            <!-- mobile input fiel -->
                             <div class="form-outline mb-3">
                                 {{ form.mobile.label(class_="form-label") }}
-                                {{ form.mobile(class_="form-control form-control-lg",
-                                placeholder="Enter your phone number") }}
+                                {{ form.mobile(class_="form-control", placeholder="Enter your phone number") }}
+                                {% if form.mobile.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.mobile.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- message input field -->
                             <div class="form-outline mb-3">
                                 {{ form.message.label(class_="form-label") }}
-                                {{ form.message(class_="form-control form-control-lg",
+                                {{ form.message(class_="form-control",
                                 placeholder="Type your message", style="height: 8rem") }}
+                                {% if form.message.errors %}
+                                <p class="text-danger fs-4-150 m-0 mt-1">{{ form.message.errors[0] }}</p>
+                                {% endif %}
                             </div>
+                            <!-- check input field -->
                             <div class="d-flex justify-content-start">
-                                {{ form.check(class_="form-check-input me-2", checked="true") }}
+                                {{ form.check(class_="form-check-input me-2") }}
                                 {{ form.check.label(class_="form-check-label") }}
                             </div>
                         </div>
                         <hr class="m-0">
+                        <!-- submit button -->
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
                                 {{ form.submit(class_="btn btn-primary") }}

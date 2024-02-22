@@ -13,6 +13,7 @@
                         <form id="login-form" method="post" role="form"
                             action="{{ url_for('auth.login', redirect_url=request.args.get('redirect_url')) }}"
                             accept-charset="UTF-8">
+                            <!-- form heading -->
                             <h2 class="text-center mb-4">Login Account</h2>
                             {{ form.csrf_token() }}
                             <!-- email input field -->
@@ -21,19 +22,31 @@
                                     {{ form.email.label(class_="form-label") }}
                                 </div>
                                 {{ form.email(class_="form-control", autocomplete="off",
-                                autofocus="true", placeholder="Enter your email address") }}
-                                <p id="email-error" class="text-danger my-1" hidden=""></p>
+                                autofocus="true", placeholder="Enter your email address",
+                                value=request.args.get('email', '')) }}
+                                {% if form.email.errors %}
+                                <p id="email-error" class="text-danger fs-4-150 m-0 mt-1">
+                                    {{ form.email.errors[0] }}</p>
+                                {% else %}
+                                <p id="email-error" class="text-danger fs-4-150 m-0 mt-1" hidden></p>
+                                {% endif %}
                             </div>
                             <!-- password input field -->
                             <div class="form-outline mb-3">
                                 <div class="d-flex justify-content-between">
                                     {{ form.password.label(class_="form-label") }}
-                                    <span id="show" class="text-center pointer" hidden>
-                                        <i class="bi bi-eye me-1 fs-4-150"></i>show
+                                    <!-- show password icon -->
+                                    <span id="show-password" class="pointer fs-4-150" hidden>
+                                        <i class="bi bi-eye me-1"></i>show
                                     </span>
                                 </div>
-                                {{ form.password(class_="form-control",
-                                placeholder="Enter your password") }}
+                                {{ form.password(class_="form-control", placeholder="Type your password") }}
+                                {% if form.password.errors %}
+                                <p id="password-error" class="text-danger fs-4-150 m-0 mt-1">
+                                    {{ form.password.errors[0] }}</p>
+                                {% else %}
+                                <p id="password-error" class="text-danger fs-4-150 m-0 mt-1" hidden></p>
+                                {% endif %}
                             </div>
                             <!-- check input field -->
                             <div class="d-flex justify-content-start mb-3">
@@ -46,7 +59,8 @@
                             </div>
                             <!-- forgot password page link -->
                             <div class="d-flex justify-content-center">
-                                <a href="{{ url_for('auth.forgot_password') }}" role="link">
+                                <a href="{{ url_for('auth.forgot_password', email=request.args.get('email', '') or form.email.value) }}"
+                                    role="link">
                                     <p class="m-0">Forgot password?</p>
                                 </a>
                             </div>
@@ -58,7 +72,8 @@
                                 <a href="{{ url_for('auth.google_login') }}" class="w-100" role="button">
                                     <button type="button" class="btn btn-outline-light">
                                         <svg class="me-2" height="17" width="17">
-                                            <image href="{{ url_for('static', filename='svg/social/google-icon.svg') }}"
+                                            <image
+                                                href="{{ url_for('static', filename='assets/svg/social/google-icon.svg') }}"
                                                 width="17" height="17" />
                                         </svg>
                                         Continue with Google
@@ -80,7 +95,7 @@
                 <!-- register page link -->
                 <p class="text-center my-3">
                     Don't have an account?
-                    <a href="{{ url_for('auth.register') }}" class="fw-bold">Register</a>
+                    <a role="link" href="{{ url_for('auth.register') }}" class="fw-bold">Register</a>
                 </p>
             </section>
         </div>

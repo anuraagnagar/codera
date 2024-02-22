@@ -4,7 +4,7 @@
 
 <!-- page content-->
 <div class="my-4 my-md-5">
-    <div class="container px-1 px-md-5">
+    <div class="container px-1 px-md-4">
         <div class="row">
             <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-6 col-xl-5 px-2">
                 <div class="card">
@@ -12,12 +12,13 @@
                         <!-- change email form section -->
                         <form id="change-email-form" method="post" role="form"
                             action="{{ url_for('auth.update_email') }}" accept-charset="UTF-8">
-                            {{ form.csrf_token() }}
+                            <!-- form heading -->
                             <div class="mb-4">
                                 <h3 class="mb-3">Reset Email Address</h3>
-                                <p class="fs-3-150">To change your email address please enter new email we'll send
-                                    reset link.</p>
+                                <p class="fs-3-150">To change your email address please enter new email
+                                    we'll send reset link.</p>
                             </div>
+                            {{ form.csrf_token() }}
                             <!-- email input field -->
                             <div class="mb-3">
                                 <div class="form-outline">
@@ -25,7 +26,12 @@
                                     {{ form.email(class_="form-control", autocomplete="off",
                                     autofocus="true", placeholder="Enter new email address") }}
                                 </div>
-                                <p id="error" class="text-danger"></p>
+                                {% if form.email.errors %}
+                                <p id="error" class="text-danger fs-4-150 m-0 mt-1">
+                                    {{ form.email.errors[0] }}</p>
+                                {% else %}
+                                <p id="error" class="text-danger fs-4-150 m-0 mt-1" hidden=""></p>
+                                {% endif %}
                             </div>
                             <!-- check input field -->
                             <div class="d-flex justify-content-start mb-3">
@@ -57,5 +63,5 @@
 {% endblock %}
 
 {% block script %}
-<script src="{{ url_for('static', filename='js/auth/forget.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth/forgot_password.js') }}"></script>
 {% endblock %}

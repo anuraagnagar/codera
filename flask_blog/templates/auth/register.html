@@ -12,16 +12,22 @@
             <!-- register form section -->
             <form id="register-form" method="post" role="form" action="{{ url_for('auth.register') }}"
               accept-charset="UTF-8">
-              <h2 class="text-center mb-4"><span class="">Create</span> Account</h2>
+              <!-- form heading -->
+              <h2 class="text-center mb-4">Create Account</h2>
               {{ form.csrf_token() }}
               <!-- username input field -->
               <div class="form-outline mb-4">
                 <div class="d-flex justify-content-between">
                   {{ form.username.label(class_="form-label") }}
                 </div>
-                {{ form.username(class_="form-control", autocomplete="off",
-                autofocus="true", placeholder="Enter your username") }}
-                <p id="username-error" class="text-danger my-1" hidden=""></p>
+                {{ form.username(class_="form-control", autocomplete="off", autofocus="true",
+                placeholder="Choose your username", value=request.args.get('username', '')) }}
+                {% if form.username.errors %}
+                <p id="username-error" class="text-danger fs-4-150 m-0 mt-1">
+                  {{ form.username.errors[0] }}</p>
+                {% else %}
+                <p id="username-error" class="text-danger fs-4-150 m-0 mt-1" hidden></p>
+                {% endif %}
               </div>
               <!-- email input field -->
               <div class="form-outline mb-4">
@@ -29,23 +35,34 @@
                   {{ form.email.label(class_="form-label") }}
                 </div>
                 {{ form.email(class_="form-control", autocomplete="off",
-                placeholder="Enter your email address") }}
-                <p id="email-error" class="text-danger my-1" hidden=""></p>
+                placeholder="Enter your email address", value=request.args.get('email', '')) }}
+                {% if form.email.errors %}
+                <p id="email-error" class="text-danger fs-4-150 m-0 mt-1">
+                  {{ form.email.errors[0] }}</p>
+                {% else %}
+                <p id="email-error" class="text-danger fs-4-150 m-0 mt-1" hidden></p>
+                {% endif %}
               </div>
               <!-- password input field -->
               <div class="form-outline mb-3">
                 <div class="d-flex justify-content-between">
-                  <span>
+                  <span class="m-0">
                     {{ form.password.label(class_="form-label me-1") }}
-                    <i class="bi bi-info-circle text-muted fs-4-150"></i>
+                    <i class="bi bi-info-circle pointer text-muted fs-4-150"></i>
                   </span>
-                  <span id="show" class="text-center pointer" hidden>
-                    <i class="bi bi-eye me-1 fs-4-150"></i>show
+                  <!-- show password icon -->
+                  <span id="show-password" class="pointer fs-4-150" hidden>
+                    <i class="bi bi-eye me-1"></i>show
                   </span>
                 </div>
                 {{ form.password(class_="form-control", autocomplete="off",
-                placeholder="At least 8 character") }}
-                <p id="password-error" class="text-danger my-1" hidden></p>
+                placeholder="Between 8 to 20 characters") }}
+                {% if form.password.errors %}
+                <p id="password-error" class="text-danger fs-4-150 m-0 mt-1">
+                  {{ form.password.errors[0] }}</p>
+                {% else %}
+                <p id="password-error" class="text-danger fs-4-150 m-0 mt-1" hidden></p>
+                {% endif %}
               </div>
               <!-- check input field -->
               <div class="d-flex justify-content-start mb-3">
@@ -63,9 +80,9 @@
               <div class="d-flex mb-4">
                 <a href="{{ url_for('auth.google_login') }}" class="w-100" role="button">
                   <button type="button" class="btn btn-outline-light">
-                    <svg class="me-2" height="18" width="18">
-                      <image href="{{ url_for('static', filename='svg/social/google-icon.svg') }}" width="18"
-                        height="18" />
+                    <svg class="me-2" height="17" width="17">
+                      <image href="{{ url_for('static', filename='assets/svg/social/google-icon.svg') }}" width="17"
+                        height="17" />
                     </svg>
                     Register with Google
                   </button>
@@ -92,7 +109,7 @@
         <!-- login page link -->
         <p class="text-center mt-4 mb-3">
           Already have an account?
-          <a href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold">Login</a>
+          <a role="link" href="{{ url_for('auth.login') }}" class="text-decoration-none fw-bold">Login</a>
         </p>
       </section>
     </div>
