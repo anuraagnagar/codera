@@ -1,9 +1,11 @@
 "use-strict";
 
+// Get references to elements from HTML documents.
 const emailInput = document.getElementById("email");
 const submitBtn = document.getElementById("submit");
 const emailError = document.getElementById("error");
 
+// RegEx pattern string for user email input.
 const emailRegEx =
   /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
