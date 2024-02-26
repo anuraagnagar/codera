@@ -3,7 +3,7 @@ from flask import Blueprint
 """
 Auth Blueprints for our application.
 
-auth (Blueprint):
+auth_blueprint (Blueprint):
     Blueprint for the authentication module.
 """
 
