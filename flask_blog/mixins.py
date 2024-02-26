@@ -20,9 +20,9 @@ class SocialMixin:
     for User's Profile instance.
     """
 
-    # 'user' social information
+    # users social information.
     website_url = db.Column(db.String(150), default="")
     github_url = db.Column(db.String(150), default="")
     twitter_url = db.Column(db.String(150), default="")
-    instagram_url = db.Column(db.String(150), default="")
+    linkedin_url = db.Column(db.String(150), default="")
     facebook_url = db.Column(db.String(150), default="")
