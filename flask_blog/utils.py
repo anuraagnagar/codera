@@ -9,23 +9,6 @@ from werkzeug.utils import secure_filename
 from flask import current_app
 
 
-def authenticated_token(user, token=None, salt=None):
-    """
-    Authenticate the user generated token for URL.
-    Verify the token using the Users model verify_token() method.
-    Returns the signed data if token valid, otherwise None.
-    """
-    return user.verify_token(token=token, salt=salt)
-
-
-def get_auth_user(users, user_id=None):
-    """
-    Get the authenticated user based on the provided User ID.
-    Return the User instance if exists, otherwise None.
-    """
-    return users.query.get_or_404(user_id)
-
-
 def get_clean_string(s):
     """
     A method for cleaning a text string like,
