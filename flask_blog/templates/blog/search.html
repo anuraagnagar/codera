@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+{% block title %}Search Post &#8226; {{ params['site_name'] }}{% endblock %}
+{% block body %}
+
+<!-- page content-->
+<div class="container-fluid mb-5">
+    <div class="row">
+        <section class="col-xsm-12 col-sm-9 col-md-8 col-lg-7 col-xl-6">
+            <div class="h-100">
+                {% if posts|length == 0 %}
+                <div class="d-flex justify-content-center mb-5">
+                    <div class="col-xsm-8 col-sm-8 col-lg-7 text-center">
+                        <h4 class="fw-normal my-3 my-md-4">
+                            No post found for - <span class="fw-bold">'{{ request.args.get("query", "") }}'</span>
+                        </h4>
+                        <img src="{{ url_for('static', filename='assets/svg/no-posts.svg') }}" alt="Not Found"
+                            loading="lazy">
+                    </div>
+                </div>
+                {% else %}
+                <div class="my-4">
+                    <h3 class="text-body fw-normal m-0">
+                        Search for <span class="text-primary fw-bold">{{ request.args.get("query", "") }}</span>
+                    </h3>
+                    <p class="text-muted my-auto">{{ posts|length }} result</p>
+                </div>
+                <!-- post preview -->
+                {% for post in posts %}
+                <article class="post-box mb-2 mb-sm-3 mb-md-4" title="{{ post.title }}">
+                    <div class="img-wrap" style="background-size: cover;">
+                        <div class="cover-image">
+                            <a href="{{ url_for('blog.blogpost', slug=post.slug) }}">
+                                <img class="image skeleton" loading="lazy"
+                                    src="{{ url_for('static', filename='assets/uploads/thumbnail/'+post.thumbnail_url) }}"></a>
+                        </div>
+                    </div>
+                    <div id="preview" class="post-preview">
+                        <a href="{{ url_for('blog.blogpost', slug=post.slug) }}" role="link">
+                            <h3 class="post-title">{{ post.title|title }}</h3>
+                            <h3 class="post-subtitle text-muted">{{ post.subtitle|safe }}...</h3>
+                        </a>
+                        <p class="post-meta">
+                            by <a class="mx-1" href="{{ url_for('app.dashboard', username=post.user.username) }}"
+                                title="Profile • {{ post.user.username }}">
+                                <span class="fw-bold">{{ post.user.username }}</span>
+                            </a>{{ post.created|timeago }}
+                        </p>
+                    </div>
+                </article>
+                {% endfor %}{% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock %}
