@@ -17,7 +17,7 @@
     border: 1px solid var(--cs-color-100);
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
-    border-radius: 5px;
+    border-radius: 7px;
     transition: all var(--cs-transition-200) ease-in-out;
 }
 
@@ -881,21 +881,21 @@ fieldset:disabled .btn {
     box-sizing: content-box;
     width: 1em;
     height: 1em;
-    padding: 0.10em 0.25em 0.25em;
+    padding: 0.25em;
     text-align: start;
     color: var(--cs-color-200);
     background: transparent;
-    border: 0;
+    border: 1px solid transparent;
 }
 
 .btn-close:hover {
     color: var(--cs-color-200);
+    border: 1px solid var(--cs-color-500);
     text-decoration: none;
 }
 
 .btn-close:focus {
     outline: 0;
-    /* box-shadow: 0 0 0 0.25rem rgba(0, 133, 161, 0.25); */
     opacity: 1;
 }
 
@@ -909,27 +909,22 @@ fieldset:disabled .btn {
     opacity: 0.25;
 }
 
-.btn-close-white {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-
-
-
 .btn-like #like-button {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.50rem;
+    color: var(--cs-color-700);
     background-color: transparent;
     padding: 0.25rem 0.78rem;
     margin: 0;
     margin-right: 3px;
-    border-radius: 50%;
+    border-radius: 9px;
     transition: all 0.250s ease-in-out;
 }
 
 .btn-like>a:hover {
-    color: var(--cs-color-700);
+    color: var(--cs-color-900);
 }
 
 .btn-like #like-button:active {
@@ -941,20 +936,21 @@ fieldset:disabled .btn {
     align-items: center;
     justify-content: center;
     font-size: 1.50rem;
+    color: var(--cs-color-700);
     background-color: transparent;
     padding: 0.25rem 0.78rem;
     margin: 0;
     margin-right: 3px;
-    border-radius: 50%;
+    border-radius: 9px;
     transition: all 0.250s ease-in-out;
 }
 
 .btn-share>a:hover {
-    color: var(--cs-color-700);
+    color: var(--cs-color-900);
 }
 
 .btn-share #share-button:active {
-    background-color: var(--cs-color-bg-300);
+    background-color: var(--cs-color-bg-400);
 }
 
 .btn-save #save-button {
@@ -962,16 +958,17 @@ fieldset:disabled .btn {
     align-items: center;
     justify-content: center;
     font-size: 1.50rem;
+    color: var(--cs-color-700);
     background-color: transparent;
     padding: 0.38rem 0.52rem;
     margin: 0;
     margin-right: 3px;
-    border-radius: 50%;
+    border-radius: 9px;
     transition: all 0.250s ease-in-out;
 }
 
 .btn-save>a:hover {
-    color: var(--cs-color-700);
+    color: var(--cs-color-900);
 }
 
 .btn-save #save-button:active {

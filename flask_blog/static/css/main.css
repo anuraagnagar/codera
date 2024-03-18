@@ -1,40 +1,43 @@
 @charset "UTF-8";
 
+/* Dark Mode Variables */
 html.dark {
+    /* Dark Mode Colors */
     --cs-color-900: #ffffff;
     --cs-color-800: #e2e2e2;
     --cs-color-700: #c0c0c0;
     --cs-color-600: #a3a3a3;
     --cs-color-500: #8a8a8a;
     --cs-color-400: #717171;
-    --cs-color-300: #525252;
+    --cs-color-300: #505050;
     --cs-color-200: #303030;
-    --cs-color-100: #262626;
+    --cs-color-100: #202020;
     --cs-color-000: #141414;
 
+    /* Background Colors */
     --cs-color-bg-100: #050505;
-    --cs-color-bg-200: #0b0b0b;
-    --cs-color-bg-300: #202020;
+    --cs-color-bg-200: #0a0a0a;
+    --cs-color-bg-300: #1f1f1f;
     --cs-color-bg-400: #2e2e2e;
     --cs-color-bg-500: #363636;
     --cs-color-bg-600: #444444;
-
     --cs-color-bg-nav: #0d0d0db2;
     --cs-color-bg-footer: #202020;
     --cs-color-bg-footer-card: #111;
 
+    /* Input and Border Colors */
     --cs-input-color-bg: var(--cs-color-bg-100);
     --cs-input-color-bg-disable: #222;
     --cs-input-border-shadow: #10584c38;
     --cs-color-box-shadow: #0000003b;
 
-    --cs-color-error: #ce6d76;
-    --cs-color-bg-error: #42181cb6;
+    --cs-color-danger: rgb(174, 120, 124);
     --cs-color-success: #5e9f81;
-    --cs-color-bg-success: #062618;
 }
 
+/* Default (Light) Mode Variables */
 :root {
+    /* Various Colors */
     --cs-blue: #1b7bd4;
     --cs-indigo: #6610f2;
     --cs-purple: #6f42c1;
@@ -50,6 +53,7 @@ html.dark {
     --cs-gray: #6c757d;
     --cs-gray-dark: #343a40;
 
+    /* UI Fixed Colors */
     --cs-primary: #167565;
     --cs-primary-light: #19875438;
     --cs-secondary: #6c757d;
@@ -57,9 +61,11 @@ html.dark {
     --cs-info: #0dcaf0;
     --cs-warning: #ffc107;
     --cs-danger: #dc3545;
-    --cs-light: #f8f9fa;
-    --cs-dark: var(--cs-color-bg-600);
+    --cs-danger-light: #dc354621;
+    --cs-light: #eeeeee;
+    --cs-dark: #141414;
 
+    /* Grayscale Colors */
     --cs-color-000: #efefef;
     --cs-color-100: #d6d6d7;
     --cs-color-200: #c9c9c9;
@@ -71,48 +77,52 @@ html.dark {
     --cs-color-800: #272727;
     --cs-color-900: #0f0f0f;
 
+    /* Background Colors */
     --cs-color-bg-100: #fff;
     --cs-color-bg-200: #fdfdfd;
     --cs-color-bg-300: #f3f3f3;
     --cs-color-bg-400: #e2e2e2;
     --cs-color-bg-500: #c4c4c4;
     --cs-color-bg-600: #dddddd;
-
     --cs-color-bg-nav: #fdfdfdb2;
     --cs-color-bg-footer: #f8f8f8;
     --cs-color-bg-footer-card: #f9f9f9;
 
+    /* Button Colors */
     --cs-button-primary: #167565;
-    --cs-button-primary-hover: #0f5246;
+    --cs-button-primary-hover: #0e4b40;
     --cs-button-primary-active: #0b443c;
     --cs-button-primary-active-border: #0f63553d;
 
+    /* Input and Border Colors */
     --cs-input-color-bg: #fff;
     --cs-input-border: #167565;
     --cs-input-border-shadow: #16756569;
     --cs-input-border-shadow-danger: rgba(159, 39, 39, 0.36);
     --cs-color-box-shadow: #51515118;
 
-    --cs-color-error: rgb(121, 11, 11);
-    --cs-color-bg-error: rgba(206, 6, 6, 0.21);
     --cs-color-success: #115e3a;
-    --cs-color-bg-success: #91d9b8;
+    --cs-color-danger: rgb(132, 27, 27);
 
+    /* Transition Durations */
     --cs-transition-100: 0.100s;
     --cs-transition-200: 0.200s;
     --cs-transition-300: 0.300s;
 
-    --cs-font-lato: 'Lato', sans-serif !important;
-    --cs-font-inter: 'Inter', sans-serif;
+    /* Font Styles and Families */
+    --cs-font-inter: 'Inter', sans-serif !important;
     --cs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --cs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    --cs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --cs-font-default: var(--cs-font-sans-serif);
+
+    /* Body Styles */
     --cs-body-font-family: var(--cs-font-inter);
     --cs-body-font-size: 1rem;
     --cs-body-font-weight: 400;
     --cs-body-line-height: 1.5;
     --cs-body-color: var(--cs-color-700);
     --cs-body-bg: var(--cs-color-bg-100);
+    --cs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 }
 
 *,
@@ -172,10 +182,10 @@ h2,
 h1,
 .h1 {
     color: var(--cs-color-800);
+    font-family: var(--cs-body-font-family);
+    font-weight: 600;
     margin-top: 0;
     margin-bottom: 0.5rem;
-    font-family: var(--cs-body-font-family);
-    font-weight: 800;
     line-height: 1.3;
 }
 
@@ -407,7 +417,7 @@ picture {
 }
 
 svg {
-    vertical-align: middle;
+    vertical-align: bottom;
 }
 
 video {

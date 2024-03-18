@@ -21,7 +21,7 @@
     background-color: var(--cs-input-color-bg);
     background-clip: padding-box;
     border: 1px solid var(--cs-color-100);
-    border-radius: 6px;
+    border-radius: 7px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -73,17 +73,20 @@
 }
 
 .form-control::-moz-placeholder {
-    color: var(--cs-color-300);
+    color: var(--cs-color-200);
+    font-weight: 200;
     opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-    color: var(--cs-color-300);
+    color: var(--cs-color-200);
+    font-weight: 200;
     opacity: 1;
 }
 
 .form-control::placeholder {
-    color: var(--cs-color-300);
+    color: var(--cs-color-200);
+    font-weight: 200;
     opacity: 1;
 }
 
@@ -91,7 +94,7 @@
 .form-control[readonly] {
     color: var(--cs-color-400);
     background-color: var(--cs-color-bg-100);
-    opacity: 1;
+    opacity: 0.75;
 }
 
 .form-control::-webkit-file-upload-button {
@@ -262,7 +265,7 @@ textarea.form-control-lg {
     background-position: right 0.75rem center;
     background-size: 16px 12px;
     border: 1px solid var(--cs-color-200);
-    border-radius: 5px;
+    border-radius: 7px;
     transition: all var(--cs-transition-200) ease-in-out;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -390,8 +393,8 @@ textarea.form-control-lg {
 .form-switch .form-check-input {
     width: 2em;
     height: 1em;
-    margin-left: -2.5em;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    margin-left: -2.25em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28 168, 168, 168'/%3e%3c/svg%3e");
     background-position: left center;
     border-radius: 15px;
     transition: all var(--cs-transition-200) ease-in-out;
@@ -404,7 +407,7 @@ textarea.form-control-lg {
 }
 
 .form-switch .form-check-input:focus {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28 168, 168, 168'/%3e%3c/svg%3e");
 }
 
 .form-switch .form-check-input:checked {
@@ -959,7 +962,7 @@ textarea.form-control.is-invalid {
     }
 
     .form-check label {
-        font-size: 17px;
+        font-size: 15px;
     }
 
 }
@@ -976,7 +979,7 @@ textarea.form-control.is-invalid {
     }
 
     .form-check label {
-        font-size: 17px;
+        font-size: 15px;
     }
 
 }
@@ -997,7 +1000,7 @@ textarea.form-control.is-invalid {
     }
 
     .form-check label {
-        font-size: 20px;
+        font-size: 17px;
     }
 
 }
