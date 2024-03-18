@@ -1,17 +1,13 @@
-from .base import SITE_TITLE
-from .base import COOKIE_DURATION
-from .base import SECRET_KEY
-from .base import MAIL_USERNAME
-from .base import AUTH_REDIRECT_URL
-from .production import UPLOAD_FOLDER
-from .production import POST_THUMBNAIL_PATH
-from .production import PROFILE_IMAGE_PATH
-from .production import COVER_IMAGE_PATH
+import os
 
-__all__ = [
-    "COOKIE_DURATION",
-    "SECRET_KEY",
-    "MAIL_USERNAME",
-    "AUTH_REDIRECT_URL",
-    "UPLOAD_FOLDER"
-]
+ENVIRON = os.environ["FLASK_ENV"]  # get environment status.
+
+try:
+    if ENVIRON == "production":
+        from .production import *
+    elif ENVIRON == "development":
+        from .development import *
+    else:
+        raise ValueError("")
+except ImportError as err:
+    raise ImportError(err)
