@@ -1,0 +1,154 @@
+.tox.tox-tinymce {
+    border-color: var(--cs-color-100) !important;
+    border-radius: 7px !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox .tox-edit-area__iframe {
+    background-color: var(--cs-color-bg-100) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox-menubar {
+    background: var(--cs-color-bg-200) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox .tox-menu {
+    background: var(--cs-color-bg-200) !important;
+    border-color: var(--cs-color-100) !important;
+}
+
+.tox .tox-split-button {
+    margin-right: 1px !important;
+}
+
+.tox .tox-split-button:hover {
+    box-shadow: 0 0 0 1px var(--cs-color-100) inset !important;
+}
+
+.tox .tox-collection__group {
+    border-color: var(--cs-color-100) !important;
+}
+
+.tox .tox-collection__item {
+    color: var(--cs-color-800) !important;
+}
+
+.tox .tox-collection--list .tox-collection__item--active {
+    background-color: var(--cs-color-bg-300) !important;
+}
+
+.tox .tox-collection--list .tox-collection__item--enabled {
+    color: var(--cs-color-800) !important;
+    background-color: var(--cs-color-bg-400) !important;
+}
+
+.tox .tox-collection__item-accessory {
+    color: var(--cs-color-300) !important;
+}
+
+.tox .tox-collection__item-caret svg {
+    fill: var(--cs-color-300) !important;
+}
+
+.tox .tox-collection--toolbar .tox-collection__item--active,
+.tox .tox-collection--toolbar .tox-collection__item--enabled {
+    background-color: var(--cs-color-bg-300) !important;
+}
+
+.tox .tox-mbtn {
+    color: var(--cs-color-800) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox .tox-mbtn--active {
+    color: var(--cs-color-800) !important;
+    background: var(--cs-color-bg-400) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox .tox-mbtn:hover {
+    background: var(--cs-color-bg-300) !important;
+}
+
+.tox .tox-mbtn:focus,
+.tox .tox-mbtn:active {
+    background: var(--cs-color-bg-400) !important;
+}
+
+.tox-toolbar__primary {
+    background: var(--cs-color-bg-200) !important;
+    border-color: var(--cs-color-100) !important;
+    border-bottom: 1px solid var(--cs-color-100) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox-toolbar__primary .tox-toolbar__group {
+    border-color: var(--cs-color-100) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox-toolbar__primary .tox-toolbar__group .tox-tbtn {
+    color: var(--cs-color-800) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox.tox-tinymce-aux .tox-toolbar__overflow {
+    background: var(--cs-color-bg-200) !important;
+    border: 1px solid var(--cs-color-100) !important;
+    border-radius: 5px !important;
+    box-shadow: 0 !important;
+}
+
+.tox:not([dir="rtl"]) .tox-toolbar__group:not(:last-of-type) {
+    border-right: 1px solid var(--cs-color-100) !important;
+}
+
+.tox .tox-tbtn svg,
+.tox .tox-tbtn svg:hover,
+.tox .tox-tbtn .tox-tbtn--enabled svg,
+.tox .tox-tbtn .tox-tbtn--enabled svg:hover {
+    fill: var(--cs-color-800) !important;
+}
+
+.tox .tox-tbtn--disabled svg,
+.tox .tox-tbtn--disabled svg:hover {
+    fill: var(--cs-color-500) !important;
+}
+
+.tox .tox-tbtn:hover {
+    background: var(--cs-color-bg-300) !important;
+}
+
+.tox .tox-tbtn:focus,
+.tox .tox-tbtn:active {
+    background: var(--cs-color-bg-400) !important;
+}
+
+.tox .tox-tbtn--enabled,
+.tox .tox-tbtn--enabled:hover {
+    background: var(--cs-color-bg-400) !important;
+}
+
+.tox .tox-statusbar {
+    background-color: var(--cs-color-bg-200) !important;
+    border-color: var(--cs-color-100) !important;
+    transition: all var(--cs-transition-200) ease-in-out !important;
+}
+
+.tox .tox-statusbar__path-item {
+    color: var(--cs-color-800) !important;
+}
+
+.tox .tox-statusbar__wordcount {
+    color: var(--cs-color-800) !important;
+}
+
+.tox .tox-statusbar__branding a {
+    color: var(--cs-color-800) !important;
+}
+
+.mce-content-body {
+    transition: all 0.200s ease-in-out !important;
+}
