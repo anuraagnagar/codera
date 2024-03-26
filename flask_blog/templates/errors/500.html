@@ -1,0 +1,14 @@
+{% extends "errors/error_base.html" %}
+{% block title %}
+500 Internal Server Error &#8226; {{ params['site_name'] }}
+{% endblock %}
+{% block error_picture %}
+<picture class="d-flex justify-content-center">
+    <img alt="Error" loading="lazy" class="w-75 mb-2"
+        src="{{ url_for('static', filename='assets/svg/server-error.svg') }}">
+</picture>
+{% endblock %}
+{% block error_heading %}
+<h1 class="text-center m-0 my-2">Internal Server Error</h1>
+<p class="text-center text-muted mb-4">Something went wrong with the backend server.</p>
+{% endblock %}
