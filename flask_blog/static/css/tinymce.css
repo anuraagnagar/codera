@@ -77,6 +77,10 @@
     background: var(--cs-color-bg-400) !important;
 }
 
+.tox .tox-toolbar-overlord {
+    background-color: transparent !important;
+}
+
 .tox-toolbar__primary {
     background: var(--cs-color-bg-200) !important;
     border-color: var(--cs-color-100) !important;
@@ -85,6 +89,7 @@
 }
 
 .tox-toolbar__primary .tox-toolbar__group {
+    gap: 2px !important;
     border-color: var(--cs-color-100) !important;
     transition: all var(--cs-transition-200) ease-in-out !important;
 }
@@ -118,7 +123,7 @@
 }
 
 .tox .tox-tbtn:hover {
-    background: var(--cs-color-bg-300) !important;
+    background: var(--cs-color-bg-400) !important;
 }
 
 .tox .tox-tbtn:focus,
@@ -145,7 +150,8 @@
     color: var(--cs-color-800) !important;
 }
 
-.tox .tox-statusbar__branding a {
+.tox .tox-statusbar__branding {
+    display: none !important;
     color: var(--cs-color-800) !important;
 }
 
